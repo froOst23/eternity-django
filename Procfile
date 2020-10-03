@@ -1,1 +1,2 @@
-web: python eternity/manage.py migrate --noinput - python eternity/manage.py runserver 0.0.0.0:$PORT
+web: python eternity/manage.py migrate --noinput 
+web: python eternity/manage.py runserver 0.0.0.0:$PORT
