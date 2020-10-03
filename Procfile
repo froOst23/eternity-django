@@ -1,1 +1,1 @@
-eternity: python3 manage.py runserver
+eternity: python3 eternity/manage.py runserver
