@@ -1,1 +1,1 @@
-web: python eternity/manage.py runserver
+web: python eternity/manage.py runserver $PORT
