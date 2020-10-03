@@ -1,0 +1,27 @@
+{% extends "main/base.html" %}
+
+{% load static %}
+
+{% block title %}
+    Удалить пост #{{ object.id }} - "{{ object.title }}"?
+{% endblock %}
+
+{% block content %}
+<div class="post">
+    <span class="flex-center post-block">
+        <h1 class="h1">Удалить пост #{{ object.id }} - "{{ object.title }}"?</h1>
+    </span>
+    <form method="POST" class="post-block">
+        {% csrf_token %}
+        <nav class="post-block flex-center">
+            <div class="post-block"></div>
+            <div class="post-block">
+                <button class="post_button-submit-delete flex-center" type="submit">Удалить!</button>
+            </div>
+            <div class="post-block">
+                <a href="/post/{{ object.id }}" class="post_button flex-center">Отмена</a>
+            </div>
+        </nav>
+    </form>
+</div>
+{% endblock %}

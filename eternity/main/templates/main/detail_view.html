@@ -1,0 +1,91 @@
+{% extends "main/base.html" %}
+
+{% load static %}
+
+{% block title %}
+
+    eternity - {{ object.title  }}
+
+{% endblock %}
+
+{% block content %}
+
+    <div class="post">
+        <div class="post-block flex-left">
+
+            {% for i in photo %}
+
+                {% if i.user ==  detail_post.author %}
+
+                    <div class="post-subblock-img flex-left">
+                        <img src="/media/{{ i.photo }}" class="post_img_mini">
+                    </div>
+
+                {% endif %}
+            
+            {% endfor %}
+
+            <div class="post-subblock-text">
+                <span class="post-subblock-text flex-left">
+                    <strong><a href="/accounts/profile/id{{ detail_post.author.id }}" class="post_link">{{ detail_post.author }}</a></strong>
+                </span>
+                <span class="post-subblock-text">        
+                    Создан: {{ detail_post.date }}
+                </span>
+            </div> 
+        </div>   
+        <span class="flex-left post-block">
+            <h1 class="h1">{{ detail_post.title }}</h1>
+        </span>
+        <span class="post-subblock-text flex-left">
+            <!-- придумать как реализовать split -->
+            <a href="/" class="post_link-mini">#{{ detail_post.tag }}</a>
+        </span>
+        {% if detail_post.image %}
+
+            <div class="post_img flex-center">
+                <img src="/media/{{ detail_post.image }}">
+            </div>
+
+        {% else %}
+
+            <!-- загружаем изображение по умолчанию -->
+            <div class="post_img flex-center">
+                <img src="{% static 'main/images/angeling.png' %}">
+            </div>
+
+        {% endif %}
+
+        <!-- выводим полный текст -->
+        <div class="post-text">
+            {{ detail_post.content | linebreaks }}
+        </div>
+        
+        {% if request.user !=  detail_post.author %}
+        
+        <nav class="post-block flex-right">
+            <div class="post-block">
+                <a href="/" class="post_button flex-center">На главную</a>
+            </div>
+        </nav>  
+
+        {% else %}
+
+        <nav class="post-block flex-right">
+            <div class="post-block"></div>
+            <div class="post-block">
+                <a href="{{ object.id }}/update" class="post_button flex-center">Изменить</a>
+            </div>
+            <div class="post-block">
+                <a href="{{ object.id }}/delete" class="post_button-delete flex-center">Удалить</a>
+            </div>
+            <div class="post-block">
+                <a href="/" class="post_button flex-center">На главную</a>
+            </div>
+        </nav>  
+
+        {% endif %}
+
+    </div>
+    
+{% endblock %}

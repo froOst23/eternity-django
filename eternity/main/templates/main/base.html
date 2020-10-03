@@ -1,0 +1,72 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <title>
+            {% block title %}{% endblock %}
+        </title>
+        <meta charset="utf-8">
+        <meta name="keywords" content="some keywords"/>
+        <meta name="descriprion" content="some descriprion">
+        <link rel="stylesheet" type="text/css" href="{% static 'main/css/style.css' %}">
+    </head>
+    <body>
+        <header class="flex-left header">
+            <div class="flex-center header-logo header-text">{% now "H:i" %}</div>
+            <nav class="flex-left header-menu">
+            {% if request.user.is_authenticated  %}
+
+                <div class="flex-left">
+                    <a href="/" class="header-link flex-center">Главная страница</a>
+                    <a href="/add-post" class="header-link flex-center">Написать</a>
+                    <a href="/about" class="header-link flex-center">О нас</a>
+                </div>
+            </nav>
+            <div class="flex-right header-auth">
+                <a href="/accounts/logout" class="header-link-warning flex-center">Выйти</a>
+            </div>
+
+            {% else %}
+
+                <div class="flex-left header-menu">
+                    <a href="/" class="header-link flex-center">Главная страница</a>
+                    <a href="/about" class="header-link flex-center">О нас</a>
+                </div>
+            </nav>
+            <div class="flex-right header-auth">
+                <a href="/registration" class="header-link flex-center">Регистрация</a>
+                <a href="/accounts/login" class="header-link-warning flex-center">Войти</a>
+            </div>
+
+            {% endif %}
+
+                {% if request.user.is_authenticated  %}
+                
+                <div class="header-link flex-center">
+                    <a href="/accounts/profile/id{{ request.user.id }}"class="header-link flex-center" >Привет, {{ request.user }}</a>
+                </div>
+                
+                {% else %}
+                
+                <div class="flex-center header-text">
+                    Привет, Гость
+                </div>
+
+                {% endif %}
+
+        </header>
+        <main class="post-wrapper">
+            {% block content %}{% endblock %}
+        </main>
+        <footer class="footer flex-center">
+            <nav class="footer-menu flex-right">
+                <!-- <div class="nav_space">
+                </div> -->
+                <div class="flex-center">
+                    <a href="/about" class="footer-text flex-center">© eternity 2020</a>
+                </div>
+            </nav>
+        </footer>
+    </body>
+</html>

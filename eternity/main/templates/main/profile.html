@@ -1,0 +1,73 @@
+{% extends "main/base.html" %}
+
+{% load static %}
+
+{% block title %}
+
+    eternity - {{  object.user }} - id{{  object.user.id }}
+
+{% endblock %}
+
+{% block content %}
+
+<main class="post-wrapper">
+    <div class="post">
+        <div class="block flex-center">
+            <span class="flex-left" style="width: 50%;">
+                <h1 class="h2 ">{{ object.user.first_name }}</h1>
+                <h1 class="h2">{{ object.user.last_name }}</h1>  
+                <h1 class="h2 text-dedicated" style="font-size: x-large;"> "{{ object.user }}"</h1>
+            </span>
+            <span class="flex-right" style="width: 50%;">
+                <a href="/accounts/profile/id{{ request.user.id }}/main" class="post_link h2" style="font-size: 20px; font-family: Helvetica;">Редактировать профиль</a>
+            </span>
+        </div>
+        <div class="block" style="display: flex;">
+            <div class="post-block flex-left">
+                <div class="post_img_profile" style="width: 50%;">
+                    <img src="/media/{{ object.user.profile.photo }}">
+                </div>
+            </div>
+            <div class="post-block flex-left" style="align-items: unset;">
+                <div style="margin-left: 40px;">
+                    <span class="flex-left text-dedicated" style="margin-bottom: -10px;">
+                        Биография пользователя:
+                    </span>
+                    <span class="flex-left text-regular" style="margin-bottom: 45px;">
+                        {{ object.user.profile.bio | linebreaks }}
+                    </span>
+                    <span class="flex-left text-dedicated" style="margin-bottom: 5px;">
+                        Статистика профиля
+                    </span>
+                    <span class="flex-left text-regular" style="margin-bottom: 45px;">
+                        Пам пам пам
+                        
+                        {% for i in post %}
+                            {% if object.user == i.author %}
+                                {{ forloop.counter }}
+                            {% endif %}
+                        {% endfor %}
+                    </span>
+                    <span class="flex-left text-dedicated" style="margin-bottom: 10px;">
+                        Недавняя активность
+                    </span>
+                    <span class="flex-left text-dedicated" style="margin-bottom: 10px;">
+                        <table>
+                            {% for i in post %}
+                            {% if object.user == i.author %}
+                            <tr>
+                                <td class="text-regular">{{ i.date|date:'d.m.Y в H:i' }}</td>
+                                <td class="text-regular">напиcал пост</td>
+                                <td class="text-dedicated"><a href="/post/{{ i.id }}" class="text-dedicated">"{{ i }}"</a></td>  
+                            </tr>
+                            {% endif %}
+                            {% endfor %}
+                        </table>  
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends "main/base.html" %}
+
+{% load static %}
+
+{% block title %}
+    eternity - Авторизация
+{% endblock %}
+
+{% block content %}
+
+<main class="post-wrapper-mini">
+    <div class="post">
+        <span class="flex-center post-block">
+            <h1 class="h1">Авторизация</h1>
+        </span>
+        <form method="POST" class="post-block" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="block flex-center">
+                {{ form.username }}
+            </div>
+            <div class="block flex-center">
+                {{ form.password }}
+            </div>
+            <nav class="block flex-center">
+                <div class="block">
+                    <button class="post_button-submit flex-center" type="submit">Войти!</button>
+                </div>
+                <div class="block">
+                    <a href="/" class="post_button flex-center">На главную</a>
+                </div>
+            </nav>
+        </form>
+    </div>
+</main>
+
+{% endblock %}
