@@ -12,15 +12,17 @@
 
 <main class="post-wrapper">
     <div class="post">
-        <div class="block flex-center">
-            <span class="flex-left" style="width: 50%;">
-                <h1 class="h2 ">{{ object.user.first_name }}</h1>
-                <h1 class="h2">{{ object.user.last_name }}</h1>  
-                <h1 class="h2 text-dedicated" style="font-size: x-large;"> "{{ object.user }}"</h1>
-            </span>
-            <span class="flex-right" style="width: 50%;">
-                <a href="/accounts/profile/id{{ request.user.id }}/main" class="post_link h2" style="font-size: 20px; font-family: Helvetica;">Редактировать профиль</a>
-            </span>
+        <div class="post_heading_block">
+            <div class="block flex-center">
+                <span class="flex-left" style="width: 50%;">
+                    <h1 class="h2 ">{{ object.user.first_name }}</h1>
+                    <h1 class="h2">{{ object.user.last_name }}</h1>  
+                    <h1 class="h2 text-dedicated" style="font-size: x-large;"> "{{ object.user }}"</h1>
+                </span>
+                <span class="flex-right" style="width: 50%;">
+                    <a href="/accounts/profile/id{{ request.user.id }}/main" class="post_link h2" style="font-size: 20px; font-family: Helvetica;">Редактировать профиль</a>
+                </span>
+            </div>
         </div>
         <div class="block" style="display: flex;">
             <div class="post-block flex-left">

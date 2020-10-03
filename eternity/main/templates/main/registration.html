@@ -10,9 +10,12 @@
 
 <main class="post-wrapper-mini">
     <div class="post">
-        <span class="flex-center post-block">
-            <h1 class="h1">Регистрация</h1>
-        </span>
+        <div class="post_heading_block">
+            <span class="flex-center post-block">
+                <h1 class="h1">Регистрация</h1>
+            </span>
+        </div>
+        <div class="post_space"></div>
         <form method="POST" class="post-block" enctype="multipart/form-data">
             {% csrf_token %}
             <div class="block flex-center">
@@ -21,6 +24,7 @@
             <div class="block flex-center">
                 {{ form.password }}
             </div>
+            <div class="post_space"></div>
             <nav class="block flex-center">
                 <div class="block">
                     <button class="post_button-submit flex-center" type="submit">Создать запись</button>

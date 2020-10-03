@@ -8,9 +8,11 @@
 
 {% block content %}
 <div class="post">
-    <span class="flex-center post-block">
-    <h1 class="h1">Добавить новую запись</h1>
-    </span>
+    <div class="post_heading_block">
+        <span class="flex-center post-block">
+            <h1 class="h1">Добавить новую запись</h1>
+        </span>
+    </div>
     <form method="POST" class="post-block" enctype="multipart/form-data">
         {% csrf_token %}
         <div class="block flex-center">

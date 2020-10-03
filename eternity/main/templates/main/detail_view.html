@@ -11,29 +11,31 @@
 {% block content %}
 
     <div class="post">
-        <div class="post-block flex-left">
+        <div class="post_heading_block">
+            <div class="post-block flex-left">
 
-            {% for i in photo %}
+                {% for i in photo %}
 
-                {% if i.user ==  detail_post.author %}
+                    {% if i.user ==  detail_post.author %}
 
-                    <div class="post-subblock-img flex-left">
-                        <img src="/media/{{ i.photo }}" class="post_img_mini">
-                    </div>
+                        <div class="post-subblock-img flex-left">
+                            <img src="/media/{{ i.photo }}" class="post_img_mini">
+                        </div>
 
-                {% endif %}
-            
-            {% endfor %}
+                    {% endif %}
+                
+                {% endfor %}
 
-            <div class="post-subblock-text">
-                <span class="post-subblock-text flex-left">
-                    <strong><a href="/accounts/profile/id{{ detail_post.author.id }}" class="post_link">{{ detail_post.author }}</a></strong>
-                </span>
-                <span class="post-subblock-text">        
-                    Создан: {{ detail_post.date }}
-                </span>
-            </div> 
-        </div>   
+                <div class="post-subblock-text">
+                    <span class="post-subblock-text flex-left">
+                        <strong><a href="/accounts/profile/id{{ detail_post.author.id }}" class="post_link">{{ detail_post.author }}</a></strong>
+                    </span>
+                    <span class="post-subblock-text">        
+                        Создан: {{ detail_post.date }}
+                    </span>
+                </div> 
+            </div>   
+        </div>
         <span class="flex-left post-block">
             <h1 class="h1">{{ detail_post.title }}</h1>
         </span>

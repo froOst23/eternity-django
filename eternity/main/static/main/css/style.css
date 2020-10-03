@@ -6,7 +6,7 @@ header{
 }
 
 main{
-    min-height: calc(100vh - 100px);
+    min-height: calc(100vh - 115px);
 }
 
 footer{
@@ -157,14 +157,25 @@ footer{
     min-height: 100%;
 }
 
+.post_heading_block{
+    border-color: #DFE2DB;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+}
+
+.post_space{
+    margin-top: 30px;
+    margin-top: 30px;
+}
+
 .post-block{
     margin-bottom: 5px;
     margin-top: 5px;
 }
 
 .block{
-    margin-bottom: 25px;
-    margin-top: 25px;
+    margin-bottom: 10px;
+    margin-top: 10px;
 }
 
 .block-profile{
@@ -182,15 +193,15 @@ footer{
 }
 
 .h1 {
-    margin-top: 35px;
+    margin-top: 10px;
     margin-bottom: 10px;
     font-family: Helvetica;
     font-size: 20px;
 }
 
 .h2 {
-    margin-top: 0px;
-    margin-bottom: 10px;
+    margin-top: 2px;
+    margin-bottom: 2px;
     font-family: Helvetica;
     font-size: x-large;
     margin-right: 5px;

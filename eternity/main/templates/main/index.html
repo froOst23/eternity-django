@@ -14,26 +14,28 @@
     
     {% for i in post %}
     <div class="post">
-        <div class="post-block flex-left">
+        <div class="post_heading_block">
+            <div class="post-block flex-left">
 
-            {% for j in profile %}
+                {% for j in profile %}
 
-                {% if i.author == j.user %}
+                    {% if i.author == j.user %}
 
-                <div class="post-subblock-img flex-left">
-                    <img src="media/{{ j.photo }}" class="post_img_mini">
+                    <div class="post-subblock-img flex-left">
+                        <img src="media/{{ j.photo }}" class="post_img_mini">
+                    </div>
+                    
+                    {% endif %}
+
+                {% endfor %}
+                <div class="post-subblock-text">
+                    <span class="post-subblock-text flex-left">
+                        <strong><a href="/accounts/profile/id{{ i.author.id }}" class="post_link">{{ i.author }}</a></strong>
+                    </span>
+                    <span class="post-subblock-text">    
+                        Создан: {{ i.date }}
+                    </span>
                 </div>
-                
-                {% endif %}
-
-            {% endfor %}
-            <div class="post-subblock-text">
-                <span class="post-subblock-text flex-left">
-                    <strong><a href="/accounts/profile/id{{ i.author.id }}" class="post_link">{{ i.author }}</a></strong>
-                </span>
-                <span class="post-subblock-text">    
-                    Создан: {{ i.date }}
-                </span>
             </div>
         </div>
         <span class="flex-left post-block">

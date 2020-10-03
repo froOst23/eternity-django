@@ -8,9 +8,12 @@
 
 {% block content %}
 <div class="post">
-    <span class="flex-center post-block">
-        <h1 class="h1">Удалить пост #{{ object.id }} - "{{ object.title }}"?</h1>
-    </span>
+    <div class="post_heading_block">
+        <span class="flex-center post-block">
+            <h1 class="h1">Удалить пост #{{ object.id }} - "{{ object.title }}"?</h1>
+        </span>
+    </div>
+    <div class="post_space"></div>
     <form method="POST" class="post-block">
         {% csrf_token %}
         <nav class="post-block flex-center">

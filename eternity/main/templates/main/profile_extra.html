@@ -12,12 +12,14 @@
 
 <main class="post-wrapper-mini">
     <div class="post">
-        <div class="post-block flex-center" style="border-bottom-width: 1px; border-bottom-style: solid;">
-            <div class="post-block flex-center" style="width: 50%;">
-                <a href="/accounts/profile/id{{ request.user.id }}/main" class="profile-link flex-left">Основная информация</a>
-            </div>
-            <div class="post-block flex-center" style="width: 50%;">
-                <a href="/accounts/profile/id{{ request.user.id }}/extra" class="profile-link flex-rigth">Дополнительная информация</a>
+        <div class="post_heading_block">
+            <div class="post-block flex-center">
+                <div class="post-block flex-center" style="width: 50%;">
+                    <a href="/accounts/profile/id{{ request.user.id }}/main" class="profile-link flex-left">Основная информация</a>
+                </div>
+                <div class="post-block flex-center" style="width: 50%;">
+                    <a href="/accounts/profile/id{{ request.user.id }}/extra" class="profile-link flex-rigth">Дополнительная информация</a>
+                </div>
             </div>
         </div>
             <form method="POST" class="post-block" enctype="multipart/form-data">
