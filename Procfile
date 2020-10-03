@@ -1,2 +1,1 @@
-release: python eternity/manage.py migrate
-web: gunicorn eternity.wsgi --log-file -
+web: python eternity/manage.py migrate && python eternity/manage.py runserver 0.0.0.0:$PORT
