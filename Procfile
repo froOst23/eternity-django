@@ -1,1 +1,1 @@
-web: gunicorn eternity-django.wsgi --log-file -
+web: gunicorn eternity-django.eternity.wsgi --log-file -
