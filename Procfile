@@ -1,1 +1,1 @@
-web: gunicorn eternity.wsgi
+web: gunicorn eternity.eternity.wsgi
