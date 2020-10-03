@@ -1,1 +1,1 @@
-web: gunicorn eternity.eternity.wsgi --log-file -
+web: python eternity/manage.py runserver
