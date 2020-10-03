@@ -26,7 +26,7 @@ SECRET_KEY = '&mpg&n&hsgr8m)bg$lm9srk$+d75$yaphj5_r)0i6f^z89gynt'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['eternity-django.herokuapp.com']
+ALLOWED_HOSTS = ['eternity-django.herokuapp.com', '127.0.0.1']
 
 
 # Application definition
