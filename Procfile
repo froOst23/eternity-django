@@ -1,1 +1,1 @@
-eternity: python3 eternity/manage.py runserver
+web: gunicorn eternity.wsgi
