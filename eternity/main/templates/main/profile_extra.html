@@ -10,7 +10,7 @@
 
 {% block content %}
 
-<main class="post-wrapper-mini">
+<main class="post-wrapper-medium">
     <div class="post">
         <div class="post_heading_block">
             <div class="post-block flex-center">
@@ -22,13 +22,26 @@
                 </div>
             </div>
         </div>
+        <div class="post_space"></div>
             <form method="POST" class="post-block" enctype="multipart/form-data">
             {% csrf_token %}
-                <div class="block flex-center">
-                    {{ form.bio }}
+                <div class="block-label flex-left text_label">
+                    Предварительный просмотр
+                </div>
+                <div class="post_img_profile_update flex-center">
+                    <img src="/media/{{ object.photo }}">
+                </div>
+                <div class="block-label flex-left text_label">
+                    Аватар пользователя
                 </div>
                 <div class="block flex-center">
                     {{ form.photo }}
+                </div>
+                <div class="block-label flex-left text_label">
+                    Биография пользователя
+                </div>
+                <div class="block flex-center">
+                    {{ form.bio }}
                 </div>
                 <nav class="block flex-center">
                     <div class="block">

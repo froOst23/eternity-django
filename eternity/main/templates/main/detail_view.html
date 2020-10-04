@@ -39,10 +39,13 @@
         <span class="flex-left post-block">
             <h1 class="h1">{{ detail_post.title }}</h1>
         </span>
-        <span class="post-subblock-text flex-left">
+        <div class="block-label flex-left text_label">
+            Теги:
+        </div>
+        <div class="post_img flex-left">
             <!-- придумать как реализовать split -->
             <a href="/" class="post_link-mini">#{{ detail_post.tag }}</a>
-        </span>
+        </div>
         {% if detail_post.image %}
 
             <div class="post_img flex-center">
@@ -74,7 +77,6 @@
         {% else %}
 
         <nav class="post-block flex-right">
-            <div class="post-block"></div>
             <div class="post-block">
                 <a href="{{ object.id }}/update" class="post_button flex-center">Изменить</a>
             </div>

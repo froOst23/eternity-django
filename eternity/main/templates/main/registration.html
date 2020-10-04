@@ -3,7 +3,7 @@
 {% load static %}
 
 {% block title %}
-    eternity - Авторизация
+    eternity | Регистрация
 {% endblock %}
 
 {% block content %}
@@ -16,22 +16,22 @@
             </span>
         </div>
         <div class="post_space"></div>
-        <form method="POST" class="post-block" enctype="multipart/form-data">
+        <form method="POST" class="post-block-form" enctype="multipart/form-data">
             {% csrf_token %}
+            <div class="block-label flex-left text_label">
+                Имя пользователя
+            </div>
             <div class="block flex-center">
                 {{ form.username }}
+            </div>
+            <div class="block-label flex-left text_label">
+                Пароль
             </div>
             <div class="block flex-center">
                 {{ form.password }}
             </div>
-            <div class="post_space"></div>
-            <nav class="block flex-center">
-                <div class="block">
-                    <button class="post_button-submit flex-center" type="submit">Создать запись</button>
-                </div>
-                <div class="block">
-                    <a href="/" class="post_button flex-center">На главную</a>
-                </div>
+            <nav class="block flex-center flex-center">
+                <button class="post_button-submit-big flex-center" type="submit">Зарегестрироваться</button>
             </nav>
         </form>
     </div>

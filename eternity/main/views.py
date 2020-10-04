@@ -31,6 +31,11 @@ class PostUpdateView(LoginRequiredMixin, UpdateView):
             return self.handle_no_permission()
         return kwargs
 
+    def get_context_data(self, **kwargs):
+        context = super(PostUpdateView, self).get_context_data(**kwargs)
+        context['post'] = Post.objects.all()
+        return context
+
 
 class PostAddView(LoginRequiredMixin, CreateView):
     model = Post

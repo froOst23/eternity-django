@@ -30,20 +30,23 @@
                 {% endfor %}
                 <div class="post-subblock-text">
                     <span class="post-subblock-text flex-left">
-                        <strong><a href="/accounts/profile/id{{ i.author.id }}" class="post_link">{{ i.author }}</a></strong>
+                        <a href="/accounts/profile/id{{ i.author.id }}" class="post_link">{{ i.author }}</a>
                     </span>
-                    <span class="post-subblock-text">    
-                        Создан: {{ i.date }}
+                    <span class="text_label" style="margin-left: 5px;">    
+                        {{ i.date|date:'d.m.Y в H:i' }}
                     </span>
                 </div>
             </div>
         </div>
         <span class="flex-left post-block">
             <h1 class="h1">{{ i.title }}</h1>
-            </span>
-        <span class="post-subblock-text flex-left">
-            <a href="/" class="post_link-mini">#{{ i.tag }}</a>
         </span>
+        <div class="block-label flex-left text_label">
+            Теги:
+        </div>
+        <div class="post_img flex-left">
+            <a href="/" class="post_link-mini">#{{ i.tag }}</a>
+        </div>
 
         {% if i.image %}
 
@@ -96,7 +99,7 @@
 
     <div class="post">
         <span class="flex-left post-block">
-            <h1>Упс! Записей не обнаружено...</h1>
+            <h1 class="h1">Упс! Записей не обнаружено...</h1>
         </span>
     </div>
 
