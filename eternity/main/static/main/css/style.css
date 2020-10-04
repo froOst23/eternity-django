@@ -1,23 +1,22 @@
-html{
-    height: 98%;
-}
 body{
-    display: flex;
-    flex-direction: column;
-    height: 100%;
     background-color: #F6F7F8; 
 }
-header{
-    flex: 0 0 auto;
-}
+
+header{}
 
 main{
+    display: flex;
+    flex-direction: column;
+    min-height: 85vh;
+}
+
+.global_wrapper{
+    display: flex;
+    flex-direction: column;
     flex: 1 0 auto;
 }
 
-footer{
-    flex: 0 0 auto;
-}
+footer{}
 
 .flex-center{
     display: flex;
@@ -145,7 +144,7 @@ footer{
 
 .post-wrapper-medium{
     width: 60%;
-    margin-left: 20%;
+    margin-left: 15%;
 }
 
 .post{
