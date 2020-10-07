@@ -3,39 +3,52 @@
 {% load static %}
 
 {% block title %}
-    eternity - Добавить пост
+    eternity | Добавить запись
 {% endblock %}
 
 {% block content %}
-<div class="post">
-    <div class="post_heading_block">
-        <span class="flex-center post-block">
-            <h1 class="h1">Добавить новую запись</h1>
-        </span>
+
+<div class="post-wrapper">
+    <div class="post">
+        <div class="post-head">
+            <div class="post-content">
+            <span class="font-bold-large inflex-center post-title" style="padding-bottom: 20px; padding-top: 20px;">
+                Добавить новую запись
+            </span>
+        </div>
     </div>
-    <form method="POST" class="post-block" enctype="multipart/form-data">
-        {% csrf_token %}
-        <div class="block flex-center">
-            {{ form.title }}
+        <div class="post-content">
+            <form method="POST" class="post-block-form" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="flex-left text_label font-bold-small">
+                    Название поста
+                </div>
+                <div class="inflex-center" style="width: 100%; padding-bottom: 40px;">
+                    {{ form.title }}
+                </div>
+                <div class="flex-left text_label font-bold-small">
+                    Теги
+                </div>
+                <div class="inflex-center" style="width: 100%; padding-bottom: 40px;">
+                    {{ form.tag }}
+                </div>
+                <div class="flex-left text_label font-bold-small">
+                    Содержание статьи
+                </div>
+                <div class="inflex-center" style="width: 100%; padding-bottom: 40px;">
+                    {{ form.content }}
+                </div>
+                <div class="flex-left text_label font-bold-small">
+                    Изображение для статьи. Используемые форматы: .jpg, .jpeg, .png, .gif
+                </div>
+                <div class="inflex-center" style="width: 100%; padding-bottom: 40px;">
+                    {{ form.image }}
+                </div>
+                <div class="post-button font-bold-small flex-center">
+                    <button class="button-alert font-bold-small" type="submit">Написать</button>
+                    <a href="/" class="button">Отменить</a>
+                </div>
+            </form>
         </div>
-        <div class="block flex-center">
-            {{ form.tag }}
-        </div>
-        <div class="block flex-center">
-            {{ form.content }}
-        </div>
-        <div class="block flex-center">
-            {{ form.image }}
-        </div>
-        <nav class="post-block flex-center">
-            <div class="post-block"></div>
-            <div class="post-block">
-                <button class="post_button-submit flex-center" type="submit">Запостить!</button>
-            </div>
-            <div class="post-block">
-                <a href="/" class="post_button flex-center">Отмена</a>
-            </div>
-        </nav>
-    </form>
 </div>
 {% endblock %}

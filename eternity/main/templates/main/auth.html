@@ -10,31 +10,38 @@
 
 <main class="post-wrapper-mini">
     <div class="post">
-        <div class="post_heading_block">
-            <span class="flex-center post-block">
-                <h1 class="h1">Авторизация</h1>
+        <div class="post-head">
+            <div class="post-content">
+            <span class="font-bold-large inflex-center post-title" style="padding-bottom: 20px; padding-top: 20px;">
+                Авторизация
             </span>
         </div>
-        <div class="post_space"></div>
-        <form method="POST" class="post-block-form" enctype="multipart/form-data">
-            {% csrf_token %}
-            <div class="block-label flex-left text_label">
-                Имя пользователя
-            </div>
-            <div class="block flex-center">
-                {{ form.username }}
-            </div>
-            <div class="block-label flex-left text_label">
-                Пароль
-            </div>
-            <div class="block flex-center">
-                {{ form.password }}
-            </div>
-            <nav class="block flex-center">
-                <button class="post_button-submit-big flex-center" type="submit">Войти</button>
-            </nav>
-        </form>
     </div>
+        <div class="post-content">
+            <form method="POST" class="post-block-form" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="flex-left text_label font-bold-small">
+                    Имя пользователя
+                </div>
+                <div class="inflex-center" style="width: 100%; padding-bottom: 40px;">
+                    {{ form.username }}
+                </div>
+                <div class="flex-left text_label font-bold-small">
+                    Пароль
+                </div>
+                <div class="inflex-center" style="width: 100%; padding-bottom: 40px;">
+                    {{ form.password }}
+                </div>
+                <div class="flex-center font-regular-medium">
+                    Ещё нет аккаунта?
+                    <br>
+                    <a href="/registration">Зарегистрируйтесь</a>
+                </div>
+                <div class="post-button inflex-center" style="margin-top: 20px;">
+                    <button class="button font-bold-medium" type="submit">Войти</button> 
+                </div>
+            </form>
+        </div>
 </main>
 
 {% endblock %}

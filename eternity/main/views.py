@@ -120,6 +120,11 @@ class ProfileUpdateView(LoginRequiredMixin, UpdateView):
             return self.handle_no_permission()
         return kwargs
 
+    def get_context_data(self, **kwargs):
+        context = super(ProfileUpdateView, self).get_context_data(**kwargs)
+        context['profile'] = Profile.objects.all()
+        return context
+
 
 class UserDetailView(DetailView):
     model = Profile
@@ -128,8 +133,8 @@ class UserDetailView(DetailView):
     def get_context_data(self, **kwargs):
         context = super(UserDetailView, self).get_context_data(**kwargs)
         context['post'] = Post.objects.all()
+        context['profile'] = Profile.objects.all()
         return context
-
 
 def index(request):
     post = Post.objects.order_by('-date')

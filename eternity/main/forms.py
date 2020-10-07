@@ -9,19 +9,19 @@ class NewPostForm(ModelForm):
         fields = ['title', 'tag', 'content', 'image']
         widgets = {
             'title': TextInput(attrs={
-                'class': 'post_form_input',
+                'class': 'post-form-input font-regular-medium',
                 'placeholder': 'Название поста'
             }),
             'tag': TextInput(attrs={
-                'class': 'post_form_input',
+                'class': 'post-form-input font-regular-medium',
                 'placeholder': 'Используемые теги'
             }),
             'content': Textarea(attrs={
-                'class': 'post_form_input_textarea',
+                'class': 'post-form-input-textarea font-regular-medium',
                 'placeholder': 'Описание поста'
             }),
             'image': FileInput(attrs={
-                'class': 'post_form_input',
+                'class': 'post-form-input font-regular-medium',
                 'placeholder': 'Фото поста'
             })
         }
@@ -34,9 +34,9 @@ class LoginPostForm(AuthenticationForm, ModelForm):
 
     def __init__(self, *args, **kwargs):
         super(LoginPostForm, self).__init__(*args, **kwargs)
-        self.fields['username'].widget = TextInput(attrs={'class': 'post_form_input', 'placeholder': 'Логин'})
+        self.fields['username'].widget = TextInput(attrs={'class': 'post-form-input font-regular-medium', 'placeholder': 'Логин'})
         self.fields['username'].label = False
-        self.fields['password'].widget = PasswordInput(attrs={'class': 'post_form_input', 'placeholder':'Пароль'}) 
+        self.fields['password'].widget = PasswordInput(attrs={'class': 'post-form-input font-regular-medium', 'placeholder':'Пароль'}) 
         self.fields['password'].label = False
 
 
@@ -51,11 +51,11 @@ class RegisterPostForm(ModelForm):
         fields = ['username', 'password']
         widgets = {
             'username': TextInput(attrs={
-                'class': 'post_form_input',
+                'class': 'post-form-input font-regular-medium',
                 'placeholder': 'Логин'
             }),
             'password': PasswordInput(attrs={
-                'class': 'post_form_input',
+                'class': 'post-form-input font-regular-medium',
                 'placeholder': 'Пароль'
             })
         }
@@ -74,15 +74,15 @@ class UpdateUserForm(ModelForm):
         fields = ['first_name', 'last_name', 'email']
         widgets = {
             'first_name': TextInput(attrs={
-                'class': 'post_form_input',
+                'class': 'post-form-input font-regular-medium',
                 'placeholder': 'Имя'
             }),
             'last_name': TextInput(attrs={
-                'class': 'post_form_input',
+                'class': 'post-form-input font-regular-medium',
                 'placeholder': 'Фамилия'
             }),
             'email': TextInput(attrs={
-                'class': 'post_form_input',
+                'class': 'post-form-input font-regular-medium',
                 'placeholder': 'email'
             })
         }
@@ -94,10 +94,10 @@ class ProfileUpdateForm(ModelForm):
         fields = ['bio', 'photo']
         widgets = {
             'bio': Textarea(attrs={
-                'class': 'post_form_input_textarea',
+                'class': 'post-form-input-textarea font-regular-medium',
                 'placeholder': 'Краткое описание'
             }),
             'photo': FileInput(attrs={
-                'class': 'post_form_input'
+                'class': 'post-form-input font-regular-medium'
             })
         }

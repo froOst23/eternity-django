@@ -23,6 +23,7 @@ class Post(models.Model):
         return f'/post/{self.id}'
 
 
+# Расширяем модель User с помощью связи один-к-одному
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     bio = models.TextField(max_length=500, blank=True, verbose_name='BIO')
@@ -32,8 +33,8 @@ class Profile(models.Model):
         return str(self.user)
     
     class Meta():
-        verbose_name = 'Дополнительная инфа'
-        verbose_name_plural = 'Дополнительная инфа'
+        verbose_name = 'Расширение User'
+        verbose_name_plural = 'Расширение User'
 
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):

@@ -7,24 +7,25 @@
 {% endblock %}
 
 {% block content %}
-<div class="post">
-    <div class="post_heading_block">
-        <span class="flex-center post-block">
-            <h1 class="h1">Удалить пост #{{ object.id }} - "{{ object.title }}"?</h1>
-        </span>
+
+<main class="post-wrapper-mini">
+    <div class="post">
+        <div class="post-head">
+            <div class="post-content">
+            <span class="font-bold-large inflex-center post-title" style="padding-bottom: 20px; padding-top: 20px;">
+                Удалить пост #{{ object.id }} - "{{ object.title }}"?
+            </span>
+        </div>
     </div>
-    <div class="post_space"></div>
-    <form method="POST" class="post-block">
-        {% csrf_token %}
-        <nav class="post-block flex-center">
-            <div class="post-block"></div>
-            <div class="post-block">
-                <button class="post_button-submit-delete flex-center" type="submit">Удалить!</button>
-            </div>
-            <div class="post-block">
-                <a href="/post/{{ object.id }}" class="post_button flex-center">Отмена</a>
-            </div>
-        </nav>
-    </form>
-</div>
+        <div class="post-content">
+            <form method="POST" class="post-block-form" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="post-button font-bold-small flex-center">
+                    <button class="button-alert font-bold-small" type="submit">Удалить</button>
+                    <a href="/post/{{ object.id }}" class="button">Отмена</a>
+                </div>
+            </form>
+        </div>
+</main>
+
 {% endblock %}

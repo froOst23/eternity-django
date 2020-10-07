@@ -10,54 +10,58 @@
 
 {% block content %}
 
-<div class="post">
-    <div class="post_heading_block">
-        <div class="block-profile flex-center">
-            <span class="flex-left" style="width: 50%;">
-                <h1 class="h2 ">{{ object.user.first_name }}</h1>
-                <h1 class="h2">{{ object.user.last_name }}</h1>  
-                <h1 class="h2"> "{{ object.user }}"</h1>
+<main class="post-wrapper-medium">
+    <div class="post">
+        <div class="post-head">
+            <span class="font-bold-large inflex-center" style="padding-bottom: 20px; padding-top: 20px; width: 100%;">
+                {{ object.user }}
             </span>
             {% if request.user == object.user %}
-            <span class="flex-right" style="width: 50%;">
-                <a href="/accounts/profile/id{{ request.user.id }}/main" class="post_link h2" style="font-size: 20px; font-family: Helvetica;">Редактировать профиль</a>
-            </span>
-            {% else %}
-            <span class="flex-right" style="width: 50%;">
+            <span class="post-title-none-underline inflex-center ">
+                <span class="inflex-center profile-link-line" style="width: 100%;">
+                    <a href="/accounts/profile/id{{ object.user.id }}/main" class="profile-link font-bold-medium">Редактировать</a>
+                </span>
             </span>
             {% endif %}
+            <div class="flex-center">
+                {% if object.user.profile.photo %}
+
+                <img src="/media/{{ object.user.profile.photo }}" class="profile-photo">
+
+                {% else %}
+
+                <img src="{% static 'main/images/default_avatar.png' %}" class="profile-photo">
+
+                {% endif %}
+            </div>
+            <span class="font-bold-large inflex-center post-title" style="padding-bottom: 20px; padding-top: 20px;"></span>    
         </div>
-    </div>
-    <div class="post_heading_block flex-center" style="align-items: flex-start; margin-top: 30px;">
-        <span class="flex-center" style="width: 50%;">
-            <div class="post_img_profile">
-                <img src="/media/{{ object.user.profile.photo }}">
+        <div class="post-content">
+            <div class="flex-left font-bold-small prfile-text" style="color: gray;">
+                Имя пользователя:
             </div>
-        </span>
-        <span style="width: 50%;">
-            <div class="block-label flex-left text_label">
-                Биография:
+            <div class="flex-left font-regular-medium prfile-text" style="width: 100%; padding-bottom: 30px;">
+                {{ object.user.first_name }}
             </div>
-            <div class="block flex-left text-profile">
+            <div class="flex-left font-bold-small prfile-text" style="color: gray;">
+                Фамилия пользователя:
+            </div>
+            <div class="flex-left font-regular-medium prfile-text" style="width: 100%; padding-bottom: 30px;">
+                {{ object.user.last_name }}
+            </div>
+            <div class="flex-left font-bold-small prfile-text" style="color: gray;">
+                E-MAIL:
+            </div>
+            <div class="flex-left font-regular-medium prfile-text" style="width: 100%; padding-bottom: 30px;">
+                {{ object.user.email }}
+            </div>
+            <div class="flex-left font-bold-small prfile-text" style="color: gray;">
+                Обо мне:
+            </div>
+            <div class="flex-left font-regular-medium prfile-text" style="width: 95%; padding-bottom: 30px;">
                 {{ object.user.profile.bio }}
             </div>
-            <div class="block-label flex-left text_label">
-                Недавняя активность:
-            </div>
-            <div class="block flex-left text-profile">
-                <table>
-                    {% for i in post %}
-                    {% if object.user == i.author %}
-                    <tr>
-                        <td class="text-regular">{{ i.date|date:'d.m.Y в H:i' }}</td>
-                        <td class="text-regular">напиcал пост</td>
-                        <td class="text-dedicated"><a href="/post/{{ i.id }}" class="text-dedicated">"{{ i }}"</a></td>  
-                    </tr>
-                    {% endif %}
-                    {% endfor %}
-                </table> 
-            </div>
-        </span>
+        </div>    
     </div>
-
+</main>
 {% endblock %}
