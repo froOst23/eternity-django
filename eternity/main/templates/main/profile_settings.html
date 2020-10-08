@@ -1,0 +1,105 @@
+{% extends "main/base.html" %}
+
+{% load static %}
+
+{% block title %}
+
+    eternity | {{ user }}_id{{  user.id }}
+
+{% endblock %}
+
+{% block content %}
+
+{% if messages %}
+{% for message in messages %}
+    <!-- <li{% if message.tags %} class="{{ message.tags }}"{% endif %}> -->
+        {% if message.tags == "success" %}
+        <div class="message-wrapper">
+            <div class="message-succsess font-bold-medium">
+                {{ message }}
+            </div>
+        </div>  
+        {% elif message.tags == "error" %}
+        <div class="message-wrapper">
+            <div class="message-error font-bold-medium">
+                {{ message }}
+            </div>
+        </div>  
+        {% endif %}
+{% endfor %}
+{% endif %}
+
+<main class="post-wrapper-medium">
+    <div class="post">
+        <div class="post-head">
+            <span class="font-bold-large inflex-center" style="padding-bottom: 20px; padding-top: 20px; width: 100%;">
+                {{ user }}
+            </span>
+            <span class="post-title-none-underline inflex-center ">
+                <span class="inflex-center profile-link-line" style="width: 50%;">
+                    <a href="/accounts/profile/id{{ user.id }}" class="profile-link font-bold-medium">Информация</a>
+                </span>
+                <span class="inflex-center profile-link-line" style="width: 50%;">
+                    <a href="/accounts/profile/id{{ user.id }}/edit" class="profile-link font-bold-medium">Редактировать</a>
+                </span>
+            </span>
+            <div class="flex-center">
+                {% if user.profile.photo %}
+
+                <img src="/media/{{ user.profile.photo }}" class="profile-photo">
+
+                {% else %}
+
+                <img src="{% static 'main/images/default_avatar.png' %}" class="profile-photo">
+
+                {% endif %}
+            </div>
+            <span class="font-bold-large inflex-center post-title" style="padding-bottom: 20px; padding-top: 20px;"></span>    
+        </div>
+        <div class="post-content">
+            <form method="POST" class="post-block-form" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="flex-left text_label font-bold-small" style="color: gray;">
+                    Имя пользователя
+                </div>
+                <div class="inflex-center" style="width: 100%; padding-bottom: 40px;">
+                    {{ user_form.first_name }}
+                </div>
+                <div class="flex-left text_label font-bold-small" style="color: gray;">
+                    Фамилия пользователя
+                </div>
+                <div class="inflex-center" style="width: 100%; padding-bottom: 40px;">
+                    {{ user_form.last_name }}
+                </div>
+                <div class="flex-left text_label font-bold-small" style="color: gray;">
+                    E-MAIL
+                </div>
+                <div class="inflex-center" style="width: 100%; padding-bottom: 40px;">
+                    {{ user_form.email }}
+                </div>
+                <div class="flex-left text_label font-bold-small" style="color: gray;">
+                    Аватар пользователя (Используемые форматы: .jpg, .jpeg, .png)
+                </div>
+                <div class="inflex-center" style="width: 100%; padding-bottom: 40px;">
+                    {{ profile_form.photo }}
+                </div>
+                <div class="flex-left text_label font-bold-small" style="color: gray;">
+                    Обо мне:
+                </div>
+                <div class="inflex-center" style="width: 100%; padding-bottom: 40px;">
+                    {{ profile_form.bio }}
+                </div>
+                <div class="post-button font-bold-small flex-center">
+                    <button class="button-alert font-bold-medium" type="submit">Изменить</button>
+
+                    <a href="/accounts/profile/id{{ user.id }}" class="button">Отменить</a>
+                </div>
+            </form>
+        </div>
+</main>
+
+{% endblock %}
+
+
+
+  
