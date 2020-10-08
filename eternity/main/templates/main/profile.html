@@ -18,8 +18,11 @@
             </span>
             {% if request.user == object.user %}
             <span class="post-title-none-underline inflex-center ">
-                <span class="inflex-center profile-link-line" style="width: 100%;">
-                    <a href="/accounts/profile/id{{ object.user.id }}/main" class="profile-link font-bold-medium">Редактировать</a>
+                <span class="inflex-center profile-link-line" style="width: 50%;">
+                    <a href="/accounts/profile/id{{ object.user.id }}" class="profile-link font-bold-medium">Информация</a>
+                </span>
+                <span class="inflex-center profile-link-line" style="width: 50%;">
+                    <a href="/accounts/profile/id{{ object.user.id }}/edit" class="profile-link font-bold-medium">Редактировать</a>
                 </span>
             </span>
             {% endif %}

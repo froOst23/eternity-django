@@ -14,6 +14,28 @@ header{
 main{
     margin-top: 80px;
 }
+.message-wrapper{
+    position: fixed;
+    top: 30px;
+    left: 0;
+    right: 0;
+}
+.message-succsess{
+    display: flex;
+    height: 40px;
+    align-items: center;
+    justify-content: center;
+    background-color: #aaebc6;
+    color: #3b8686;
+}
+.message-error{
+    display: flex;
+    height: 40px;
+    align-items: center;
+    justify-content: center;
+    background-color: #fadbd8;
+    color: #e45f56;
+}
 .header-menu{
     height: 30px;
     padding-left: 40px;

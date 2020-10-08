@@ -7,6 +7,10 @@ from django.contrib.auth.forms import User, UserCreationForm
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponseRedirect
+from django.contrib.auth.decorators import login_required
+from django.db import transaction
+from django.contrib import messages
+from django.core.files.uploadhandler import FileUploadHandler
 
 class PostDetailView(DetailView):
     model = Post
@@ -23,7 +27,6 @@ class PostUpdateView(LoginRequiredMixin, UpdateView):
     model = Post
     template_name = 'main/update-post.html'
     form_class = NewPostForm
-    success_url = reverse_lazy('home')
     
     def get_form_kwargs(self):
         kwargs = super().get_form_kwargs()
@@ -94,36 +97,36 @@ class RegisterPostView(CreateView):
         return form_valid
 
 
-class UpdateUserView(LoginRequiredMixin, UpdateView):
-    model = User
-    template_name = 'main/profile_main.html'
-    form_class = UpdateUserForm
-    success_url = reverse_lazy('home')
+# # Устаревшая функция - необходимо убрать
+# class UpdateUserView(LoginRequiredMixin, UpdateView):
+#     model = User
+#     template_name = 'main/profile_main.html'
+#     form_class = UpdateUserForm
 
-    def get_form_kwargs(self):
-        kwargs = super().get_form_kwargs()
-        if str(self.request.user) != str(kwargs['instance'].username):
-            return self.handle_no_permission()
-        return kwargs
+#     def get_form_kwargs(self):
+#         kwargs = super().get_form_kwargs()
+#         if str(self.request.user) != str(kwargs['instance'].username):
+#             return self.handle_no_permission()
+#         return kwargs
 
 
-class ProfileUpdateView(LoginRequiredMixin, UpdateView):
-    model = Profile
-    template_name = 'main/profile_extra.html'
-    form_class = ProfileUpdateForm
-    second_form_class = UpdateUserForm
-    success_url = reverse_lazy('home')
+# # Устаревшая функция - необходимо убрать
+# class ProfileUpdateView(LoginRequiredMixin, UpdateView):
+#     model = Profile
+#     template_name = 'main/profile_extra.html'
+#     form_class = ProfileUpdateForm
+#     second_form_class = UpdateUserForm
 
-    def get_form_kwargs(self):
-        kwargs = super().get_form_kwargs()
-        if self.request.user != kwargs['instance'].user:
-            return self.handle_no_permission()
-        return kwargs
+#     def get_form_kwargs(self):
+#         kwargs = super().get_form_kwargs()
+#         if self.request.user != kwargs['instance'].user:
+#             return self.handle_no_permission()
+#         return kwargs
 
-    def get_context_data(self, **kwargs):
-        context = super(ProfileUpdateView, self).get_context_data(**kwargs)
-        context['profile'] = Profile.objects.all()
-        return context
+#     def get_context_data(self, **kwargs):
+#         context = super(ProfileUpdateView, self).get_context_data(**kwargs)
+#         context['profile'] = Profile.objects.all()
+#         return context
 
 
 class UserDetailView(DetailView):
@@ -135,6 +138,48 @@ class UserDetailView(DetailView):
         context['post'] = Post.objects.all()
         context['profile'] = Profile.objects.all()
         return context
+
+
+"""
+@login_required
+Если пользователь не авторизован, то перенаправляет его на URL, указанный в параметре конфигурации 
+settings.LOGIN_URL, передавая текущий абсолютный путь в запросе.
+https://djbook.ru/rel1.8/topics/auth/default.html
+
+@transaction.atomic
+Django предоставляет один API для управления транзакциями базы данных.
+Атомарность является основным свойством транзакций базы данных. atomic позволяет создать блок кода, 
+для которого гарантируется атомарность операций над базой данных. Если этот блок кода выполнился без ошибок, 
+все изменения фиксируются в базе данных. Если произошла ошибка, все изменений будут отменены.
+https://djbook.ru/rel1.7/topics/db/transactions.html
+"""
+@login_required
+@transaction.atomic
+def update_profile(request, pk):
+    if request.method == 'POST':
+        user_form = UpdateUserForm(request.POST, instance=request.user)
+        profile_form = ProfileUpdateForm(request.POST, request.FILES, instance=request.user.profile)
+        if user_form.is_valid() and profile_form.is_valid():
+            user_form.save()
+            profile_form.save()
+            messages.success(request, ('Профиль успешно обновлен'))
+            # return redirect('home')
+        else:
+            messages.error(request, ('Произошла ошибка'))
+    # request.FILES - ожидаем загрузки файла на сервер
+    elif request.method == 'FILES':
+        if user_form.is_valid() and profile_form.is_valid():
+            user_form.save()
+            profile_form.save()
+            # FileUploadHandler используем для загрузки файла на сервер
+            FileUploadHandler(request.FILES['photo'])
+        else:
+            messages.error(request, ('Произошла ошибка'))
+    else:
+        user_form = UpdateUserForm(instance=request.user)
+        profile_form = ProfileUpdateForm(instance=request.user.profile)
+    return render(request, 'main/profile_settings.html', {'user_form': user_form, 'profile_form': profile_form})
+
 
 def index(request):
     post = Post.objects.order_by('-date')
