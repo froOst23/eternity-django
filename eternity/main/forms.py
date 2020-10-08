@@ -3,35 +3,31 @@ from django.forms import ModelForm, TextInput, DateTimeInput, Textarea, Password
 from django.contrib.auth.forms import AuthenticationForm, User
 
 class NewPostForm(ModelForm):
-    ALLOWED_TYPES = ['jpg', 'jpeg', 'png', 'gif']
+    # указываем с какой моделью будем работтать и какими полями модели
     class Meta:
         model = Post
         fields = ['title', 'tag', 'content', 'image']
-        widgets = {
-            'title': TextInput(attrs={
-                'class': 'post-form-input font-regular-medium',
-                'placeholder': 'Название поста'
-            }),
-            'tag': TextInput(attrs={
-                'class': 'post-form-input font-regular-medium',
-                'placeholder': 'Используемые теги'
-            }),
-            'content': Textarea(attrs={
-                'class': 'post-form-input-textarea font-regular-medium',
-                'placeholder': 'Описание поста'
-            }),
-            'image': FileInput(attrs={
-                'class': 'post-form-input font-regular-medium',
-                'placeholder': 'Фото поста'
-            })
-        }
+
+    # задаем класс формы и атрибут placeholder
+    def __init__(self, *args, **kwargs):
+        super(NewPostForm, self).__init__(*args, **kwargs)
+        self.fields['title'].widget = TextInput(attrs={'class': 'post-form-input font-regular-medium', 'placeholder': 'Название поста'})
+        self.fields['title'].label = False
+        self.fields['tag'].widget = TextInput(attrs={'class': 'post-form-input font-regular-medium', 'placeholder': 'Используемые теги'})
+        self.fields['tag'].label = False
+        self.fields['content'].widget = Textarea(attrs={'class': 'post-form-input font-regular-medium', 'placeholder': 'Описание поста'})
+        self.fields['content'].label = False
+        self.fields['image'].widget = FileInput(attrs={'class': 'post-form-input font-regular-medium', 'placeholder': 'Фото поста'})
+        self.fields['image'].label = False
 
 
 class LoginPostForm(AuthenticationForm, ModelForm):
+    # указываем с какой моделью будем работтать и какисми полями модели
     class Meta:
         model = User
         fields = ['username', 'password']
 
+    # задаем класс формы и атрибут placeholder
     def __init__(self, *args, **kwargs):
         super(LoginPostForm, self).__init__(*args, **kwargs)
         self.fields['username'].widget = TextInput(attrs={'class': 'post-form-input font-regular-medium', 'placeholder': 'Логин'})
@@ -46,19 +42,18 @@ class RegisterPostForm(ModelForm):
     Внутри класса происходит переопределение метода сохранения пароля для того чтобы
     избавить от ошибки 'Неизвестный формат пароля или алгоритм хеширования'
     """
+    # указываем с какой моделью будем работтать и какисми полями модели
     class Meta:
         model = User
         fields = ['username', 'password']
-        widgets = {
-            'username': TextInput(attrs={
-                'class': 'post-form-input font-regular-medium',
-                'placeholder': 'Логин'
-            }),
-            'password': PasswordInput(attrs={
-                'class': 'post-form-input font-regular-medium',
-                'placeholder': 'Пароль'
-            })
-        }
+
+    # задаем класс формы и атрибут placeholder
+    def __init__(self, *args, **kwargs):
+        super(RegisterPostForm, self).__init__(*args, **kwargs)
+        self.fields['username'].widget = TextInput(attrs={'class': 'post-form-input font-regular-medium', 'placeholder': 'Логин'})
+        self.fields['username'].label = False
+        self.fields['password'].widget = PasswordInput(attrs={'class': 'post-form-input font-regular-medium', 'placeholder':'Пароль'}) 
+        self.fields['password'].label = False
  
     def save(self, commit=True):
         user = super().save(commit=False)
@@ -69,35 +64,32 @@ class RegisterPostForm(ModelForm):
 
 
 class UpdateUserForm(ModelForm):
+    # указываем с какой моделью будем работтать и какисми полями модели
     class Meta:
         model = User
         fields = ['first_name', 'last_name', 'email']
-        widgets = {
-            'first_name': TextInput(attrs={
-                'class': 'post-form-input font-regular-medium',
-                'placeholder': 'Имя'
-            }),
-            'last_name': TextInput(attrs={
-                'class': 'post-form-input font-regular-medium',
-                'placeholder': 'Фамилия'
-            }),
-            'email': TextInput(attrs={
-                'class': 'post-form-input font-regular-medium',
-                'placeholder': 'email'
-            })
-        }
+
+    # задаем класс формы и атрибут placeholder
+    def __init__(self, *args, **kwargs):
+        super(UpdateUserForm, self).__init__(*args, **kwargs)
+        self.fields['first_name'].widget = TextInput(attrs={'class': 'post-form-input font-regular-medium', 'placeholder': 'Имя'})
+        self.fields['first_name'].label = False
+        self.fields['last_name'].widget = TextInput(attrs={'class': 'post-form-input font-regular-medium', 'placeholder':'Фамилия'}) 
+        self.fields['last_name'].label = False
+        self.fields['email'].widget = TextInput(attrs={'class': 'post-form-input font-regular-medium', 'placeholder':'email'}) 
+        self.fields['email'].label = False
 
 
 class ProfileUpdateForm(ModelForm):
+    # указываем с какой моделью будем работтать и какисми полями модели
     class Meta:
         model = Profile
         fields = ['bio', 'photo']
-        widgets = {
-            'bio': Textarea(attrs={
-                'class': 'post-form-input-textarea font-regular-medium',
-                'placeholder': 'Краткое описание'
-            }),
-            'photo': FileInput(attrs={
-                'class': 'post-form-input font-regular-medium'
-            })
-        }
+
+    # задаем класс формы и атрибут placeholder
+    def __init__(self, *args, **kwargs):
+        super(ProfileUpdateForm, self).__init__(*args, **kwargs)
+        self.fields['bio'].widget = Textarea(attrs={'class': 'post-form-input font-regular-medium', 'placeholder': 'Обо мне'})
+        self.fields['bio'].label = False
+        self.fields['photo'].widget = FileInput(attrs={'class': 'post-form-input font-regular-medium'})
+        self.fields['photo'].label = False
