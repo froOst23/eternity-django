@@ -20,26 +20,26 @@
         <div class="post-content">
             <form method="POST" class="post-block-form" enctype="multipart/form-data">
                 {% csrf_token %}
-                <div class="flex-left text_label font-bold-small">
-                    Название поста
+                <div class="flex-left text_label font-bold-small" style="color: gray;">
+                    Название поста:
                 </div>
                 <div class="inflex-center" style="width: 100%; padding-bottom: 40px;">
                     {{ form.title }}
                 </div>
-                <div class="flex-left text_label font-bold-small">
-                    Теги
+                <div class="flex-left text_label font-bold-small" style="color: gray;">
+                    Теги (Используйте символ запятой "," чтобы разделить теги, не используйте пробел): 
                 </div>
                 <div class="inflex-center" style="width: 100%; padding-bottom: 40px;">
                     {{ form.tag }}
                 </div>
-                <div class="flex-left text_label font-bold-small">
-                    Содержание статьи
+                <div class="flex-left text_label font-bold-small" style="color: gray;">
+                    Содержание статьи:
                 </div>
                 <div class="inflex-center" style="width: 100%; padding-bottom: 40px;">
                     {{ form.content }}
                 </div>
-                <div class="flex-left text_label font-bold-small">
-                    Изображение для статьи. Используемые форматы: .jpg, .jpeg, .png, .gif
+                <div class="flex-left text_label font-bold-small" style="color: gray;">
+                    Изображение для статьи (Используемые форматы: .jpg, .jpeg, .png, .gif):
                 </div>
                 <div class="inflex-center" style="width: 100%; padding-bottom: 40px;">
                     {{ form.image }}

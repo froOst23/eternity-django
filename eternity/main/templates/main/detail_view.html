@@ -2,6 +2,8 @@
 
 {% load static %}
 
+{% load split_filter %}
+
 {% block title %}
 
     eternity - {{ object.title  }}
@@ -9,11 +11,10 @@
 {% endblock %}
 
 {% block content %}
-
+    
     <div class="post-wrapper">
         <div class="post">
             <div class="post-head" style="display: flex;">
-
 
                 {% for i in photo %}
 
@@ -32,11 +33,10 @@
                     {% endif %}
                 
                 {% endfor %}
-
-                            
+                    
                 <div style="display: grid;">
                     <span class="inflex-left">
-                        <a href="/accounts/profile/id{{ detail_post.author.id }}" class="post-link font-bold-medium">{{ detail_post.author }}</a>
+                        <a href="/accounts/profile/id{{ detail_post.author.id }}" class="post-link font-bold-large">{{ detail_post.author }}</a>
                     </span> 
                     <span class="inflex-left post-text-header font-regular-small">
                         {{ detail_post.date|date:'d.m.Y в H:i' }}
@@ -47,8 +47,16 @@
                 <span class="font-bold-large inflex-left post-text">
                     {{ detail_post.title }}
                 </span>
-                <div class="flex-left post-text font-italic-medium">
-                    #{{ detail_post.tag }}
+                <div class="post-tag">
+
+                    {% for j in detail_post.tag|split %}
+
+                    <div class="post-tag-text font-italic-medium">
+                        <a href="/tag/{{ j }}" class="tag-link">#{{ j }}</a>
+                    </div>
+
+                    {% endfor %}
+
                 </div>
                 <div class="flex-left post-title font-regular-medium"></div>
                 {% if detail_post.image %}
@@ -59,9 +67,11 @@
                 <div class="inflex-left post-text-short font-regular-medium">
                     {{ detail_post.content }}
                 </div>
+
                 {% if request.user !=  detail_post.author %}
         
                 <div class="post-button font-bold-small flex-right">
+                    <a href="/post/{{ detail_post.id }}/add-comment" class="button">Комментировать</a>  
                     <a href="/" class="button">На главную</a>
                 </div>
         
@@ -70,10 +80,35 @@
                 <div class="post-button font-bold-small flex-right">
                     <a href="/post/{{ detail_post.id }}/update" class="button">Изменить</a>
                     <a href="/post/{{ detail_post.id }}/delete" class="button-alert">Удалить</a>
+                    <a href="/post/{{ detail_post.id }}/add-comment" class="button">Комментировать</a>
                     <a href="/" class="button">Назад</a>
                 </div> 
         
                 {% endif %}
+
+                <div class="post-comment">
+                {% for j in comment %}
+            
+                    {% if j.post == detail_post %}
+                    
+                        <div class="comment font-regular-small">
+                            <span class="flex-left font-bold-small">
+                                <a href="/accounts/profile/id{{ j.author.id }}" class="post-link">{{ j.author }}</a>
+                                
+                            </span>
+                            <span class="flex-left post-text-header">
+                                {{ j.created|date:'d.m.Y в H:i' }}
+                            </span>
+                            <span class="flex-left post-text-header" style="margin-top: 10px;">
+                                {{ j.content }}
+                            </span>
+                        </div>
+                        <br>
+                        
+                        {% endif %}
+                        
+                        {% endfor %}
+                </div>
             </div>
         </div>
     </div>

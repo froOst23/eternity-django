@@ -10,25 +10,6 @@
 
 {% block content %}
 
-{% if messages %}
-{% for message in messages %}
-    <!-- <li{% if message.tags %} class="{{ message.tags }}"{% endif %}> -->
-        {% if message.tags == "success" %}
-        <div class="message-wrapper">
-            <div class="message-succsess font-bold-medium">
-                {{ message }}
-            </div>
-        </div>  
-        {% elif message.tags == "error" %}
-        <div class="message-wrapper">
-            <div class="message-error font-bold-medium">
-                {{ message }}
-            </div>
-        </div>  
-        {% endif %}
-{% endfor %}
-{% endif %}
-
 <main class="post-wrapper-medium">
     <div class="post">
         <div class="post-head">

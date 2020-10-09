@@ -21,13 +21,13 @@
         <form method="POST" class="post-block-form" enctype="multipart/form-data">
             {% csrf_token %}
             <div class="flex-left text_label font-bold-small" style="color: gray;">
-                Название поста
+                Название поста:
             </div>
             <div class="inflex-center" style="width: 100%; padding-bottom: 40px;">
                 {{ form.title }}
             </div>
             <div class="flex-left text_label font-bold-small" style="color: gray;">
-                Теги
+                Теги (Используйте символ запятой "," чтобы разделить теги, не используйте пробел): 
             </div>
             <div class="inflex-center" style="width: 100%; padding-bottom: 40px;">
                 {{ form.tag }}
@@ -35,7 +35,7 @@
             {% if object.image %}
 
             <div class="flex-left text_label font-bold-small" style="color: gray;">
-                Предварительный просмотр
+                Предварительный просмотр:
             </div>
             <div class="flex-center" style="width: 100%; padding-bottom: 40px; padding-top: 40px;">
                 <img src="/media/{{ object.image }}" class="post-img">
@@ -44,18 +44,18 @@
             {% else %}
 
             <div class="flex-left text_label font-bold-small" style="color: gray; padding-bottom: 40px;">
-                Нет изображения
+                Нет изображения...
             </div>
 
             {% endif %}
             <div class="flex-left text_label font-bold-small" style="color: gray;">
-                Содержание статьи
+                Содержание статьи:
             </div>
             <div class="inflex-center" style="width: 100%; padding-bottom: 40px;">
                 {{ form.content }}
             </div>
             <div class="flex-left text_label font-bold-small" style="color: gray;">
-                Изображение для статьи. Используемые форматы: .jpg, .jpeg, .png, .gif
+                Изображение для статьи (Используемые форматы: .jpg, .jpeg, .png, .gif):
             </div>
             <div class="inflex-center" style="width: 100%; padding-bottom: 40px;">
                 {{ form.image }}

@@ -27,6 +27,7 @@ main{
     justify-content: center;
     background-color: #aaebc6;
     color: #3b8686;
+    opacity: 50%;
 }
 .message-error{
     display: flex;
@@ -35,6 +36,16 @@ main{
     justify-content: center;
     background-color: #fadbd8;
     color: #e45f56;
+    opacity: 50%;
+}
+.message-info{
+    display: flex;
+    height: 40px;
+    align-items: center;
+    justify-content: center;
+    background-color: #a3daff;
+    color: #0080ff;
+    opacity: 50%;
 }
 .header-menu{
     height: 30px;
@@ -216,6 +227,24 @@ main{
     width: 80%;
     margin-left: 20px;
 }
+.post-tag{
+    display: inline-flex;
+    width: 98%;
+    align-items: center;
+    justify-content: flex-start;
+    margin-left: 2%;
+}
+.post-tag-text{
+    margin-right: 10px;
+}
+.tag-link{
+    color: #4aaaa5;
+    text-decoration: none;
+}
+.tag-link:hover{
+    color: #7accc8;
+    text-decoration: none;
+}
 .post-title{
     width: 96%;
     margin-left: 2%;
@@ -270,6 +299,32 @@ main{
     overflow: hidden;
     text-overflow: ellipsis;
     line-height: 1.56;
+}
+.post-comment{
+    width: 90%;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-top: 20px;
+    line-height: 1.56;
+    padding-left: 10px;
+}
+.comment{
+    /* display: inline-flex; */
+    background-color: #ffffff;
+    padding-left: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-right: 10px;
+    border-top-width: 1px;
+    border-top-style: solid;
+    border-left-width: 1px;
+    border-left-style: solid;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-right-width: 1px;
+    border-right-style: solid;
+    border-radius: 5px;
+    border-color: rgba(0,0,0,0.1);
 }
 .button{
     width: 130px;

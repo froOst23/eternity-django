@@ -38,6 +38,11 @@
             }
         </style>
     <body>
+        <script>
+            setTimeout(function(){
+                document.getElementById('message').style.display = 'none';
+            }, 3000);
+        </script>
         <header>
             {% if request.user.is_authenticated  %}
             <nav class="header-menu">
@@ -67,6 +72,32 @@
             {% endif %}
         </header>
         <main>
+            {% if messages %}
+
+                {% for message in messages %}
+                        {% if message.tags == "success" %}
+                        <div class="message-wrapper" id="message">
+                            <div class="message-succsess font-bold-medium">
+                                {{ message }}
+                            </div>
+                        </div>  
+                        {% elif message.tags == "error" %}
+                        <div class="message-wrapper" id="message">
+                            <div class="message-error font-bold-medium">
+                                {{ message }}
+                            </div>
+                        </div>
+                        {% elif message.tags == "info" %}
+                        <div class="message-wrapper" id="message">
+                            <div class="message-info font-bold-medium">
+                                {{ message }}
+                            </div>
+                        </div>  
+                        {% endif %}
+                {% endfor %}
+
+            {% endif %}
+            
             {% block content %}{% endblock %}
         </main>
         <footer>

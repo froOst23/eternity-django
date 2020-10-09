@@ -1,4 +1,4 @@
-from .models import Post, Profile
+from .models import Post, Profile, Comment
 from django.forms import ModelForm, TextInput, DateTimeInput, Textarea, PasswordInput, FileInput
 from django.contrib.auth.forms import AuthenticationForm, User
 
@@ -93,3 +93,14 @@ class ProfileUpdateForm(ModelForm):
         self.fields['bio'].label = False
         self.fields['photo'].widget = FileInput(attrs={'class': 'post-form-input font-regular-medium'})
         self.fields['photo'].label = False
+
+class CommentCreateForm(ModelForm):
+    # указываем с какой моделью будем работтать и какисми полями модели
+    class Meta:
+        model = Comment
+        fields = ['content']
+
+    # задаем класс формы и атрибут placeholder
+    def __init__(self, *args, **kwargs):
+        super(CommentCreateForm, self).__init__(*args, **kwargs)
+        self.fields['content'].widget = Textarea(attrs={'class': 'post-form-input font-regular-medium', 'placeholder': 'Комментарий'})

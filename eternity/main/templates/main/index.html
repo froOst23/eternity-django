@@ -2,6 +2,8 @@
 
 {% load static %}
 
+{% load split_filter %}
+
 {% block title %}
 
     eternity | Лента
@@ -24,7 +26,7 @@
                             
                                 {% if j.photo %}
 
-                                    <img src="media/{{ j.photo }}" class="post-img-mini">
+                                    <img src="/media/{{ j.photo }}" class="post-img-mini">
                                 
                                 {% else %}
                                 
@@ -38,7 +40,7 @@
                             
                         <div style="display: grid;">
                             <span class="inflex-left">
-                                <a href="/accounts/profile/id{{ i.author.id }}" class="post-link font-bold-medium">{{ i.author }}</a>
+                                <a href="/accounts/profile/id{{ i.author.id }}" class="post-link font-bold-large">{{ i.author }}</a>
                             </span> 
                             <span class="inflex-left post-text-header font-regular-small">
                                 {{ i.date|date:'d.m.Y в H:i' }}
@@ -49,13 +51,21 @@
                         <span class="font-bold-large inflex-left post-text">
                             {{ i.title }}
                         </span>
-                        <div class="flex-left post-text font-italic-medium">
-                            #{{ i.tag }}
+                        <div class="post-tag">
+
+                            {% for j in i.tag|split %}
+
+                            <div class="post-tag-text font-italic-medium">
+                                <a href="/tag/{{ j }}" class="tag-link">#{{ j }}</a>
+                            </div>
+
+                            {% endfor %}
+
                         </div>
                         <div class="flex-left post-title font-regular-medium"></div>
                         {% if i.image %}
                         <div class="flex-center">
-                            <img src="media/{{ i.image }}" class="post-img">
+                            <img src="/media/{{ i.image }}" class="post-img">
                         </div>
                         {% endif %}
                         <div class="inflex-left post-text-short font-regular-medium">
@@ -66,18 +76,19 @@
 
 
                         <div class="post-button font-bold-small flex-right">
-                            <a href="post/{{ i.id }}" class="button">Читать дальше</a>
+                            <a href="/post/{{ i.id }}" class="button">Читать дальше</a>
                         </div>
 
                         {% else %}
                         
                         <div class="post-button font-bold-small flex-right">
-                            <a href="post/{{ i.id }}" class="button">Читать дальше</a>
-                            <a href="post/{{ i.id }}/update" class="button">Изменить</a>
-                            <a href="post/{{ i.id }}/delete" class="button-alert">Удалить</a>
+                            <a href="/post/{{ i.id }}" class="button">Читать дальше</a>
+                            <a href="/post/{{ i.id }}/update" class="button">Изменить</a>
+                            <a href="/post/{{ i.id }}/delete" class="button-alert">Удалить</a>
                         </div>
 
                         {% endif %}
+
                     </div>
                 </div>
             </div>
@@ -97,7 +108,7 @@
                 </div>
                 <div class="post-content">
                     <span class="font-regular-medium flex-center" style="padding-bottom: 40px;">
-                        Будь первым, напиши что-нибудь!
+                        По запросу ничего не найдено :(
                     </span>
                 </div>
             </main>
