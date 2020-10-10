@@ -104,3 +104,4 @@ class CommentCreateForm(ModelForm):
     def __init__(self, *args, **kwargs):
         super(CommentCreateForm, self).__init__(*args, **kwargs)
         self.fields['content'].widget = Textarea(attrs={'class': 'post-form-input font-regular-medium', 'placeholder': 'Комментарий'})
+        self.fields['content'].label = False

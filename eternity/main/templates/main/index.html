@@ -3,6 +3,7 @@
 {% load static %}
 
 {% load split_filter %}
+{% load comment_count %}
 
 {% block title %}
 
@@ -77,6 +78,7 @@
 
                         <div class="post-button font-bold-small flex-right">
                             <a href="/post/{{ i.id }}" class="button">Читать дальше</a>
+                            <a href="/post/{{ i.id }}/add-comment" class="button">Комментарии {% comment_count i.title %}</a>
                         </div>
 
                         {% else %}
@@ -85,6 +87,7 @@
                             <a href="/post/{{ i.id }}" class="button">Читать дальше</a>
                             <a href="/post/{{ i.id }}/update" class="button">Изменить</a>
                             <a href="/post/{{ i.id }}/delete" class="button-alert">Удалить</a>
+                            <a href="/post/{{ i.id }}/add-comment" class="button">Комментарии {% comment_count i.title %}</a>    
                         </div>
 
                         {% endif %}

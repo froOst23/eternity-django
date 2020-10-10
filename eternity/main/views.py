@@ -9,6 +9,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.db import transaction
+from django.db.models import Count
 from django.contrib import messages
 from django.core.files.uploadhandler import FileUploadHandler
 from django.contrib.messages.views import SuccessMessageMixin
@@ -198,8 +199,8 @@ def update_profile(request, pk):
 def index(request):
     post = Post.objects.order_by('-date')
     profile = Profile.objects.order_by('-id')
+    # cnt_comment = Comment.objects.filter(post__title='')
     return render(request, 'main/index.html', {'post': post, 'profile': profile})
-
 
 @login_required
 def add_comment(request, pk):
@@ -231,7 +232,7 @@ def tag(request, pk):
     filter_object = Post.objects.filter(tag__icontains=str(pk))
     post = Post.objects.filter(tag__icontains=str(pk))
     profile = Profile.objects.all()
-    messages.info(request, ('Запрос выполнен'))
+    messages.info(request, (f'Поиск по тегу "{pk}" выполнен'))
     return render(request, 'main/index.html', {'post': post, 'profile': profile})
 
 
