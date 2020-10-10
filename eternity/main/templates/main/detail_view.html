@@ -78,9 +78,9 @@
                 {% else %}
         
                 <div class="post-button font-bold-small flex-right">
-                    <a href="/post/{{ detail_post.id }}/update" class="button">Изменить</a>
+                    <a href="/post/{{ detail_post.id }}/update?next={{ request.path }}" class="button">Изменить</a>
                     <a href="/post/{{ detail_post.id }}/delete" class="button-alert">Удалить</a>
-                    <a href="/post/{{ detail_post.id }}/add-comment" class="button">Комментировать</a>
+                    <a href="/post/{{ detail_post.id }}/add-comment?next={{ request.path }}" class="button">Комментировать</a>
                     <a href="/" class="button">Назад</a>
                 </div> 
         
@@ -107,7 +107,7 @@
                             <span class="flex-left post-text-header" style="margin-top: 10px;">
                                 <a href="/update-comment/{{ j.id }}?next={{ request.path }}" class="button">Изменить</a>
                             </span>
-                            
+
                             {% endif %}
                         </div>
                         <br>
