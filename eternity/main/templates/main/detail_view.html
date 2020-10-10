@@ -102,6 +102,13 @@
                             <span class="flex-left post-text-header" style="margin-top: 10px;">
                                 {{ j.content }}
                             </span>
+                            {% if j.author == request.user%}
+
+                            <span class="flex-left post-text-header" style="margin-top: 10px;">
+                                <a href="/update-comment/{{ j.id }}?next={{ request.path }}" class="button">Изменить</a>
+                            </span>
+                            
+                            {% endif %}
                         </div>
                         <br>
                         

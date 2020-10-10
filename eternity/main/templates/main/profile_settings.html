@@ -14,15 +14,7 @@
     <div class="post">
         <div class="post-head">
             <span class="font-bold-large inflex-center" style="padding-bottom: 20px; padding-top: 20px; width: 100%;">
-                {{ user }}
-            </span>
-            <span class="post-title-none-underline inflex-center ">
-                <span class="inflex-center profile-link-line" style="width: 50%;">
-                    <a href="/accounts/profile/id{{ user.id }}" class="profile-link font-bold-medium">Информация</a>
-                </span>
-                <span class="inflex-center profile-link-line" style="width: 50%;">
-                    <a href="/accounts/profile/id{{ user.id }}/edit" class="profile-link font-bold-medium">Редактировать</a>
-                </span>
+                Редактировать профиль {{ user }}
             </span>
             <div class="flex-center">
                 {% if user.profile.photo %}
@@ -71,7 +63,7 @@
                     {{ profile_form.bio }}
                 </div>
                 <div class="post-button font-bold-small flex-center">
-                    <button class="button-alert font-bold-medium" type="submit">Изменить</button>
+                    <button class="button-alert font-bold-small" type="submit">Изменить</button>
 
                     <a href="/accounts/profile/id{{ user.id }}" class="button">Отменить</a>
                 </div>

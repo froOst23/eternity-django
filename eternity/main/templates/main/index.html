@@ -77,17 +77,17 @@
 
 
                         <div class="post-button font-bold-small flex-right">
+                            <a href="/post/{{ i.id }}/add-comment?next={{ request.path }}" class="button">Комментарии {% comment_count i.title %}</a>
                             <a href="/post/{{ i.id }}" class="button">Читать дальше</a>
-                            <a href="/post/{{ i.id }}/add-comment" class="button">Комментарии {% comment_count i.title %}</a>
                         </div>
 
                         {% else %}
                         
                         <div class="post-button font-bold-small flex-right">
-                            <a href="/post/{{ i.id }}" class="button">Читать дальше</a>
-                            <a href="/post/{{ i.id }}/update" class="button">Изменить</a>
+                            <a href="/post/{{ i.id }}/update?next={{ request.path }}" class="button">Изменить</a>
                             <a href="/post/{{ i.id }}/delete" class="button-alert">Удалить</a>
-                            <a href="/post/{{ i.id }}/add-comment" class="button">Комментарии {% comment_count i.title %}</a>    
+                            <a href="/post/{{ i.id }}/add-comment?next={{ request.path }}" class="button">Комментарии {% comment_count i.title %}</a>    
+                            <a href="/post/{{ i.id }}" class="button">Читать дальше</a>
                         </div>
 
                         {% endif %}

@@ -9,7 +9,6 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.db import transaction
-from django.db.models import Count
 from django.contrib import messages
 from django.core.files.uploadhandler import FileUploadHandler
 from django.contrib.messages.views import SuccessMessageMixin
@@ -30,7 +29,6 @@ class PostUpdateView(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
     model = Post
     template_name = 'main/update-post.html'
     form_class = NewPostForm
-    success_message = 'Пост успешно изменен'
     
     def get_form_kwargs(self):
         kwargs = super().get_form_kwargs()
@@ -41,7 +39,14 @@ class PostUpdateView(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
     def get_context_data(self, **kwargs):
         context = super(PostUpdateView, self).get_context_data(**kwargs)
         context['post'] = Post.objects.all()
+        # передаем параметр next (возвращение на предыдущую страницу) чтобы использовать в форме
+        context['next_url'] = self.request.GET.get('next')
         return context
+
+    def get_success_url(self):
+        next_url = self.request.GET.get('next')
+        messages.success(self.request, 'Пост успешно изменен')
+        return next_url
 
 
 class PostAddView(SuccessMessageMixin, LoginRequiredMixin, CreateView):
@@ -49,7 +54,7 @@ class PostAddView(SuccessMessageMixin, LoginRequiredMixin, CreateView):
     template_name = 'main/add-post.html'
     form_class = NewPostForm
     success_url = reverse_lazy('home')
-    success_message = 'Пост успешно добавлен'
+    success_message = f'Пост успешно добавлен'
 
     def form_valid(self, form):
         self.object = form.save(commit=False)
@@ -67,11 +72,11 @@ class PostDeleteView(SuccessMessageMixin, LoginRequiredMixin, DeleteView):
     def delete(self, request, *args, **kwargs):
         self.object = self.get_object()
         if self.request.user != self.object.author:
-            messages.error(self.request, 'Недостаточно прав для удаления')
+            messages.error(self.request, f'Недостаточно прав для удаления')
             return self.handle_no_permission()
         success_url = self.get_success_url()
         self.object.delete()
-        messages.success(self.request, 'Пост успешно удален')
+        messages.success(self.request, f'Пост успешно удален')
         return HttpResponseRedirect(success_url)
 
 
@@ -79,19 +84,18 @@ class LoginPostView(SuccessMessageMixin, LoginView):
     template_name = 'main/auth.html'
     form_class = LoginPostForm
     success_url = reverse_lazy('home')
-    success_message = 'Успешная авторизация'
+    # success_message = 'Успешная авторизация'
 
     def get_success_url(self):
+        messages.info(self.request, f'Авторизация выполнена')
         return self.success_url
 
 
 class LogoutPostView(SuccessMessageMixin, LogoutView):
     def get_next_page(self):
         next_page = reverse_lazy('home')
-        messages.success(self.request, f'Выход из системы')
+        messages.info(self.request, f'Выход из системы')
         return next_page
-
-
 
 
 class RegisterPostView(CreateView):
@@ -170,6 +174,7 @@ https://djbook.ru/rel1.7/topics/db/transactions.html
 @login_required
 @transaction.atomic
 def update_profile(request, pk):
+    next_url = request.GET.get('next')
     if request.method == 'POST':
         user_form = UpdateUserForm(request.POST, instance=request.user)
         profile_form = ProfileUpdateForm(request.POST, request.FILES, instance=request.user.profile)
@@ -177,7 +182,7 @@ def update_profile(request, pk):
             user_form.save()
             profile_form.save()
             messages.success(request, ('Профиль успешно обновлен'))
-            # return redirect('home')
+            return redirect(next_url)
         else:
             messages.error(request, ('Произошла ошибка заполнения формы'))
     # request.FILES - ожидаем загрузки файла на сервер
@@ -188,6 +193,7 @@ def update_profile(request, pk):
             # FileUploadHandler используем для загрузки файла на сервер
             FileUploadHandler(request.FILES['photo'])
             messages.success(request, ('Профиль успешно обновлен'))
+            return redirect(next_url)
         else:
             messages.error(request, ('Произошла ошибка заполнения формы'))
     else:
@@ -199,8 +205,8 @@ def update_profile(request, pk):
 def index(request):
     post = Post.objects.order_by('-date')
     profile = Profile.objects.order_by('-id')
-    # cnt_comment = Comment.objects.filter(post__title='')
     return render(request, 'main/index.html', {'post': post, 'profile': profile})
+
 
 @login_required
 def add_comment(request, pk):
@@ -223,6 +229,30 @@ def add_comment(request, pk):
         form = CommentCreateForm(request.POST)
     return render(request, 'main/add-comment.html', {'form': form})
 
+
+class CommentUpdateView(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
+    model = Comment
+    template_name = 'main/add-comment.html'
+    form_class = CommentCreateForm
+    
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        if self.request.user != kwargs['instance'].author:
+            return self.handle_no_permission()
+        return kwargs
+    
+    # передаем параметр next (возвращение на предыдущую страницу) чтобы использовать в форме
+    def get_context_data(self, **kwargs):
+        context = super(CommentUpdateView, self).get_context_data(**kwargs)
+        context['next_url'] = self.request.GET.get('next')
+        return context
+    
+
+    def get_success_url(self):
+        next_url = self.request.GET.get('next')
+        messages.success(self.request, 'Комментарий успешно изменен')
+        return next_url
+    
 
 """
 Используем простой фильтр по нашей базе данных
