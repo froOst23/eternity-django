@@ -115,7 +115,7 @@ main{
     margin-left: 10px;
 }
 .post-wrapper{
-    width: 1200px;
+    width: 1000px;
     margin: 0 auto;
     display: grid;
 }
@@ -147,10 +147,10 @@ main{
     border-radius: 5px 5px 0px 0px;
     background-color: #ffffff;
     border-color: #d5d8dc;
-    padding-top: 10px;
-    padding-left: 10px;
-    padding-right: 10px;
-    padding-bottom: 20px;
+    padding-top: 15px;
+    padding-left: 2%;
+    padding-right: 2%;
+    padding-bottom: 15px;
 }
 .post-content{
     border-radius: 0px 0px 5px 5px;
@@ -165,8 +165,8 @@ main{
     padding-bottom: 20px;
 }
 .post-img-mini{
-    width: 50px;
-    height: 50px;
+    width: 48px;
+    height: 48px;
     border-top-width: 1px;
     border-top-style: solid;
     border-left-width: 1px;
@@ -246,9 +246,10 @@ main{
     text-decoration: none;
 }
 .post-title{
-    width: 96%;
+    /* width: 96%;
     margin-left: 2%;
-    margin-right: 2%;
+    margin-right: 2%; */
+    width: 100%;
     border-bottom-width: 1px;
     border-bottom-style: solid;
     border-color: rgba(0,0,0,0.1);
@@ -265,7 +266,7 @@ main{
     width: 96%;
     margin-left: 2%;
     margin-right: 2%;
-    margin-bottom: 10px;
+    /* margin-bottom: 10px; */
 }
 .profile-link{
     text-decoration: none;
@@ -327,8 +328,8 @@ main{
     border-color: rgba(0,0,0,0.1);
 }
 .button{
-    width: 130px;
-    height: 37px;
+    width: 120px;
+    height: 35px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -350,10 +351,11 @@ main{
     color: #000000;
     cursor: pointer;
     text-decoration: none;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.1);
 }
 .button:hover{
-    width: 130px;
-    height: 37px;
+    width: 120px;
+    height: 35px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -375,10 +377,11 @@ main{
     color: #3b8686;
     cursor: pointer;
     text-decoration: none;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.1);
 }
 .button-alert{
-    width: 130px;
-    height: 37px;
+    width: 120px;
+    height: 35px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -400,10 +403,11 @@ main{
     color: #000000;
     cursor: pointer;
     text-decoration: none;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.1);
 }
 .button-alert:hover{
-    width: 130px;
-    height: 37px;
+    width: 120px;
+    height: 35px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -425,6 +429,7 @@ main{
     color: #e45f56;
     cursor: pointer;
     text-decoration: none;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.1);
 }
 .post-form-input{
     width: 100%;

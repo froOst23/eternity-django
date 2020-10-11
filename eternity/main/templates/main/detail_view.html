@@ -35,10 +35,10 @@
                 {% endfor %}
                     
                 <div style="display: grid;">
-                    <span class="inflex-left">
-                        <a href="/accounts/profile/id{{ detail_post.author.id }}" class="post-link font-bold-large">{{ detail_post.author }}</a>
-                    </span> 
-                    <span class="inflex-left post-text-header font-regular-small">
+                    <!-- <span class="inflex-left"> -->
+                        <a href="/accounts/profile/id{{ i.author.id }}" class="post-link font-bold-medium" style="align-self: flex-start; font-size: 16.5px; height: 5px;">{{ detail_post.author }}</a>
+                    <!-- </span>  -->
+                    <span class="inflex-left post-text-header font-regular-small" style="align-self: flex-start; color: gray;">
                         {{ detail_post.date|date:'d.m.Y в H:i' }}
                     </span> 
                 </div>
@@ -47,11 +47,11 @@
                 <span class="font-bold-large inflex-left post-text">
                     {{ detail_post.title }}
                 </span>
-                <div class="post-tag">
+                <div class="post-tag" style="margin-bottom: 10px;">
 
                     {% for j in detail_post.tag|split %}
 
-                    <div class="post-tag-text font-italic-medium">
+                    <div class="post-tag-text font-italic-small">
                         <a href="/tag/{{ j }}" class="tag-link">#{{ j }}</a>
                     </div>
 
@@ -70,14 +70,14 @@
 
                 {% if request.user !=  detail_post.author %}
         
-                <div class="post-button font-bold-small flex-right">
+                <div class="post-button font-regular-small flex-right">
                     <a href="/post/{{ detail_post.id }}/add-comment" class="button">Комментировать</a>  
                     <a href="/" class="button">На главную</a>
                 </div>
         
                 {% else %}
         
-                <div class="post-button font-bold-small flex-right">
+                <div class="post-button font-regular-small flex-right">
                     <a href="/post/{{ detail_post.id }}/update?next={{ request.path }}" class="button">Изменить</a>
                     <a href="/post/{{ detail_post.id }}/delete" class="button-alert">Удалить</a>
                     <a href="/post/{{ detail_post.id }}/add-comment?next={{ request.path }}" class="button">Комментировать</a>
@@ -106,6 +106,7 @@
 
                             <span class="flex-left post-text-header" style="margin-top: 10px;">
                                 <a href="/update-comment/{{ j.id }}?next={{ request.path }}" class="button">Изменить</a>
+                                <a href="/delete-comment/{{ j.id }}?next={{ request.path }}" class="button">Удалить</a>
                             </span>
 
                             {% endif %}

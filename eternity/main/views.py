@@ -202,12 +202,6 @@ def update_profile(request, pk):
     return render(request, 'main/profile_settings.html', {'user_form': user_form, 'profile_form': profile_form})
 
 
-def index(request):
-    post = Post.objects.order_by('-date')
-    profile = Profile.objects.order_by('-id')
-    return render(request, 'main/index.html', {'post': post, 'profile': profile})
-
-
 @login_required
 def add_comment(request, pk):
     if request.method == 'POST':
@@ -232,7 +226,7 @@ def add_comment(request, pk):
 
 class CommentUpdateView(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
     model = Comment
-    template_name = 'main/add-comment.html'
+    template_name = 'main/update_comment.html'
     form_class = CommentCreateForm
     
     def get_form_kwargs(self):
@@ -247,12 +241,42 @@ class CommentUpdateView(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
         context['next_url'] = self.request.GET.get('next')
         return context
     
-
     def get_success_url(self):
         next_url = self.request.GET.get('next')
         messages.success(self.request, 'Комментарий успешно изменен')
         return next_url
     
+
+class DeleteCommentView(SuccessMessageMixin, LoginRequiredMixin, DeleteView):
+    model = Comment
+    template_name = 'main/delete_comment.html'
+    form_class = CommentCreateForm
+
+    def delete(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        if self.request.user != self.object.author:
+            messages.error(self.request, f'Недостаточно прав для удаления')
+            return self.handle_no_permission()
+        success_url = self.get_success_url()
+        self.object.delete()
+        messages.success(self.request, f'Комментарий успешно удален')
+        return HttpResponseRedirect(success_url)
+    
+    def get_success_url(self):
+        next_url = self.request.GET.get('next')
+        return next_url
+
+    def get_context_data(self, **kwargs):
+        context = super(DeleteCommentView, self).get_context_data(**kwargs)
+        context['next_url'] = self.request.GET.get('next')
+        return context
+
+
+def index(request):
+    post = Post.objects.order_by('-date')
+    profile = Profile.objects.order_by('-id')
+    return render(request, 'main/index.html', {'post': post, 'profile': profile})
+
 
 """
 Используем простой фильтр по нашей базе данных
@@ -264,7 +288,3 @@ def tag(request, pk):
     profile = Profile.objects.all()
     messages.info(request, (f'Поиск по тегу "{pk}" выполнен'))
     return render(request, 'main/index.html', {'post': post, 'profile': profile})
-
-
-def about(request):
-    return render(request, 'main/about.html')

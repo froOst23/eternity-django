@@ -3,7 +3,7 @@
 {% load static %}
 
 {% block title %}
-    eternity | Добавить коммент
+    eternity | Добавить запись
 {% endblock %}
 
 {% block content %}
@@ -13,7 +13,7 @@
         <div class="post-head">
             <div class="post-content">
             <span class="font-bold-large inflex-center post-title" style="padding-bottom: 20px; padding-top: 20px;">
-                Добавить новый комментарий
+                Изменить комментарий
             </span>
         </div>
     </div>
@@ -28,7 +28,7 @@
                 </div>
                 <div class="post-button font-bold-small flex-center">
                     <button class="button-alert font-bold-small" type="submit">Написать</button>
-                    <a href="/{{ next_url }}" class="button">Отменить</a>
+                    <a href="{{ next_url }}" class="button">Отменить</a>
                 </div>
             </form>
         </div>
