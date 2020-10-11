@@ -16,6 +16,13 @@
             <span class="font-bold-large inflex-center" style="padding-bottom: 20px; padding-top: 20px; width: 100%;">
                 {{ object.user }}
             </span>
+            <span class="font-bold-medium inflex-center" style="padding-bottom: 20px; padding-top: 20px; width: 100%;">
+                {% if object.is_online == True %}
+                    Online
+                {% else %}
+                    Offline
+                {% endif %}
+            </span>
             {% if request.user == object.user %}
             <span class="post-title-none-underline inflex-center ">
                 <span class="inflex-center profile-link-line" style="width: 100%;">

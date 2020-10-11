@@ -12,6 +12,8 @@ from django.db import transaction
 from django.contrib import messages
 from django.core.files.uploadhandler import FileUploadHandler
 from django.contrib.messages.views import SuccessMessageMixin
+from django.contrib.auth.signals import user_logged_in, user_logged_out
+from django.dispatch import receiver  
 
 class PostDetailView(DetailView):
     model = Post
@@ -20,7 +22,7 @@ class PostDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(PostDetailView, self).get_context_data(**kwargs)
-        context['photo'] = Profile.objects.all()
+        context['profile'] = Profile.objects.all()
         context['comment'] = Comment.objects.all()
         return context
     
@@ -81,6 +83,7 @@ class PostDeleteView(SuccessMessageMixin, LoginRequiredMixin, DeleteView):
 
 
 class LoginPostView(SuccessMessageMixin, LoginView):
+    model = Profile
     template_name = 'main/auth.html'
     form_class = LoginPostForm
     success_url = reverse_lazy('home')
@@ -89,7 +92,6 @@ class LoginPostView(SuccessMessageMixin, LoginView):
     def get_success_url(self):
         messages.info(self.request, f'Авторизация выполнена')
         return self.success_url
-
 
 class LogoutPostView(SuccessMessageMixin, LogoutView):
     def get_next_page(self):
@@ -288,3 +290,14 @@ def tag(request, pk):
     profile = Profile.objects.all()
     messages.info(request, (f'Поиск по тегу "{pk}" выполнен'))
     return render(request, 'main/index.html', {'post': post, 'profile': profile})
+
+
+@receiver(user_logged_in)
+def got_online(sender, user, request, **kwargs):    
+    user.profile.is_online = True
+    user.profile.save()
+
+@receiver(user_logged_out)
+def got_offline(sender, user, request, **kwargs):   
+    user.profile.is_online = False
+    user.profile.save()

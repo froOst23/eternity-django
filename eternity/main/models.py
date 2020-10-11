@@ -44,6 +44,8 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     bio = models.TextField(max_length=50, blank=True, verbose_name='BIO')
     photo = models.FileField(verbose_name='Изображение', null=True, blank=True, validators=[FileExtensionValidator(['png', 'jpeg', 'jpg'])])
+    created = models.DateTimeField(auto_now_add=True)
+    is_online = models.BooleanField(default=False)
 
     class Meta():
         verbose_name = 'Расширение модели User'

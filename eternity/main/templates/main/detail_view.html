@@ -16,7 +16,7 @@
         <div class="post">
             <div class="post-head" style="display: flex;">
 
-                {% for i in photo %}
+                {% for i in profile %}
 
                     {% if i.user ==  detail_post.author %}
 
@@ -35,9 +35,18 @@
                 {% endfor %}
                     
                 <div style="display: grid;">
-                    <!-- <span class="inflex-left"> -->
-                        <a href="/accounts/profile/id{{ i.author.id }}" class="post-link font-bold-medium" style="align-self: flex-start; font-size: 16.5px; height: 5px;">{{ detail_post.author }}</a>
-                    <!-- </span>  -->
+                    <a href="/accounts/profile/id{{ detail_post.author.id }}" class="post-link font-bold-medium" style="align-self: flex-start; font-size: 16.5px;">{{ detail_post.author }}</a>
+                    <span class="inflex-left post-text-header font-regular-small" style="align-self: flex-start; color: gray;">
+                        {% for j in profile %}
+                            {% if j.user == detail_post.author %}
+                                {% if j.is_online == True %}
+                                    Online
+                                {% else %}
+                                    Offline
+                                {% endif %}
+                            {% endif %}
+                        {% endfor %}
+                    </span> 
                     <span class="inflex-left post-text-header font-regular-small" style="align-self: flex-start; color: gray;">
                         {{ detail_post.date|date:'d.m.Y в H:i' }}
                     </span> 
