@@ -3,7 +3,9 @@
 {% load static %}
 
 {% block title %}
+
     Изменить | {{ object.title }}
+    
 {% endblock %}
 
 {% block content %}
@@ -67,58 +69,5 @@
         </form>
     </div>
 </div>  
-
-
-
-<!-- <div class="post">
-    <div class="post_heading_block">
-        <span class="flex-center post-block">
-            <h1 class="h1 font-bold-large">Изменить пост #{{ object.id }} - "{{ object.title }}"</h1>
-        </span>
-    </div>
-    <div class="post_space"></div>
-    <form method="POST" class="post-block-form" enctype="multipart/form-data">
-        {% csrf_token %}
-        <div class="block-label flex-left text_label font-bold-small">
-            Название поста
-        </div>
-        <div class="block flex-center">
-            {{ form.title }}
-        </div>
-        <div class="block-label flex-left text_label font-bold-small">
-            Теги
-        </div>
-        <div class="block flex-center">
-            {{ form.tag }}
-        </div>
-        <div class="block-label flex-left text_label font-bold-small">
-            Предварительный просмотр
-        </div>
-        <div class="post_img_update flex-center">
-            <img src="/media/{{ object.image }}">
-        </div>
-        <div class="block-label flex-left text_label font-bold-small">
-            Изображение для статьи. Используемые форматы: .jpg, .jpeg, .png, .gif
-        </div>
-        <div class="block flex-center">
-            {{ form.image }}
-        </div>
-        <div class="block-label flex-left text_label">
-            Текст поста
-        </div>
-        <div class="block flex-center">
-            {{ form.content }}
-        </div>
-        <nav class="post-block flex-center">
-            <div class="post-block"></div>
-            <div class="post-block">
-                <button class="post_button-submit flex-center font-bold-medium" type="submit">Изменить</button>
-            </div>
-            <div class="post-block">
-                <a href="/post/{{ object.id }}" class="post_button flex-center font-bold-medium">Отмена</a>
-            </div>
-        </nav>
-    </form>
-</div> -->
 
 {% endblock %}

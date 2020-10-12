@@ -44,7 +44,9 @@
             }, 3000);
         </script>
         <header>
+
             {% if request.user.is_authenticated  %}
+
             <nav class="header-menu">
                 <div class="inflex-center" style="height: inherit; width: 100%;">
                     <div class="inflex-left" style="width: 50%;">
@@ -56,7 +58,9 @@
                         <a href="/accounts/profile/id{{ request.user.id }}" class="header-menu-link inflex-center font-bold-medium" >{{ request.user }}</a>
                 </div>
             </nav>
+
             {% else %}
+
             <nav class="header-menu">
                 <div class="inflex-center" style="height: inherit; width: 100%;">
                     <div class="inflex-left" style="width: 50%;">
@@ -69,7 +73,9 @@
                     </div>
                 </div>
             </nav>
+
             {% endif %}
+
         </header>
         <main>
             {% if messages %}
