@@ -1,5 +1,7 @@
 # eternity-django
 
+![eternity preview](eternity_preview.png)
+
 # Используемые модели
 ## Profile
 ### Описание модели
