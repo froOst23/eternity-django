@@ -29,7 +29,7 @@ class PostDetailView(DetailView):
 
 class PostUpdateView(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
     model = Post
-    template_name = 'main/update-post.html'
+    template_name = 'main/update_post.html'
     form_class = NewPostForm
     
     def get_form_kwargs(self):
@@ -53,7 +53,7 @@ class PostUpdateView(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
 
 class PostAddView(SuccessMessageMixin, LoginRequiredMixin, CreateView):
     model = Post
-    template_name = 'main/add-post.html'
+    template_name = 'main/add_post.html'
     form_class = NewPostForm
     success_url = reverse_lazy('home')
     success_message = f'Пост успешно добавлен'
@@ -67,7 +67,7 @@ class PostAddView(SuccessMessageMixin, LoginRequiredMixin, CreateView):
 
 class PostDeleteView(SuccessMessageMixin, LoginRequiredMixin, DeleteView):
     model = Post
-    template_name = 'main/delete-post.html'
+    template_name = 'main/delete_post.html'
     form_class = NewPostForm
     success_url = reverse_lazy('home')
 
@@ -115,38 +115,6 @@ class RegisterPostView(CreateView):
         messages.success(self.request, f'Пользователь {username} успешно создан')
         login(self.request, auth_user)
         return form_valid
-
-
-# # Устаревшая функция - необходимо убрать
-# class UpdateUserView(LoginRequiredMixin, UpdateView):
-#     model = User
-#     template_name = 'main/profile_main.html'
-#     form_class = UpdateUserForm
-
-#     def get_form_kwargs(self):
-#         kwargs = super().get_form_kwargs()
-#         if str(self.request.user) != str(kwargs['instance'].username):
-#             return self.handle_no_permission()
-#         return kwargs
-
-
-# # Устаревшая функция - необходимо убрать
-# class ProfileUpdateView(LoginRequiredMixin, UpdateView):
-#     model = Profile
-#     template_name = 'main/profile_extra.html'
-#     form_class = ProfileUpdateForm
-#     second_form_class = UpdateUserForm
-
-#     def get_form_kwargs(self):
-#         kwargs = super().get_form_kwargs()
-#         if self.request.user != kwargs['instance'].user:
-#             return self.handle_no_permission()
-#         return kwargs
-
-#     def get_context_data(self, **kwargs):
-#         context = super(ProfileUpdateView, self).get_context_data(**kwargs)
-#         context['profile'] = Profile.objects.all()
-#         return context
 
 
 class UserDetailView(DetailView):
@@ -223,7 +191,7 @@ def add_comment(request, pk):
             return redirect(f'/post/{pk}')
     else:
         form = CommentCreateForm(request.POST)
-    return render(request, 'main/add-comment.html', {'form': form})
+    return render(request, 'main/add_comment.html', {'form': form})
 
 
 class CommentUpdateView(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
