@@ -114,6 +114,14 @@ main{
 .post-text-header{
     margin-left: 10px;
 }
+.post-text-сomment{
+    margin-left: 10px;
+    white-space: pre-line;
+    overflow-wrap: break-word;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1.56;
+}
 .post-wrapper{
     width: 1000px;
     margin: 0 auto;
@@ -310,21 +318,13 @@ main{
     padding-left: 10px;
 }
 .comment{
-    /* display: inline-flex; */
     background-color: #ffffff;
     padding-left: 10px;
     padding-top: 10px;
     padding-bottom: 10px;
-    padding-right: 10px;
     border-top-width: 1px;
     border-top-style: solid;
-    border-left-width: 1px;
-    border-left-style: solid;
-    border-bottom-width: 1px;
-    border-bottom-style: solid;
-    border-right-width: 1px;
-    border-right-style: solid;
-    border-radius: 5px;
+    border-radius: 0 0 0 5px;
     border-color: rgba(0,0,0,0.1);
 }
 .button{

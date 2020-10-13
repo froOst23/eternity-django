@@ -105,7 +105,7 @@
         
                 {% endif %}
 
-                <div class="post-comment">
+                <!-- <div class="post-comment"> -->
                 {% for j in comment %}
             
                     {% if j.post == detail_post %}
@@ -118,7 +118,7 @@
                             <span class="flex-left post-text-header">
                                 {{ j.created|date:'d.m.Y в H:i' }}
                             </span>
-                            <span class="flex-left post-text-header" style="margin-top: 10px;">
+                            <span class="flex-left post-text-сomment" style="margin-top: 10px;">
                                 {{ j.content }}
                             </span>
 
@@ -136,7 +136,7 @@
                     {% endif %}
                         
                 {% endfor %}
-                </div>
+                <!-- </div> -->
             </div>
         </div>
     </div>
