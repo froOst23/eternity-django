@@ -2,6 +2,29 @@
 
 ![eternity preview](eternity_preview.png)
 
+# Развертывание
+## Окружение docker
+
+Для того чтобы развернуть приложение в окружении docker, используйте [Dockerfile](https://github.com/froOst23/eternity-django/blob/main/Dockerfile)
+
+Для сборки приложения в окружении docker используется следующая команда:
+
+<code>docker build -t <Название_контейрена>:<Тег> .</code>
+
+Для запуска собранного контейнера используется следующая команда:
+
+<code>docker run -d -p <Желаемый_порт>:8000 <Название_контейрена>:<Тег> 0.0.0.0:8000</code>, где:
+
+* <code>0.0.0.0:8000</code> - передаваемый аргумент ip-адреса и используемого порта на вход приложения.
+
+Для сборки и запуска приложения в окружении docker-compose используется слудующая команда, описанная в конфигурационном файле [docker-compose.yml](https://github.com/froOst23/eternity-django/blob/main/docker-compose.yml):
+
+<code>docker-compose up</code>
+
+## Окружение heroku
+
+Для того чтобы развернуть приложение на хостинг [heroku](https://id.heroku.com/login) используется конфигурационный файл [Procfile](https://github.com/froOst23/eternity-django/blob/main/Procfile)
+
 # Используемые модели
 ## Profile
 ### Описание модели
