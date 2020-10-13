@@ -1,0 +1,17 @@
+version: '3.7'
+
+services:
+    app:
+      build: .
+      container_name: app
+      ports:
+        - 8005:8000/tcp
+      command: 0.0.0.0:8000
+      networks:
+        eternity-net:
+          aliases:
+              - "app"
+
+networks:
+  eternity-net:
+    driver: bridge
