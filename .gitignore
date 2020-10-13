@@ -129,4 +129,7 @@ dmypy.json
 .pyre/
 
 # media content
-media/
+media/*
+
+# migrations file
+eternity/main/migrations/*.py
