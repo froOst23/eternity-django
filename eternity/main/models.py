@@ -39,6 +39,7 @@ class Comment(models.Model):
     def __str__(self):
         return f'{str(self.post)} {str(self.author)}'
 
+
 # Расширяем модель User с помощью связи user - "один-к-одному"
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, verbose_name='Пользователь')
@@ -56,6 +57,7 @@ class Profile(models.Model):
 
     def get_absolute_url(self):
         return f'/accounts/profile/id{self.id}'
+
 
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):
