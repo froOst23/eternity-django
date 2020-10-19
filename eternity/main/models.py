@@ -6,12 +6,12 @@ from django.dispatch import receiver
 from django.db.models.signals import post_save
 
 class Post(models.Model):
-    author = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True, verbose_name='Автор')
+    author = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Автор')
     title = models.CharField(verbose_name='Название', max_length=50)
     tag = models.CharField(verbose_name='Тег', max_length=50)
     content = models.TextField(verbose_name='Содержание статьи')
     date = models.DateTimeField(verbose_name='Дата публикации', auto_now_add=True)
-    image = models.FileField(verbose_name='Изображение', null=True, blank=True, validators=[FileExtensionValidator(['png', 'jpeg', 'jpg', 'gif'])])
+    image = models.FileField(verbose_name='Изображение', blank=True, validators=[FileExtensionValidator(['png', 'jpeg', 'jpg', 'gif'])])
 
     class Meta():
         verbose_name = 'Пост'
@@ -26,11 +26,11 @@ class Post(models.Model):
 
 
 class Comment(models.Model):
-    post = models.ForeignKey(Post, on_delete=models.CASCADE)
-    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    post = models.ForeignKey(Post, on_delete=models.CASCADE, verbose_name='Комментируемый пост')
+    author = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Автор комментария')
     content = models.TextField(verbose_name='Содержание', max_length=500)
-    created = models.DateTimeField(auto_now_add=True)
-    updated = models.DateTimeField(auto_now=True)
+    created = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
+    updated = models.DateTimeField(auto_now=True, verbose_name='Дата обновления')
 
     class Meta():
         verbose_name = 'Комментарий'
@@ -43,7 +43,7 @@ class Comment(models.Model):
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     bio = models.TextField(max_length=50, blank=True, verbose_name='BIO')
-    photo = models.FileField(verbose_name='Изображение', null=True, blank=True, validators=[FileExtensionValidator(['png', 'jpeg', 'jpg'])])
+    photo = models.FileField(verbose_name='Изображение', blank=True, validators=[FileExtensionValidator(['png', 'jpeg', 'jpg'])])
     created = models.DateTimeField(auto_now_add=True)
     is_online = models.BooleanField(default=False)
 
