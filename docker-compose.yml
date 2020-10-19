@@ -5,13 +5,13 @@ services:
       build: .
       container_name: app
       ports:
-        - 8005:8000/tcp
+        - 8001:8000/tcp
       command: 0.0.0.0:8000
       networks:
-        eternity-net:
+        app-net:
           aliases:
               - "app"
 
 networks:
-  eternity-net:
+  app-net:
     driver: bridge
