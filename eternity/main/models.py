@@ -8,8 +8,8 @@ from django.db.models.signals import post_save
 class Post(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Автор')
     title = models.CharField(verbose_name='Название', max_length=50)
-    tag = models.CharField(verbose_name='Тег', max_length=50)
-    content = models.TextField(verbose_name='Содержание статьи')
+    tag = models.CharField(verbose_name='Тег', max_length=50, blank=True)
+    content = models.TextField(verbose_name='Содержание статьи', blank=True)
     date = models.DateTimeField(verbose_name='Дата публикации', auto_now_add=True)
     image = models.FileField(verbose_name='Изображение', blank=True, validators=[FileExtensionValidator(['png', 'jpeg', 'jpg', 'gif'])])
 
