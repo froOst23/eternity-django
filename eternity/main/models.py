@@ -41,11 +41,11 @@ class Comment(models.Model):
 
 # Расширяем модель User с помощью связи user - "один-к-одному"
 class Profile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    bio = models.TextField(max_length=50, blank=True, verbose_name='BIO')
+    user = models.OneToOneField(User, on_delete=models.CASCADE, verbose_name='Пользователь')
+    bio = models.TextField(max_length=50, blank=True, verbose_name='О себе')
     photo = models.FileField(verbose_name='Изображение', blank=True, validators=[FileExtensionValidator(['png', 'jpeg', 'jpg'])])
-    created = models.DateTimeField(auto_now_add=True)
-    is_online = models.BooleanField(default=False)
+    created = models.DateTimeField(auto_now_add=True, verbose_name='Дата регистрации')
+    is_online = models.BooleanField(default=False, verbose_name='Сейчас на сайте?')
 
     class Meta():
         verbose_name = 'Расширение модели User'
