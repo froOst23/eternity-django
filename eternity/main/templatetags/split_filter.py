@@ -4,8 +4,8 @@ register = template.Library()
 
 """
 Добавлен пользовательский фильтр для разделение тегов
-через запятую.
+через пробел.
 """
 @register.filter(name='split')
 def split_filter(value):
-    return value.split(",")
+    return value.split(" ")
