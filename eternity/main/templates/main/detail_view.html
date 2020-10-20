@@ -4,9 +4,11 @@
 
 {% load split_filter %}
 
+{% load comment_count %}
+
 {% block title %}
 
-    eternity - {{ object.title  }}
+    eternity | {{ object.title  }}
 
 {% endblock %}
 
@@ -61,6 +63,74 @@
                         {{ detail_post.date|date:'d.m.Y в H:i' }}
                     </span> 
                 </div>
+                <div style="display: flex; align-content: flex-start; justify-content: flex-end; width: 80%;">
+                    <script>
+                        function showMenu{{detail_post.id}}(){
+                            document.getElementById('droplist{{ detail_post.id }}').classList.toggle("show");
+                        }
+                        window.onclick = function(event) {
+                            if (!event.target.matches('.drop-icon')) {
+                                var droplist = document.getElementsByClassName('drop-list');
+                                var i;
+                                for (i = 0; i < droplist.length; i++) {
+                                    var opendroplist = droplist[i];
+                                    if (opendroplist.classList.contains('show')) {
+                                        opendroplist.classList.remove('show');
+                                    }
+                                }
+                            }
+                        }
+                    </script>
+                    <img src="{% static 'main/images/icons/more.png' %}" class="drop-icon" onclick="showMenu{{detail_post.id}}()">
+                    
+                    {% if request.user ==  detail_post.author %}
+                    
+                    <div class="drop-list" id="droplist{{detail_post.id}}">
+                        <a href="/post/{{ detail_post.id }}/add-comment?next={{ request.path }}" class="drop-link font-regular-small">
+                            <img src="{% static 'main/images/icons/chat.png' %}" alt="" class="icon">
+                            <span style="margin-left: 10px;">
+                                Комментарии {% comment_count detail_post.title %}
+                            </span>
+                        </a>    
+                        <a href="/post/{{ detail_post.id }}" class="drop-link font-regular-small">
+                            <img src="{% static 'main/images/icons/magnifying-glass.png' %}" alt="" class="icon">
+                            <span style="margin-left: 10px;">
+                                Читать дальше
+                            </span>
+                        </a>
+                        <a href="/post/{{ detail_post.id }}/update?next={{ request.path }}" class="drop-link font-regular-small">
+                            <img src="{% static 'main/images/icons/settings.png' %}" alt="" class="icon">
+                            <span style="margin-left: 10px;">
+                                Изменить
+                            </span>
+                        </a>
+                        <a href="/post/{{ detail_post.id }}/delete" class="drop-link font-regular-small">
+                            <img src="{% static 'main/images/icons/garbage.png' %}" alt="" class="icon">
+                            <span style="margin-left: 10px;">
+                                Удалить
+                            </span>
+                        </a>
+                    </div>
+
+                    {% else %}
+
+                    <div class="drop-list" id="droplist{{detail_post.id}}">
+                        <a href="/post/{{ detail_post.id }}/add-comment?next={{ request.path }}" class="drop-link font-regular-small">
+                            <img src="{% static 'main/images/icons/chat.png' %}" alt="" class="icon">
+                            <span style="margin-left: 10px;">
+                                Комментарии {% comment_count detail_post.title %}
+                            </span>
+                        </a>    
+                        <a href="/post/{{ detail_post.id }}" class="drop-link font-regular-small">
+                            <img src="{% static 'main/images/icons/magnifying-glass.png' %}" alt="" class="icon">
+                            <span style="margin-left: 10px;">
+                                Читать дальше
+                            </span>
+                        </a>
+                    </div>
+                    
+                    {% endif %}
+                </div>
             </div> 
             <div class="post-content">
                 <span class="font-bold-large inflex-left post-text">
@@ -88,55 +158,65 @@
                 </div>
 
                 {% if request.user !=  detail_post.author %}
-        
+                
                 <div class="post-button font-regular-small flex-right">
-                    <a href="/post/{{ detail_post.id }}/add-comment" class="button">Комментировать</a>  
-                    <a href="/" class="button">На главную</a>
+                    <!-- <a href="/post/{{ detail_post.id }}/add-comment" class="button">Комментировать</a>   -->
+                    <a href="/" class="button">Назад</a>
                 </div>
         
                 {% else %}
         
                 <div class="post-button font-regular-small flex-right">
-                    <a href="/post/{{ detail_post.id }}/update?next={{ request.path }}" class="button">Изменить</a>
+                    <!-- <a href="/post/{{ detail_post.id }}/update?next={{ request.path }}" class="button">Изменить</a>
                     <a href="/post/{{ detail_post.id }}/delete" class="button-alert">Удалить</a>
-                    <a href="/post/{{ detail_post.id }}/add-comment?next={{ request.path }}" class="button">Комментировать</a>
+                    <a href="/post/{{ detail_post.id }}/add-comment?next={{ request.path }}" class="button">Комментировать</a> -->
                     <a href="/" class="button">Назад</a>
                 </div> 
         
                 {% endif %}
 
-                <!-- <div class="post-comment"> -->
                 {% for j in comment %}
             
                     {% if j.post == detail_post %}
-                    
-                        <div class="comment font-regular-small">
-                            <span class="flex-left font-bold-small">
-                                <a href="/accounts/profile/id{{ j.author.id }}" class="post-link">{{ j.author }}</a>
-                                
-                            </span>
-                            <span class="flex-left post-text-header">
-                                {{ j.created|date:'d.m.Y в H:i' }}
-                            </span>
-                            <span class="flex-left post-text-сomment" style="margin-top: 10px;">
-                                {{ j.content }}
-                            </span>
 
-                            {% if j.author == request.user%}
+                    <div class="post-comment-line">
+                        <div class="flex-left" style="width: auto;">
+                            <div style="display: grid;">
+                                <a href="/accounts/profile/id{{ j.author.id }}" class="post-link font-bold-medium" style="align-self: flex-start;">{{ j.author }}</a>
+                                <span class="inflex-left post-text-header font-regular-small" style="align-self: flex-start; color: gray;">
+                                    {{ j.created|date:'d.m.Y в H:i' }}
+                                </span>
+                            </div>
+                            <div class="flex-right" style="width: 84%;">
 
-                            <span class="flex-left post-text-header" style="margin-top: 10px;">
-                                <a href="/update-comment/{{ j.id }}?next={{ request.path }}" class="button">Изменить</a>
-                                <a href="/delete-comment/{{ j.id }}?next={{ request.path }}" class="button">Удалить</a>
-                            </span>
+                                {% if j.author == request.user %}
 
-                            {% endif %}
+                                <a href="/update-comment/{{ j.id }}?next={{ request.path }}" class="drop-link font-regular-small" style="display: flex; align-items: center;">
+                                    <img src="{% static 'main/images/icons/edit.png' %}" alt="" class="icon">
+                                    <span style="margin-left: 10px; align-self: auto;">
+                                        Изменить
+                                    </span>
+                                </a>
+                                <a href="/delete-comment/{{ j.id }}?next={{ request.path }}" class="drop-link font-regular-small" style="display: flex; align-items: center;">
+                                    <img src="{% static 'main/images/icons/garbage.png' %}" alt="" class="icon">
+                                    <span style="margin-left: 10px; align-self: auto;">
+                                        Удалить
+                                    </span>
+                                </a>
 
+                                {% endif %}
+
+                            </div>
                         </div>
+                    </div>
+                    <div class="font-regular-medium inflex-left post-text-сomment">
+                        {{ j.content }}
+                    </div>
                         
                     {% endif %}
                         
                 {% endfor %}
-                <!-- </div> -->
+
             </div>
         </div>
     </div>

@@ -116,11 +116,21 @@ main{
 }
 .post-text-сomment{
     margin-left: 10px;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
     white-space: pre-line;
     overflow-wrap: break-word;
     overflow: hidden;
     text-overflow: ellipsis;
     line-height: 1.56;
+}
+.post-comment-line{
+    width: 100%;
+    border-top-width: 1px;
+    border-top-style: solid;
+    border-color: rgba(0,0,0,0.1);
+    padding-top: 12px;
+    /* margin-bottom: 20px; */
 }
 .post-wrapper{
     width: 1000px;
@@ -466,6 +476,91 @@ main{
     border-right-width: 1px;
     border-right-style: solid;
     border-color: #DFE2DB;
+}
+.drop-icon,
+.icon{
+    height: 18px;
+    width: 18px;
+    padding-bottom: 2px;
+    padding-top: 2px;
+    padding-right: 2px;
+    padding-left: 2px;
+    margin-right: 2px;
+    margin-left: 2px;
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+.drop-icon:hover{
+    height: 18px;
+    width: 18px;
+    padding-bottom: 2px;
+    padding-top: 2px;
+    padding-right: 2px;
+    padding-left: 2px;
+    border-left-width: 1px;
+    border-left-style: solid;
+    border-top-width: 1px;
+    border-top-style: solid;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-right-width: 1px;
+    border-right-style: solid;
+    margin-right: 1px;
+    margin-left: 1px;
+    margin-top: 1px;
+    margin-bottom: 1px;
+    border-radius: 2.5px; 
+    border-color: rgba(0,0,0,0.1);
+    cursor: pointer;
+}
+.drop-list{
+    display: none;
+    position: absolute;
+    margin-top: 28px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    border-left-width: 1px;
+    border-left-style: solid;
+    border-top-width: 1px;
+    border-top-style: solid;
+    border-right-width: 1px;
+    border-right-style: solid;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-radius: 2.5px;
+    border-color: rgba(0,0,0,0.1);
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.1);
+}
+.drop-list a{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+.drop-list a:hover{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    background-color: #eaf9f1;
+    border-radius: 5px;
+}
+.show{
+    display: grid;
+}
+.drop-link{
+    padding-bottom: 5px;
+    padding-top: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    text-decoration: none;
+    color: #000000;
+}
+.drop-link:hover{
+    color: #3b8686;
+    background-color: #eaf9f1;
+    border-radius: 5px;
 }
 .inflex-center{
     display: inline-flex;
