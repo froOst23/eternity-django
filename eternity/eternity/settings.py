@@ -80,10 +80,9 @@ if os.getenv('GITHUB_WORKFLOW'):
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
             'NAME': 'github-actions',
-            'USER': 'postgres'
+            'USER': 'postgres',
             'HOST': 'localhost',
-            'PORT': '5432'
-
+            'PORT': '5432',
         }
     }
 else:
