@@ -1,73 +1,60 @@
 {% extends "main/base.html" %}
-
 {% load static %}
-
 {% block title %}
-
     Изменить | {{ object.title }}
-    
 {% endblock %}
-
 {% block content %}
-
 <div class="post-wrapper">
     <div class="post">
-        <div class="post-head">
-            <div class="post-content">
-            <span class="font-bold-large inflex-center post-title" style="padding-bottom: 20px; padding-top: 20px;">
+        <div class="post-head post-title" style="margin-bottom: 35px;">
+            <span class="font-bold-large flex-center">
                 Изменить пост#{{object.id}}
             </span>
         </div>
-    </div>
     <div class="post-content">
         <form method="POST" class="post-block-form" enctype="multipart/form-data" action="?next={{ next_url }}">
             {% csrf_token %}
-            <div class="flex-left text_label font-bold-small" style="color: gray;">
+            <div class="flex-left label font-bold-small">
                 Название поста:
             </div>
             <div class="inflex-center" style="width: 100%; padding-bottom: 40px;">
                 {{ form.title }}
             </div>
-            <div class="flex-left text_label font-bold-small" style="color: gray;">
+            <div class="flex-left label font-bold-small">
                 Теги (Используйте символ пробела чтобы разделить теги): 
             </div>
             <div class="inflex-center" style="width: 100%; padding-bottom: 40px;">
                 {{ form.tag }}
             </div>
             {% if object.image %}
-
-            <div class="flex-left text_label font-bold-small" style="color: gray;">
+            <div class="flex-left label font-bold-small">
                 Предварительный просмотр:
             </div>
-            <div class="flex-center" style="width: 100%; padding-bottom: 40px; padding-top: 40px;">
+            <div class="flex-center" style="width: 100%; padding-bottom: 25px; padding-top: 25px;">
                 <img src="/media/{{ object.image }}" class="post-img">
             </div>
-
             {% else %}
-
-            <div class="flex-left text_label font-bold-small" style="color: gray; padding-bottom: 40px;">
+            <div class="flex-left label font-bold-small" style="padding-bottom: 40px;">
                 Нет изображения...
             </div>
-
             {% endif %}
-            <div class="flex-left text_label font-bold-small" style="color: gray;">
+            <div class="flex-left label font-bold-small">
                 Содержание статьи:
             </div>
             <div class="inflex-center" style="width: 100%; padding-bottom: 40px;">
                 {{ form.content }}
             </div>
-            <div class="flex-left text_label font-bold-small" style="color: gray;">
-                Изображение для статьи (Используемые форматы: .jpg, .jpeg, .png, .gif):
+            <div class="flex-left label font-bold-small">
+                Изображение для статьи (Форматы: .jpg, .jpeg, .png, .gif):
             </div>
             <div class="inflex-center" style="width: 100%; padding-bottom: 40px;">
                 {{ form.image }}
             </div>
             <div class="post-button font-bold-small flex-center">
                 <button class="button-alert font-bold-small" type="submit">Изменить</button>
-                <a href="/" class="button">Отменить</a>
+                <a href="/" class="button" style="width: 118px; height: 33px;">Отменить</a>
             </div>
         </form>
     </div>
 </div>  
-
 {% endblock %}

@@ -8,8 +8,8 @@ from django.db.models.signals import post_save
 class Post(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Автор')
     title = models.CharField(verbose_name='Название', max_length=100)
-    tag = models.CharField(verbose_name='Тег', max_length=50, blank=True, null=True)
-    content = models.TextField(verbose_name='Содержание статьи', max_length=1000, blank=True, null=True)
+    tag = models.CharField(verbose_name='Тег', max_length=50, blank=True)
+    content = models.TextField(verbose_name='Содержание статьи', max_length=5000, blank=True)
     date = models.DateTimeField(verbose_name='Дата публикации', auto_now_add=True)
     image = models.FileField(verbose_name='Изображение', validators=[FileExtensionValidator(['png', 'jpeg', 'jpg', 'gif'])], blank=True, null=True)
 
@@ -43,7 +43,7 @@ class Comment(models.Model):
 # Расширяем модель User с помощью связи user - "один-к-одному"
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, verbose_name='Пользователь')
-    bio = models.TextField(max_length=500, verbose_name='О себе', blank=True, null=True)
+    bio = models.TextField(max_length=500, verbose_name='О себе', blank=True)
     photo = models.FileField(verbose_name='Изображение', validators=[FileExtensionValidator(['png', 'jpeg', 'jpg'])], blank=True, null=True)
     created = models.DateTimeField(auto_now_add=True, verbose_name='Дата регистрации')
     is_online = models.BooleanField(default=False, verbose_name='Сейчас на сайте?')
@@ -58,12 +58,10 @@ class Profile(models.Model):
     def get_absolute_url(self):
         return f'/accounts/profile/id{self.id}'
 
-
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):
     if created:
         Profile.objects.create(user=instance)
-
 
 @receiver(post_save, sender=User)
 def save_user_profile(sender, instance, **kwargs):

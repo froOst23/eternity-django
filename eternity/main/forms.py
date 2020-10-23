@@ -15,7 +15,7 @@ class NewPostForm(ModelForm):
         self.fields['title'].label = False
         self.fields['tag'].widget = TextInput(attrs={'class': 'post-form-input font-regular-medium', 'placeholder': 'Используемые теги'})
         self.fields['tag'].label = False
-        self.fields['content'].widget = Textarea(attrs={'class': 'post-form-input font-regular-medium', 'placeholder': 'Описание поста'})
+        self.fields['content'].widget = Textarea(attrs={'class': 'post-form-input-textarea font-regular-medium', 'placeholder': 'Описание поста'})
         self.fields['content'].label = False
         self.fields['image'].widget = FileInput(attrs={'class': 'post-form-input font-regular-medium', 'placeholder': 'Фото поста'})
         self.fields['image'].label = False
@@ -103,5 +103,5 @@ class CommentCreateForm(ModelForm):
     # задаем класс формы и атрибут placeholder
     def __init__(self, *args, **kwargs):
         super(CommentCreateForm, self).__init__(*args, **kwargs)
-        self.fields['content'].widget = Textarea(attrs={'class': 'post-form-input font-regular-medium', 'placeholder': 'Комментарий'})
+        self.fields['content'].widget = Textarea(attrs={'class': 'post-form-input-textarea font-regular-medium', 'placeholder': 'Комментарий'})
         self.fields['content'].label = False

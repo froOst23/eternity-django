@@ -1,44 +1,36 @@
 {% extends "main/base.html" %}
-
 {% load static %}
-
 {% block title %}
-
     eternity | Регистрация
-    
 {% endblock %}
-
 {% block content %}
-
 <main class="post-wrapper-mini">
     <div class="post">
-        <div class="post-head">
-            <div class="post-content">
-            <span class="font-bold-large inflex-center post-title" style="padding-bottom: 20px; padding-top: 20px;">
+        <div class="post-head post-title" style="margin-bottom: 35px;">
+            <span class="font-bold-large flex-center">
                 Регистрация
             </span>
         </div>
-    </div>
         <div class="post-content">
             <form method="POST" class="post-block-form" enctype="multipart/form-data">
                 {% csrf_token %}
-                <div class="flex-left text_label font-bold-small">
+                <div class="flex-left label font-bold-small">
                     Имя пользователя
                 </div>
                 <div class="inflex-center" style="width: 100%; padding-bottom: 40px;">
                     {{ form.username }}
                 </div>
-                <div class="flex-left text_label font-bold-small">
+                <div class="flex-left label font-bold-small">
                     Пароль
                 </div>
                 <div class="inflex-center" style="width: 100%; padding-bottom: 40px;">
                     {{ form.password }}
                 </div>
-                <div class="post-button inflex-center" style="margin-top: 20px;">
+                <div class="post-button flex-center" style="margin-top: 20px;">
                     <button class="button font-bold-medium" type="submit">Создать</button> 
                 </div>
             </form>
         </div>
+    </div>
 </main>
-
 {% endblock %}
