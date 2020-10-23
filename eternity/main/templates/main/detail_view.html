@@ -20,8 +20,8 @@
                         {% endif %}
                     {% endfor %}
                     <div style="display: grid;">
-                        <a href="/accounts/profile/id{{ detail_post.author.id }}" class="post-link font-bold-medium" style="align-self: flex-start; font-size: 16.5px;">{{ detail_post.author }}</a>
-                        <span class="inflex-left post-text-header font-nunito-regular-small" style="align-self: flex-start; color: #B5B5B5; line-height: 1.2;">
+                        <a href="/accounts/profile/id{{ detail_post.author.id }}" class="post-link font-roboto-bold-large" style="align-self: flex-start;">{{ detail_post.author }}</a>
+                        <span class="inflex-left post-text-header font-roboto-regular-normal" style="align-self: flex-start; color: #646464; font-size: 12.5px; line-height: 10px;">
                         {% for j in profile %}
                             {% if j.user == detail_post.author %}
                                 {% if j.is_online == True %}
@@ -32,7 +32,7 @@
                             {% endif %}
                         {% endfor %}
                         </span> 
-                        <span class="inflex-left post-text-header font-nunito-regular-small" style="align-self: flex-start; color: #B5B5B5; line-height: 1.2";>
+                        <span class="inflex-left post-text-header font-roboto-regular-normal" style="align-self: flex-start; color: #646464; font-size: 12.5px; line-height: 10px;">
                             {{ detail_post.date|date:'d.m.Y в H:i' }}
                         </span> 
                     </div>
@@ -104,14 +104,16 @@
                 </div>
             </div> 
             <div class="post-content">
-                <span class="font-bold-large inflex-left post-text">
+                <span class="font-roboto-bold-large inflex-left post-text" style="font-size: 21.5px;">
                     {{ detail_post.title }}
                 </span>
                 <div class="post-tag" style="margin-bottom: 10px;">
                     {% for j in detail_post.tag|split %}
-                    <div class="post-tag-text font-nunito-regular-small">
-                        <a href="/tag/{{ j }}" class="tag-link">{{ j }}</a>
+                        {% if detail_post.tag %}
+                    <div class="post-tag-text font-bold-medium">
+                        <a href="/tag/{{ j }}" class="tag-link">#{{ j }}</a>
                     </div>
+                        {% endif %}
                     {% endfor %}
                 </div>
                 <div class="flex-left font-regular-medium"></div>

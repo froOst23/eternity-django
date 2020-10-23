@@ -14,32 +14,52 @@
             @font-face {
                 font-family: 'JetBrainsMono-Regular';
                 src: local('JetBrainsMono-Regular'),
-                url("{% static 'main/font/JetBrainsMono-Regular.ttf' %}") format("truetype");
+                url("{% static 'main/font/JetBrainsMono/JetBrainsMono-Regular.ttf' %}") format("truetype");
             }
             @font-face {
                 font-family: 'JetBrainsMono-Bold';
                 src: local('JetBrainsMono-Bold'),
-                url("{% static 'main/font/JetBrainsMono-Bold.ttf' %}") format("truetype");
+                url("{% static 'main/font/JetBrainsMono/JetBrainsMono-Bold.ttf' %}") format("truetype");
             }
             @font-face {
                 font-family: 'JetBrainsMono-Italic';
                 src: local('JetBrainsMono-Italic'),
-                url("{% static 'main/font/JetBrainsMono-Italic.ttf' %}") format("truetype");
+                url("{% static 'main/font/JetBrainsMono/JetBrainsMono-Italic.ttf' %}") format("truetype");
             }
             @font-face {
                 font-family: 'Anonymous-Pro-Regular';
                 src: local('Anonymous-Pro-Regular'),
-                url("{% static 'main/font/Anonymous-Pro-Regular.ttf' %}") format("truetype");
+                url("{% static 'main/font/Anonymous-Pro/Anonymous-Pro-Regular.ttf' %}") format("truetype");
             }
             @font-face {
                 font-family: 'Anonymous-Pro-Bold';
                 src: local('Anonymous-Pro-Bold'),
-                url("{% static 'main/font/Anonymous-Pro-Bold.ttf' %}") format("truetype");
+                url("{% static 'main/font/Anonymous-Pro/Anonymous-Pro-Bold.ttf' %}") format("truetype");
             }
             @font-face {
                 font-family: 'Nunito-Light';
                 src: local('Nunito-Light'),
                 url("{% static 'main/font/Nunito/Nunito-Light.ttf' %}") format("truetype");
+            }
+            @font-face {
+                font-family: 'Nunito-Regular';
+                src: local('Nunito-Regular'),
+                url("{% static 'main/font/Nunito/Nunito-Regular.ttf' %}") format("truetype");
+            }
+            @font-face {
+                font-family: 'Roboto-Light';
+                src: local('Roboto-Light'),
+                url("{% static 'main/font/Roboto/Roboto-Light.ttf' %}") format("truetype");
+            }
+            @font-face {
+                font-family: 'Roboto-Regular';
+                src: local('Roboto-Regular'),
+                url("{% static 'main/font/Roboto/Roboto-Regular.ttf' %}") format("truetype");
+            }
+            @font-face {
+                font-family: 'Roboto-Bold';
+                src: local('Roboto-Bold'),
+                url("{% static 'main/font/Roboto/Roboto-Bold.ttf' %}") format("truetype");
             }
         </style>
     <body>
@@ -54,12 +74,12 @@
             <nav class="header-menu">
                 <div class="inflex-center" style="height: inherit; width: 100%;">
                     <div class="inflex-left" style="width: 50%;">
-                        <a href="/" class="header-menu-link inflex-center font-bold-medium">ETERNITY</a>
-                        <a href="/add-post" class="header-menu-link inflex-center font-bold-medium">Написать</a>
+                        <a href="/" class="header-menu-link inflex-center font-nunito-regular-large">ETERNITY</a>
+                        <a href="/add-post" class="header-menu-link inflex-center font-roboto-bold-normal">Написать</a>
                     </div>
                     <div class="inflex-right" style="width: 50%;">
-                        <a href="/accounts/logout" class="header-menu-link-alarm inflex-center font-bold-medium">Выйти</a>
-                        <a href="/accounts/profile/id{{ request.user.id }}" class="header-menu-link inflex-center font-bold-medium" >{{ request.user }}</a>
+                        <a href="/accounts/logout" class="header-menu-link-alarm inflex-center font-roboto-bold-normal">Выйти</a>
+                        <a href="/accounts/profile/id{{ request.user.id }}" class="header-menu-link inflex-center font-roboto-bold-normal" >{{ request.user }}</a>
                 </div>
             </nav>
 
@@ -68,12 +88,12 @@
             <nav class="header-menu">
                 <div class="inflex-center" style="height: inherit; width: 100%;">
                     <div class="inflex-left" style="width: 50%;">
-                        <a href="/" class="header-menu-link inflex-center font-bold-medium">ETERNITY</a>
-                        <a href="/add-post" class="header-menu-link inflex-center font-bold-medium">Написать</a>
+                        <a href="/" class="header-menu-link inflex-center font-nunito-regular-large">ETERNITY</a>
+                        <a href="/add-post" class="header-menu-link inflex-center font-roboto-bold-normal">Написать</a>
                     </div>
                     <div class="inflex-right" style="width: 50%;">
-                        <a href="/accounts/login" class="header-menu-link inflex-center font-bold-medium">Войти</a>
-                        <a href="/accounts/login" class="header-menu-link inflex-center font-bold-medium" >Гость</a>
+                        <a href="/accounts/login" class="header-menu-link inflex-center font-roboto-bold-normal">Войти</a>
+                        <a href="/accounts/login" class="header-menu-link inflex-center font-roboto-bold-normal" >Гость</a>
                     </div>
                 </div>
             </nav>
@@ -87,19 +107,19 @@
                 {% for message in messages %}
                         {% if message.tags == "success" %}
                         <div class="message-wrapper" id="message">
-                            <div class="message-succsess font-bold-medium">
+                            <div class="message-succsess font-roboto-bold-normal">
                                 {{ message }}
                             </div>
                         </div>  
                         {% elif message.tags == "error" %}
                         <div class="message-wrapper" id="message">
-                            <div class="message-error font-bold-medium">
+                            <div class="message-error font-roboto-bold-normal">
                                 {{ message }}
                             </div>
                         </div>
                         {% elif message.tags == "info" %}
                         <div class="message-wrapper" id="message">
-                            <div class="message-info font-bold-medium">
+                            <div class="message-info font-roboto-bold-normal">
                                 {{ message }}
                             </div>
                         </div>  
@@ -111,7 +131,7 @@
             {% block content %}{% endblock %}
         </main>
         <footer>
-
+            <!-- Тут должен быть footer -->
         </footer>
         </header>
     </body>
