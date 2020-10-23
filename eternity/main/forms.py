@@ -89,7 +89,7 @@ class ProfileUpdateForm(ModelForm):
     # задаем класс формы и атрибут placeholder
     def __init__(self, *args, **kwargs):
         super(ProfileUpdateForm, self).__init__(*args, **kwargs)
-        self.fields['bio'].widget = Textarea(attrs={'class': 'post-form-input font-regular-medium', 'placeholder': 'Обо мне'})
+        self.fields['bio'].widget = Textarea(attrs={'class': 'post-form-input-textarea font-regular-medium', 'placeholder': 'Обо мне'})
         self.fields['bio'].label = False
         self.fields['photo'].widget = FileInput(attrs={'class': 'post-form-input font-regular-medium'})
         self.fields['photo'].label = False

@@ -1,71 +1,61 @@
 {% extends "main/base.html" %}
-
 {% load static %}
-
 {% block title %}
-
     eternity | {{  object.user }}-id{{  object.user.id }}
-
 {% endblock %}
-
 {% block content %}
-
 <main class="post-wrapper-medium">
     <div class="post">
-        <div class="post-head">
-            <span class="font-bold-large inflex-center" style="padding-bottom: 20px; padding-top: 20px; width: 100%;">
+        <div class="post-head post-title" style="margin-bottom: 35px;">
+            <span class="font-bold-large flex-center">
                 {{ object.user }}
             </span>
-            <span class="font-bold-medium inflex-center" style="padding-bottom: 20px; padding-top: 20px; width: 100%;">
+            <span class="font-nunito-regular-small flex-center label   ">
                 {% if object.is_online == True %}
-                    Online
+                    Сейчас на сайте
                 {% else %}
-                    Offline
+                    Не в сети
                 {% endif %}
             </span>
             {% if request.user == object.user %}
-            <span class="post-title-none-underline inflex-center ">
-                <span class="inflex-center profile-link-line" style="width: 100%;">
+            <span class="flex-center ">
+                <span class="profile-link-line">
                     <a href="/accounts/profile/id{{ object.user.id }}/edit?next={{ request.path }}" class="profile-link font-bold-medium">Редактировать</a>
                 </span>
             </span>
             {% endif %}
+        </div>
             <div class="flex-center">
                 {% if object.user.profile.photo %}
-
                 <img src="/media/{{ object.user.profile.photo }}" class="profile-photo">
-
                 {% else %}
-
                 <img src="{% static 'main/images/default_avatar.png' %}" class="profile-photo">
-
                 {% endif %}
             </div>
-            <span class="font-bold-large inflex-center post-title" style="padding-bottom: 20px; padding-top: 20px;"></span>    
-        </div>
-        <div class="post-content">
-            <div class="flex-left font-bold-small prfile-text" style="color: gray;">
+            <span class="font-bold-large inflex-center" style="padding-bottom: 20px; padding-top: 20px;"></span>    
+        <div class="post-content post-block-form">
+            <div class="flex-left font-bold-small label" style="color: gray;">
                 Имя пользователя:
             </div>
-            <div class="flex-left font-regular-medium prfile-text" style="width: 100%; padding-bottom: 30px;">
+            <div class="flex-left font-regular-medill label" style="width: 100%; padding-bottom: 30px;">
                 {{ object.user.first_name }}
             </div>
-            <div class="flex-left font-bold-small prfile-text" style="color: gray;">
+            <div class="flex-left font-bold-small label" style="color: gray;">
                 Фамилия пользователя:
             </div>
-            <div class="flex-left font-regular-medium prfile-text" style="width: 100%; padding-bottom: 30px;">
+            <div class="flex-left font-regular-medill label" style="width: 100%; padding-bottom: 30px;">
                 {{ object.user.last_name }}
             </div>
-            <div class="flex-left font-bold-small prfile-text" style="color: gray;">
+            <div class="flex-left font-bold-small label" style="color: gray;">
                 E-MAIL:
             </div>
-            <div class="flex-left font-regular-medium prfile-text" style="width: 100%; padding-bottom: 30px;">
+            <div class="flex-left font-regular-medill label" style="width: 100%; padding-bottom: 30px;">
                 {{ object.user.email }}
             </div>
-            <div class="flex-left font-bold-small prfile-text" style="color: gray;">
+            <div class="flex-left font-bold-small label" style="color: gray;">
                 Обо мне:
             </div>
-            <div class="flex-left font-regular-medium prfile-text" style="width: 95%; padding-bottom: 30px;">
+            <div class="flex-left font-regular-medill label" style="width: 95%; padding-bottom: 30px;">
                 {{ object.user.profile.bio }}
             </div>
         </div>    

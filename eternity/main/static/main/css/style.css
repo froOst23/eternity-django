@@ -318,16 +318,16 @@ main{
 }
 .profile-link-line{
     color: #000000;
-    border-color: #E9E9E9;
+    /* border-color: #E9E9E9;
     border-bottom-width: 1px;
-    border-bottom-style: solid;
+    border-bottom-style: solid; */
 
 }
 .profile-link-line:hover{
     color: #7accc8;
-    border-color: #7accc8;
+    /* border-color: #7accc8;
     border-bottom-width: 1px;
-    border-bottom-style: solid;
+    border-bottom-style: solid; */
 }
 .post-text-short{
     margin-left: 25px;
