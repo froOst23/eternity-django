@@ -1,33 +1,24 @@
 {% extends "main/base.html" %}
-
 {% load static %}
-
 {% block title %}
-
-    Удалить пост #{{ object.id }} - "{{ object.title }}"?
-    
+    Удалить пост#{{ object.id }}?
 {% endblock %}
-
 {% block content %}
-
 <main class="post-wrapper-mini">
     <div class="post">
-        <div class="post-head">
-            <div class="post-content">
-            <span class="font-bold-large inflex-center post-title" style="padding-bottom: 20px; padding-top: 20px;">
-                Удалить пост #{{ object.id }} - "{{ object.title }}"?
+        <div class="post-head post-title flex-center" style="display: flex;">
+            <span class="font-bold-large flex-center">
+                Удалить пост#{{ object.id }}?
             </span>
-        </div>
-    </div>
-        <div class="post-content">
+        </div>  
+        <div class="post-content" style="padding-top: 15px;">
             <form method="POST" class="post-block-form" enctype="multipart/form-data" action="?next={{ next_url }}">
                 {% csrf_token %}
                 <div class="post-button font-bold-small flex-center">
                     <button class="button-alert font-bold-small" type="submit">Удалить</button>
-                    <a href="/post/{{ object.id }}" class="button">Отмена</a>
+                    <a href="/post/{{ object.id }}" class="button" style="width: 118px; height: 33px;">Отмена</a>
                 </div>
             </form>
         </div>
 </main>
-
 {% endblock %}
