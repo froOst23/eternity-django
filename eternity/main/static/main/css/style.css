@@ -118,7 +118,7 @@ main{
     overflow-wrap: break-word;
     overflow: hidden;
     text-overflow: ellipsis;
-    line-height: 1.2;
+    line-height: 1.56;
 }
 .post-comment-line{
     width: 100%;

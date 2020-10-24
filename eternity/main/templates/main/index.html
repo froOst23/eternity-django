@@ -125,7 +125,7 @@
                         </div>
                         {% endif %}
                         <div class="inflex-left post-text-short font-nunito-regular-normal">
-                            {{ i.content }}
+                            {{ i.content|truncatewords:23 }}
                         </div>
                         {% if request.user !=  i.author %}
                         <div class="flex-center">
