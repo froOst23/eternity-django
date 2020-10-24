@@ -130,7 +130,7 @@
                         {% if request.user !=  i.author %}
                         <div class="flex-center">
                             <div class="flex-left" style="width: 50%;">
-                                <a href="/post/{{ i.id }}/add-comment?next={{ request.path }}" class="ext-comment flex-center font-regular-small">
+                                <a href="/post/{{ i.id }}#comment" class="ext-comment flex-center font-regular-small">
                                     <img src="{% static 'main/images/icons/chat.png' %}" alt="" class="icon">
                                     <span style="margin-left: 5px; margin-right: 5px;">
                                         {% comment_count i.title %}
@@ -147,7 +147,7 @@
                         {% else %}
                         <div class="flex-center">
                             <div class="flex-left" style="width: 50%;">
-                                <a href="/post/{{ i.id }}/add-comment?next={{ request.path }}" class="ext-comment flex-center font-regular-small">
+                                <a href="/post/{{ i.id }}#comment" class="ext-comment flex-center font-regular-small">
                                     <img src="{% static 'main/images/icons/chat.png' %}" alt="" class="icon">
                                     <span style="margin-left: 5px; margin-right: 5px; color: #000000;">
                                         {% comment_count i.title %}
