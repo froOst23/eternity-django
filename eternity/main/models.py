@@ -9,7 +9,7 @@ class Post(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Автор')
     title = models.CharField(verbose_name='Название', max_length=100)
     tag = models.CharField(verbose_name='Тег', max_length=50, blank=True)
-    content = models.TextField(verbose_name='Содержание статьи', max_length=5000, blank=True)
+    content = models.TextField(verbose_name='Содержание статьи', max_length=10000, blank=True)
     date = models.DateTimeField(verbose_name='Дата публикации', auto_now_add=True)
     image = models.FileField(verbose_name='Изображение', validators=[FileExtensionValidator(['png', 'jpeg', 'jpg', 'gif'])], blank=True, null=True)
 
