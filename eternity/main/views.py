@@ -58,6 +58,10 @@ class PostAddView(SuccessMessageMixin, LoginRequiredMixin, CreateView):
     success_url = reverse_lazy('home')
     success_message = f'Пост успешно добавлен'
 
+    def image(request):
+        image_file = request.FILES['image_file'].file.read()
+        Post.objects.create(image=image_file)
+
     def form_valid(self, form):
         self.object = form.save(commit=False)
         self.object.author = self.request.user
