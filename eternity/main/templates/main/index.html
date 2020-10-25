@@ -61,7 +61,7 @@
                                 <img src="{% static 'main/images/icons/more.png' %}" class="drop-icon" onclick="showMenu{{i.id}}()">
                                 {% if request.user ==  i.author %}
                                 <div class="drop-list" id="droplist{{i.id}}">
-                                    <a href="/post/{{ i.id }}/add-comment?next={{ request.path }}" class="drop-link font-regular-small">
+                                    <a href="/post/{{ i.id }}/comment/add?next={{ request.path }}" class="drop-link font-regular-small">
                                         <img src="{% static 'main/images/icons/chat.png' %}" alt="" class="icon">
                                         <span style="margin-left: 10px;">
                                             Комментарии {% comment_count i.title %}
@@ -88,7 +88,7 @@
                                 </div>
                                 {% else %}
                                 <div class="drop-list" id="droplist{{i.id}}">
-                                    <a href="/post/{{ i.id }}/add-comment?next={{ request.path }}" class="drop-link font-regular-small">
+                                    <a href="/post/{{ i.id }}/comment/add?next={{ request.path }}" class="drop-link font-regular-small">
                                         <img src="{% static 'main/images/icons/chat.png' %}" alt="" class="icon">
                                         <span style="margin-left: 10px;">
                                             Комментарии {% comment_count i.title %}
@@ -120,7 +120,7 @@
                         </div>
                         <div class="flex-left font-regular-medium"></div>
                         {% if i.image %}
-                        <div class="flex-center post-img" style="max-width: 100%; max-height: 500px; padding-left: 25px; padding-right: 25px;">
+                        <div class="flex-center" style="max-width: 100%; max-height: 500px; padding-left: 25px; padding-right: 25px;">
                             <img src="/media/{{ i.image }}" class="post-img">
                         </div>
                         {% endif %}

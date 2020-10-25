@@ -59,7 +59,7 @@
                         <img src="{% static 'main/images/icons/more.png' %}" class="drop-icon" onclick="showMenu{{detail_post.id}}()">
                         {% if request.user ==  detail_post.author %}
                         <div class="drop-list" id="droplist{{detail_post.id}}">
-                            <a href="/post/{{ detail_post.id }}/add-comment?next={{ request.path }}" class="drop-link font-regular-small">
+                            <a href="/post/{{ detail_post.id }}/comment/add?next={{ request.path }}" class="drop-link font-regular-small">
                                 <img src="{% static 'main/images/icons/chat.png' %}" alt="" class="icon">
                                 <span style="margin-left: 10px;">
                                     Комментарии {% comment_count detail_post.title %}
@@ -86,7 +86,7 @@
                         </div>
                         {% else %}
                         <div class="drop-list" id="droplist{{detail_post.id}}">
-                            <a href="/post/{{ detail_post.id }}/add-comment?next={{ request.path }}" class="drop-link font-regular-small">
+                            <a href="/post/{{ detail_post.id }}/comment/add?next={{ request.path }}" class="drop-link font-regular-small">
                                 <img src="{% static 'main/images/icons/chat.png' %}" alt="" class="icon">
                                 <span style="margin-left: 10px;">
                                     Комментарии {% comment_count detail_post.title %}
@@ -157,13 +157,13 @@
                         </div>
                         <div class="flex-right" style="width: 50%; margin-right: 25px; margin-top: 25px;">
                             {% if j.author == request.user %}
-                            <a href="/update-comment/{{ j.id }}?next={{ request.path }}" class="drop-link font-regular-small" style="display: flex; align-items: center;">
+                            <a href="/comment/{{ j.id }}/update?next={{ request.path }}" class="drop-link font-regular-small" style="display: flex; align-items: center;">
                                 <img src="{% static 'main/images/icons/edit.png' %}" alt="" class="icon">
                                 <span style="margin-left: 10px; align-self: auto;">
                                     Изменить
                                 </span>
                             </a>
-                            <a href="/delete-comment/{{ j.id }}?next={{ request.path }}" class="drop-link font-regular-small" style="display: flex; align-items: center;">
+                            <a href="/comment/{{ j.id }}/delete?next={{ request.path }}" class="drop-link font-regular-small" style="display: flex; align-items: center;">
                                 <img src="{% static 'main/images/icons/garbage.png' %}" alt="" class="icon">
                                 <span style="margin-left: 10px; align-self: auto;">
                                     Удалить
