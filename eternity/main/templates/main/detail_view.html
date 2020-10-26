@@ -122,9 +122,33 @@
                 </div>
                 <div class="flex-left font-regular-medium"></div>
                 {% if detail_post.image %}
+
                 <div class="flex-center" style="max-width: 100%; max-height: 500px; padding-left: 25px; padding-right: 25px;">
-                    <img src="/media/{{ detail_post.image }}" class="post-img">
+                    <img src="/media/{{ detail_post.image }}" alt="{{ detail_post.image }}" id="detailImg" class="post-img">
+                    <div id="myModal" class="modal">
+                        <span class="close" onclick="document.getElementById('myModal').style.display='none'">
+                            &times;
+                        </span>
+                        <img class="modal-content" id="targetImg">
+                    </div>
                 </div>
+
+                <script>
+                    var modal = document.getElementById('myModal');
+                    var img = document.getElementById('detailImg');
+                    var modalImg = document.getElementById('targetImg');
+
+                    img.onclick = function() {
+                        modal.style.display = "block";
+                        modalImg.src = this.src;
+                    }
+
+                    var span = document.getElementsByClassName("close")[0];
+                    span.onclick = function() {
+                        modal.style.display = "none";
+                    }
+                </script>
+
                 {% endif %}
                 <div class="inflex-left post-text-short font-nunito-regular-normal">
                     {{ detail_post.content }}
