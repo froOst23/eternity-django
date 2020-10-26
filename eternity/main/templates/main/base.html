@@ -69,13 +69,14 @@
             }, 3000);
         </script>
         <header>
+            
             {% if request.user.is_authenticated  %}
 
             <nav class="header-menu">
                 <div class="inflex-center" style="height: inherit; width: 100%;">
                     <div class="inflex-left" style="width: 50%;">
                         <a href="/" class="header-menu-link inflex-center font-nunito-regular-large">ETERNITY</a>
-                        <a href="/add-post" class="header-menu-link inflex-center font-roboto-bold-normal">Написать</a>
+                        <a href="/post/new" class="header-menu-link inflex-center font-roboto-bold-normal">Написать</a>
                     </div>
                     <div class="inflex-right" style="width: 50%;">
                         <a href="/accounts/logout" class="header-menu-link-alarm inflex-center font-roboto-bold-normal">Выйти</a>
@@ -89,7 +90,7 @@
                 <div class="inflex-center" style="height: inherit; width: 100%;">
                     <div class="inflex-left" style="width: 50%;">
                         <a href="/" class="header-menu-link inflex-center font-nunito-regular-large">ETERNITY</a>
-                        <a href="/add-post" class="header-menu-link inflex-center font-roboto-bold-normal">Написать</a>
+                        <a href="/post/new" class="header-menu-link inflex-center font-roboto-bold-normal">Написать</a>
                     </div>
                     <div class="inflex-right" style="width: 50%;">
                         <a href="/accounts/login" class="header-menu-link inflex-center font-roboto-bold-normal">Войти</a>
@@ -103,29 +104,27 @@
         </header>
         <main>
             {% if messages %}
-
                 {% for message in messages %}
-                        {% if message.tags == "success" %}
-                        <div class="message-wrapper" id="message">
-                            <div class="message-succsess font-roboto-bold-normal">
-                                {{ message }}
-                            </div>
-                        </div>  
-                        {% elif message.tags == "error" %}
-                        <div class="message-wrapper" id="message">
-                            <div class="message-error font-roboto-bold-normal">
-                                {{ message }}
-                            </div>
+                    {% if message.tags == "success" %}
+                    <div class="message-wrapper" id="message">
+                        <div class="message-succsess font-roboto-bold-normal">
+                            {{ message }}
                         </div>
-                        {% elif message.tags == "info" %}
-                        <div class="message-wrapper" id="message">
-                            <div class="message-info font-roboto-bold-normal">
-                                {{ message }}
-                            </div>
-                        </div>  
-                        {% endif %}
+                    </div>  
+                    {% elif message.tags == "error" %}
+                    <div class="message-wrapper" id="message">
+                        <div class="message-error font-roboto-bold-normal">
+                            {{ message }}
+                        </div>
+                    </div>
+                    {% elif message.tags == "info" %}
+                    <div class="message-wrapper" id="message">
+                        <div class="message-info font-roboto-bold-normal">
+                            {{ message }}
+                        </div>
+                    </div>  
+                    {% endif %}
                 {% endfor %}
-
             {% endif %}
             
             {% block content %}{% endblock %}

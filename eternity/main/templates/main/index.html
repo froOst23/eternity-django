@@ -1,11 +1,15 @@
 {% extends "main/base.html" %}
+
 {% load static %}
 {% load split_filter %}
 {% load comment_count %}
+
 {% block title %}
     eternity | Лента
 {% endblock %}
+
 {% block content %}
+
     {% if post %}
         {% for i in post %}
             <div class="post-wrapper">
@@ -186,4 +190,5 @@
                 </div>
             </main>
     {% endif %}
+
 {% endblock %}

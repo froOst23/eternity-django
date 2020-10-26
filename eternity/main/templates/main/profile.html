@@ -1,9 +1,13 @@
 {% extends "main/base.html" %}
+
 {% load static %}
+
 {% block title %}
     eternity | {{  object.user }}-id{{  object.user.id }}
 {% endblock %}
+
 {% block content %}
+
 <main class="post-wrapper-medium">
     <div class="post">
         <div class="post-head post-title" style="margin-bottom: 35px;">
@@ -61,4 +65,5 @@
         </div>    
     </div>
 </main>
+
 {% endblock %}

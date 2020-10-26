@@ -1,11 +1,15 @@
 {% extends "main/base.html" %}
+
 {% load static %}
 {% load split_filter %}
 {% load comment_count %}
+
 {% block title %}
     eternity | {{ object.title  }}
 {% endblock %}
+
 {% block content %}
+
     <div class="post-wrapper">
         <div class="post">
             <div class="post-head post-title" style="display: flex;">
@@ -62,15 +66,15 @@
                             <a href="/post/{{ detail_post.id }}/comment/add?next={{ request.path }}" class="drop-link font-regular-small">
                                 <img src="{% static 'main/images/icons/chat.png' %}" alt="" class="icon">
                                 <span style="margin-left: 10px;">
-                                    Комментарии {% comment_count detail_post.title %}
+                                    Комментировать {% comment_count detail_post.title %}
                                 </span>
                             </a>    
-                            <a href="/post/{{ detail_post.id }}" class="drop-link font-regular-small">
+                            <!-- <a href="/post/{{ detail_post.id }}" class="drop-link font-regular-small">
                                 <img src="{% static 'main/images/icons/magnifying-glass.png' %}" alt="" class="icon">
                                 <span style="margin-left: 10px;">
                                     Читать дальше
                                 </span>
-                            </a>
+                            </a> -->
                             <a href="/post/{{ detail_post.id }}/update?next={{ request.path }}" class="drop-link font-regular-small">
                                 <img src="{% static 'main/images/icons/settings.png' %}" alt="" class="icon">
                                 <span style="margin-left: 10px;">
@@ -89,15 +93,15 @@
                             <a href="/post/{{ detail_post.id }}/comment/add?next={{ request.path }}" class="drop-link font-regular-small">
                                 <img src="{% static 'main/images/icons/chat.png' %}" alt="" class="icon">
                                 <span style="margin-left: 10px;">
-                                    Комментарии {% comment_count detail_post.title %}
+                                    Комментировать {% comment_count detail_post.title %}
                                 </span>
                             </a>    
-                            <a href="/post/{{ detail_post.id }}" class="drop-link font-regular-small">
+                            <!-- <a href="/post/{{ detail_post.id }}" class="drop-link font-regular-small">
                                 <img src="{% static 'main/images/icons/magnifying-glass.png' %}" alt="" class="icon">
                                 <span style="margin-left: 10px;">
                                     Читать дальше
                                 </span>
-                            </a>
+                            </a> -->
                         </div>    
                         {% endif %}
                     </div>
@@ -128,6 +132,7 @@
                 {% if request.user !=  detail_post.author %}
                 <div class="post-button font-regular-small flex-right">
                     <!-- <a href="/post/{{ detail_post.id }}/add-comment" class="button">Комментировать</a>   -->
+                    <a href="/post/{{ detail_post.id }}/comment/add?next={{ request.path }}#comment" class="button">Комментировать</a>
                     <a name="comment" href="/" class="button">Назад</a>
                 </div>
                 {% else %}
@@ -135,6 +140,7 @@
                     <!-- <a href="/post/{{ detail_post.id }}/update?next={{ request.path }}" class="button">Изменить</a>
                     <a href="/post/{{ detail_post.id }}/delete" class="button-alert">Удалить</a>
                     <a href="/post/{{ detail_post.id }}/add-comment?next={{ request.path }}" class="button">Комментировать</a> -->
+                    <a href="/post/{{ detail_post.id }}/comment/add?next={{ request.path }}#comment" class="button">Комментировать</a>
                     <a name="comment" href="/" class="button">Назад</a>
                 </div> 
                 {% endif %}
@@ -179,4 +185,5 @@
             </div>
         {% endif %}
     {% endfor %}
+
 {% endblock %}
