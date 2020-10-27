@@ -209,10 +209,10 @@
                 </div>
             </div>
             {% for q in comment %}
-                {% if q.is_reply == True and q.parent == j.id %}
+                {% if q.parent == j.id %}
                 <div class="comment-wrapper-lvl-2">
                     {% for k in profile %}
-                        {% if k.user == j.author %}
+                        {% if k.user == q.author %}
                             {% if k.photo %}
                                 <img src="/media/{{ k.photo }}" class="post-img-mini" style="margin-top: 7.5px;">
                             {% else %}
@@ -224,7 +224,7 @@
                         <div class="flex-center post-head post-title">
                             <div class="flex-left" style="width: 50%;">
                                 <div style="display: grid;">
-                                    <a href="/accounts/profile/id{{ j.author.id }}" class="post-link font-roboto-bold-large" style="margin-left: 0px;">{{ j.author }}</a>
+                                    <a href="/accounts/profile/id{{ j.author.id }}" class="post-link font-roboto-bold-large" style="margin-left: 0px;">{{ q.author }}</a>
                                     <span class="inflex-left post-text-header font-roboto-regular-normal" style="align-self: flex-start; color: #646464; margin-left: 0px; font-size: 12.5px; line-height: 10px;">
                                         {{ q.created|date:'d b в H:i'|lower }}
                                     </span>
@@ -232,13 +232,13 @@
                             </div>
                             <div class="flex-right" style="width: 50%;">
                                 {% if q.author == request.user %}
-                                <a href="/comment/{{ j.id }}/update?next={{ request.path }}" class="drop-link font-regular-small" style="display: flex; align-items: center;">
+                                <a href="/comment/{{ q.id }}/update?next={{ request.path }}" class="drop-link font-regular-small" style="display: flex; align-items: center;">
                                     <img src="{% static 'main/images/icons/edit.png' %}" alt="" class="icon">
                                     <span class="font-nunito-regular-normal" style="margin-left: 10px; align-self: auto;">
                                         Изменить
                                     </span>
                                 </a>
-                                <a href="/comment/{{ j.id }}/delete?next={{ request.path }}" class="drop-link font-regular-small" style="display: flex; align-items: center;">
+                                <a href="/comment/{{ q.id }}/delete?next={{ request.path }}" class="drop-link font-regular-small" style="display: flex; align-items: center;">
                                     <img src="{% static 'main/images/icons/garbage.png' %}" alt="" class="icon">
                                     <span class="font-nunito-regular-normal" style="margin-left: 10px; align-self: auto;">
                                         Удалить
