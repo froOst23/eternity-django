@@ -209,7 +209,7 @@
                 </div>
             </div>
             {% for q in comment %}
-                {% if q.is_reply == True and q.parent == j.id %}
+                {% if q.parent == j.id %}
                 <div class="comment-wrapper-lvl-2">
                     {% for k in profile %}
                         {% if k.user == q.author %}
