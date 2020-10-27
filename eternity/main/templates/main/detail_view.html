@@ -229,7 +229,11 @@
                                     </a>
                                     <span class="font-roboto-regular-normal" style="color: #646464; margin-left: 0px; font-size: 12.5px; line-height: 8.5px;"">
                                         ответил пользователю
-                                        <a href="/accounts/profile/id{{ j.id }}" class="post-link font-roboto-bold-large" style="font-size: 12.5px; margin-left: 0px;">{{ j.author }}</a>
+                                        {% for k in profile %}
+                                            {% if k.user == j.author %}
+                                        <a href="/accounts/profile/id{{ k.id }}" class="post-link font-roboto-bold-large" style="font-size: 12.5px; margin-left: 0px;">{{ j.author }}</a>
+                                            {% endif %}
+                                        {% endfor %}
                                     </span>
                                     
                                     <span class="inflex-left post-text-header font-roboto-regular-normal" style="align-self: flex-start; color: #646464; margin-left: 0px; font-size: 12.5px; line-height: 8.5px;">
