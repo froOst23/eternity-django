@@ -211,7 +211,7 @@ def reply_comment(request, pk, post_id):
             # указывает что коммент был ответом
             # указываем текущий пост
             comment.is_reply = True
-            comment.parent = str(post_id)
+            comment.parent = int(post_id)
             comment.post = Post.objects.get(id=pk)
             
             # делаем запись в бд
