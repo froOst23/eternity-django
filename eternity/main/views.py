@@ -198,6 +198,34 @@ def add_comment(request, pk):
     return render(request, 'main/add_comment.html', {'form': form})
 
 
+@login_required
+def reply_comment(request, pk, post_id):
+    if request.method == 'POST':
+        form = CommentCreateForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            print(f'ВОТ ЭТО ГОВНО - {post_id}')
+
+            # указываем текущего авторизованного пользователя
+            comment.author = request.user
+            # указывает что коммент был ответом
+            # указываем текущий пост
+            comment.is_reply = True
+            comment.parent = str(post_id)
+            comment.post = Post.objects.get(id=pk)
+            
+            # делаем запись в бд
+            comment.save()
+            messages.success(request, 'Комментарий добавлен')
+            return redirect(f'/post/{pk}')
+        else:
+            messages.error(request, 'Произошла ошибка заполнения формы')
+            return redirect(f'/post/{pk}')
+    else:
+        form = CommentCreateForm(request.POST)
+    return render(request, 'main/reply_comment.html', {'form': form})
+
+
 class CommentUpdateView(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
     model = Comment
     template_name = 'main/update_comment.html'

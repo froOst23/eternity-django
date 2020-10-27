@@ -31,6 +31,9 @@ class Comment(models.Model):
     content = models.TextField(verbose_name='Содержание', max_length=500)
     created = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
     updated = models.DateTimeField(auto_now=True, verbose_name='Дата обновления')
+    is_reply = models.BooleanField(default=False, verbose_name='Сделан ответ')
+    # parent = models.ForeignKey('self', on_delete=models.CASCADE, null=True, blank=True, verbose_name='Ответ на комментарий')
+    parent = models.CharField(verbose_name='Ответ на комментарий', null=True, blank=True, max_length=100)
 
     class Meta():
         verbose_name = 'Комментарий'

@@ -76,11 +76,11 @@
                 <div class="inflex-center" style="height: inherit; width: 100%;">
                     <div class="inflex-left" style="width: 50%;">
                         <a href="/" class="header-menu-link inflex-center font-nunito-regular-large">ETERNITY</a>
-                        <a href="/post/new" class="header-menu-link inflex-center font-roboto-bold-normal">Написать</a>
+                        <a href="/post/new" class="header-menu-link inflex-center font-nunito-regular-large">Написать</a>
                     </div>
                     <div class="inflex-right" style="width: 50%;">
-                        <a href="/accounts/logout" class="header-menu-link-alarm inflex-center font-roboto-bold-normal">Выйти</a>
-                        <a href="/accounts/profile/id{{ request.user.id }}" class="header-menu-link inflex-center font-roboto-bold-normal" >{{ request.user }}</a>
+                        <a href="/accounts/logout" class="header-menu-link-alarm inflex-center font-nunito-regular-large">Выйти</a>
+                        <a href="/accounts/profile/id{{ request.user.id }}" class="header-menu-link inflex-center font-nunito-regular-large" >{{ request.user }}</a>
                 </div>
             </nav>
 
@@ -90,11 +90,11 @@
                 <div class="inflex-center" style="height: inherit; width: 100%;">
                     <div class="inflex-left" style="width: 50%;">
                         <a href="/" class="header-menu-link inflex-center font-nunito-regular-large">ETERNITY</a>
-                        <a href="/post/new" class="header-menu-link inflex-center font-roboto-bold-normal">Написать</a>
+                        <a href="/post/new" class="header-menu-link inflex-center font-nunito-regular-large">Написать</a>
                     </div>
                     <div class="inflex-right" style="width: 50%;">
-                        <a href="/accounts/login" class="header-menu-link inflex-center font-roboto-bold-normal">Войти</a>
-                        <a href="/accounts/login" class="header-menu-link inflex-center font-roboto-bold-normal" >Гость</a>
+                        <a href="/accounts/login" class="header-menu-link inflex-center font-nunito-regular-large">Войти</a>
+                        <a href="/accounts/login" class="header-menu-link inflex-center font-nunito-regular-large" >Гость</a>
                     </div>
                 </div>
             </nav>
@@ -107,20 +107,20 @@
                 {% for message in messages %}
                     {% if message.tags == "success" %}
                     <div class="message-wrapper" id="message">
-                        <div class="message-succsess font-roboto-bold-normal">
-                            {{ message }}
+                        <div class="message-succsess font-nunito-regular-large">
+                            {{ message|lower }}
                         </div>
                     </div>  
                     {% elif message.tags == "error" %}
                     <div class="message-wrapper" id="message">
-                        <div class="message-error font-roboto-bold-normal">
-                            {{ message }}
+                        <div class="message-error font-nunito-regular-large">
+                            {{ message|lower }}
                         </div>
                     </div>
                     {% elif message.tags == "info" %}
                     <div class="message-wrapper" id="message">
-                        <div class="message-info font-roboto-bold-normal">
-                            {{ message }}
+                        <div class="message-info font-nunito-regular-large">
+                            {{ message|lower }}
                         </div>
                     </div>  
                     {% endif %}

@@ -62,8 +62,8 @@
                         </script>
                         <img src="{% static 'main/images/icons/more.png' %}" class="drop-icon" onclick="showMenu{{detail_post.id}}()">
                         {% if request.user ==  detail_post.author %}
-                        <div class="drop-list" id="droplist{{detail_post.id}}">
-                            <a href="/post/{{ detail_post.id }}/comment/add?next={{ request.path }}" class="drop-link font-regular-small">
+                        <div class="drop-list font-roboto-regular-normal" id="droplist{{detail_post.id}}" style="font-size: 12.5px; line-height: 10px;">
+                            <a href="/post/{{ detail_post.id }}/comment/add?next={{ request.path }}" class="drop-link">
                                 <img src="{% static 'main/images/icons/chat.png' %}" alt="" class="icon">
                                 <span style="margin-left: 10px;">
                                     Комментировать {% comment_count detail_post.title %}
@@ -75,13 +75,13 @@
                                     Читать дальше
                                 </span>
                             </a> -->
-                            <a href="/post/{{ detail_post.id }}/update?next={{ request.path }}" class="drop-link font-regular-small">
+                            <a href="/post/{{ detail_post.id }}/update?next={{ request.path }}" class="drop-link ">
                                 <img src="{% static 'main/images/icons/settings.png' %}" alt="" class="icon">
                                 <span style="margin-left: 10px;">
                                     Изменить
                                 </span>
                             </a>
-                            <a href="/post/{{ detail_post.id }}/delete" class="drop-link font-regular-small">
+                            <a href="/post/{{ detail_post.id }}/delete" class="drop-link">
                                 <img src="{% static 'main/images/icons/garbage.png' %}" alt="" class="icon">
                                 <span style="margin-left: 10px;">
                                     Удалить
@@ -90,7 +90,7 @@
                         </div>
                         {% else %}
                         <div class="drop-list" id="droplist{{detail_post.id}}">
-                            <a href="/post/{{ detail_post.id }}/comment/add?next={{ request.path }}" class="drop-link font-regular-small">
+                            <a href="/post/{{ detail_post.id }}/comment/add?next={{ request.path }}" class="drop-link font-roboto-regular-normal" style="font-size: 12.5px; line-height: 10px;">
                                 <img src="{% static 'main/images/icons/chat.png' %}" alt="" class="icon">
                                 <span style="margin-left: 10px;">
                                     Комментировать {% comment_count detail_post.title %}
@@ -108,13 +108,13 @@
                 </div>
             </div> 
             <div class="post-content">
-                <span class="font-roboto-bold-large inflex-left post-text" style="font-size: 21.5px;">
+                <span class="font-nunito-regular-large inflex-left post-text" style="font-size: 21.5px;">
                     {{ detail_post.title }}
                 </span>
                 <div class="post-tag" style="margin-bottom: 10px;">
                     {% for j in detail_post.tag|split %}
                         {% if detail_post.tag %}
-                    <div class="post-tag-text font-bold-medium">
+                    <div class="post-tag-text font-roboto-bold-normal">
                         <a href="/tag/{{ j }}" class="tag-link">#{{ j }}</a>
                     </div>
                         {% endif %}
@@ -133,34 +133,20 @@
                     </div>
                 </div>
 
-                <script>
-                    var modal = document.getElementById('myModal');
-                    var img = document.getElementById('detailImg');
-                    var modalImg = document.getElementById('targetImg');
-
-                    img.onclick = function() {
-                        modal.style.display = "block";
-                        modalImg.src = this.src;
-                    }
-
-                    var span = document.getElementsByClassName("close")[0];
-                    span.onclick = function() {
-                        modal.style.display = "none";
-                    }
-                </script>
+                <script src="{% static 'main/js/img_enlargement.js' %}"></script>
 
                 {% endif %}
-                <div class="inflex-left post-text-short font-nunito-regular-normal">
+                <div class="inflex-left post-text-short font-nunito-regular-normal" style="font-size: 15px;">
                     {{ detail_post.content }}
                 </div>
                 {% if request.user !=  detail_post.author %}
-                <div class="post-button font-regular-small flex-right">
+                <div class="post-button font-nunito-regular-normal flex-right">
                     <!-- <a href="/post/{{ detail_post.id }}/add-comment" class="button">Комментировать</a>   -->
                     <a href="/post/{{ detail_post.id }}/comment/add?next={{ request.path }}#comment" class="button">Комментировать</a>
                     <a name="comment" href="/" class="button">Назад</a>
                 </div>
                 {% else %}
-                <div class="post-button font-regular-small flex-right">
+                <div class="post-button font-nunito-regular-normal flex-right">
                     <!-- <a href="/post/{{ detail_post.id }}/update?next={{ request.path }}" class="button">Изменить</a>
                     <a href="/post/{{ detail_post.id }}/delete" class="button-alert">Удалить</a>
                     <a href="/post/{{ detail_post.id }}/add-comment?next={{ request.path }}" class="button">Комментировать</a> -->
@@ -171,42 +157,107 @@
             </div>
         </div>
     </div>
+
+    <!-- comment block -->
+
     {% for j in comment %}
         {% if j.post == detail_post %}
-            <div class="post-wrapper">
+            {% if j.is_reply == False %}
+            <div class="comment-wrapper-lvl-1">
+                {% for k in profile %}
+                    {% if k.user == j.author %}
+                        {% if k.photo %}
+                            <img src="/media/{{ k.photo }}" class="post-img-mini" style="margin-top: 7.5px;">
+                        {% else %}
+                            <img src="{% static 'main/images/default_avatar.png' %}" class="post-img-mini" style="margin-top: 7.5px;">
+                        {% endif %}
+                    {% endif %}
+                {% endfor %}
                 <div class="comment-wrapper">
-                    <!-- <div class="flex-left" style="width: auto;"> -->
-                    <div class="flex-center">
-                        <div class="flex-left" style="width: 50%; margin-left: 25px; margin-top: 25px;">
+                    <div class="flex-center post-head post-title">
+                        <div class="flex-left" style="width: 50%;">
                             <div style="display: grid;">
-                                <a href="/accounts/profile/id{{ j.author.id }}" class="post-link font-bold-medium" style="margin-left: 0px;">{{ j.author }}</a>
-                                <span class="inflex-left post-text-header font-nunito-regular-small" style="align-self: flex-start; color: gray; margin-left: 0px;">
-                                    {{ j.created|date:'d.m.Y в H:i' }}
+                                <a href="/accounts/profile/id{{ j.author.id }}" class="post-link font-roboto-bold-large" style="margin-left: 0px;">{{ j.author }}</a>
+                                <span class="inflex-left post-text-header font-roboto-regular-normal" style="align-self: flex-start; color: #646464; margin-left: 0px; font-size: 12.5px; line-height: 10px;">
+                                    {{ j.created|date:'d b в H:i'|lower }}
                                 </span>
                             </div>
                         </div>
-                        <div class="flex-right" style="width: 50%; margin-right: 25px; margin-top: 25px;">
+                        <div class="flex-right" style="width: 50%;">
                             {% if j.author == request.user %}
                             <a href="/comment/{{ j.id }}/update?next={{ request.path }}" class="drop-link font-regular-small" style="display: flex; align-items: center;">
                                 <img src="{% static 'main/images/icons/edit.png' %}" alt="" class="icon">
-                                <span style="margin-left: 10px; align-self: auto;">
+                                <span class="font-nunito-regular-normal" style="margin-left: 10px; align-self: auto;">
                                     Изменить
                                 </span>
                             </a>
                             <a href="/comment/{{ j.id }}/delete?next={{ request.path }}" class="drop-link font-regular-small" style="display: flex; align-items: center;">
                                 <img src="{% static 'main/images/icons/garbage.png' %}" alt="" class="icon">
-                                <span style="margin-left: 10px; align-self: auto;">
+                                <span class="font-nunito-regular-normal" style="margin-left: 10px; align-self: auto;">
                                     Удалить
                                 </span>
                             </a>
                             {% endif %}
                         </div>
                     </div>
-                    <div class="font-nunito-regular-normal inflex-left post-text-сomment">
+                    <div class="font-nunito-regular-normal inflex-left post-text-сomment" style="font-size: 15px;">
                         {{ j.content }}
-                    </div>       
+                    </div>
+                    <div class="post-button font-regular-small flex-right">
+                        <a id="replyBtn" href="/post/{{ detail_post.id }}/comment/reply{{ j.id }}?next={{ request.path }}" class="button font-nunito-regular-normal">Ответить</a>
+                    </div>        
                 </div>
             </div>
+            {% for q in comment %}
+                {% if q.is_reply == True and q.parent == j.id %}
+                <div class="comment-wrapper-lvl-2">
+                    {% for k in profile %}
+                        {% if k.user == j.author %}
+                            {% if k.photo %}
+                                <img src="/media/{{ k.photo }}" class="post-img-mini" style="margin-top: 7.5px;">
+                            {% else %}
+                                <img src="{% static 'main/images/default_avatar.png' %}" class="post-img-mini" style="margin-top: 7.5px;">
+                            {% endif %}
+                        {% endif %}
+                    {% endfor %}
+                    <div class="comment-wrapper">
+                        <div class="flex-center post-head post-title">
+                            <div class="flex-left" style="width: 50%;">
+                                <div style="display: grid;">
+                                    <a href="/accounts/profile/id{{ j.author.id }}" class="post-link font-roboto-bold-large" style="margin-left: 0px;">{{ j.author }}</a>
+                                    <span class="inflex-left post-text-header font-roboto-regular-normal" style="align-self: flex-start; color: #646464; margin-left: 0px; font-size: 12.5px; line-height: 10px;">
+                                        {{ q.created|date:'d b в H:i'|lower }}
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="flex-right" style="width: 50%;">
+                                {% if q.author == request.user %}
+                                <a href="/comment/{{ j.id }}/update?next={{ request.path }}" class="drop-link font-regular-small" style="display: flex; align-items: center;">
+                                    <img src="{% static 'main/images/icons/edit.png' %}" alt="" class="icon">
+                                    <span class="font-nunito-regular-normal" style="margin-left: 10px; align-self: auto;">
+                                        Изменить
+                                    </span>
+                                </a>
+                                <a href="/comment/{{ j.id }}/delete?next={{ request.path }}" class="drop-link font-regular-small" style="display: flex; align-items: center;">
+                                    <img src="{% static 'main/images/icons/garbage.png' %}" alt="" class="icon">
+                                    <span class="font-nunito-regular-normal" style="margin-left: 10px; align-self: auto;">
+                                        Удалить
+                                    </span>
+                                </a>
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="font-nunito-regular-normal inflex-left post-text-сomment" style="font-size: 15px;">
+                            {{ q.content }}
+                        </div>
+                        <div class="post-button font-regular-small flex-right">
+                            <a id="replyBtn" href="/post/{{ detail_post.id }}/comment/reply{{ j.id }}?next={{ request.path }}" class="button font-nunito-regular-normal">Ответить</a>
+                        </div>        
+                    </div>
+                </div>
+                {% endif %}
+            {% endfor %}
+            {% endif %}
         {% endif %}
     {% endfor %}
 

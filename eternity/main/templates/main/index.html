@@ -64,26 +64,26 @@
                                 </script>
                                 <img src="{% static 'main/images/icons/more.png' %}" class="drop-icon" onclick="showMenu{{i.id}}()">
                                 {% if request.user ==  i.author %}
-                                <div class="drop-list" id="droplist{{i.id}}">
-                                    <a href="/post/{{ i.id }}/comment/add?next={{ request.path }}" class="drop-link font-regular-small">
+                                <div class="drop-list font-roboto-regular-normal" id="droplist{{i.id}}" style="font-size: 12.5px; line-height: 10px;">
+                                    <a href="/post/{{ i.id }}/comment/add?next={{ request.path }}" class="drop-link">
                                         <img src="{% static 'main/images/icons/chat.png' %}" alt="" class="icon">
                                         <span style="margin-left: 10px;">
                                             Комментарии {% comment_count i.title %}
                                         </span>
                                     </a>    
-                                    <a href="/post/{{ i.id }}" class="drop-link font-regular-small">
+                                    <a href="/post/{{ i.id }}" class="drop-link">
                                         <img src="{% static 'main/images/icons/magnifying-glass.png' %}" alt="" class="icon">
                                         <span style="margin-left: 10px;">
                                             Читать дальше
                                         </span>
                                     </a>
-                                    <a href="/post/{{ i.id }}/update?next={{ request.path }}" class="drop-link font-regular-small">
+                                    <a href="/post/{{ i.id }}/update?next={{ request.path }}" class="drop-link">
                                         <img src="{% static 'main/images/icons/settings.png' %}" alt="" class="icon">
                                         <span style="margin-left: 10px;">
                                             Изменить
                                         </span>
                                     </a>
-                                    <a href="/post/{{ i.id }}/delete" class="drop-link font-regular-small">
+                                    <a href="/post/{{ i.id }}/delete" class="drop-link">
                                         <img src="{% static 'main/images/icons/garbage.png' %}" alt="" class="icon">
                                         <span style="margin-left: 10px;">
                                             Удалить
@@ -91,14 +91,14 @@
                                     </a>
                                 </div>
                                 {% else %}
-                                <div class="drop-list" id="droplist{{i.id}}">
-                                    <a href="/post/{{ i.id }}/comment/add?next={{ request.path }}" class="drop-link font-regular-small">
+                                <div class="drop-list font-roboto-regular-normal" id="droplist{{i.id}}" style="font-size: 12.5px; line-height: 10px;">
+                                    <a href="/post/{{ i.id }}/comment/add?next={{ request.path }}" class="drop-link">
                                         <img src="{% static 'main/images/icons/chat.png' %}" alt="" class="icon">
                                         <span style="margin-left: 10px;">
                                             Комментарии {% comment_count i.title %}
                                         </span>
                                     </a>    
-                                    <a href="/post/{{ i.id }}" class="drop-link font-regular-small">
+                                    <a href="/post/{{ i.id }}" class="drop-link">
                                         <img src="{% static 'main/images/icons/magnifying-glass.png' %}" alt="" class="icon">
                                         <span style="margin-left: 10px;">
                                             Читать дальше
@@ -110,13 +110,13 @@
                         </div>
                     </div>
                     <div class="post-content">
-                        <span class="font-roboto-bold-large inflex-left post-text" style="font-size: 21.5px;">
+                        <span class="font-nunito-regular-large inflex-left post-text" style="font-size: 21.5px;">
                             {{ i.title }}
                         </span>
                         <div class="post-tag" style="margin-bottom: 10px;">
                             {% for j in i.tag|split %}
                                 {% if i.tag %}
-                                    <div class="post-tag-text font-bold-medium">
+                                    <div class="post-tag-text font-roboto-bold-normal">
                                         <a href="/tag/{{ j }}" class="tag-link">#{{ j }}</a>
                                     </div>
                                 {% endif %}
@@ -128,13 +128,13 @@
                             <img src="/media/{{ i.image }}" class="post-img">
                         </div>
                         {% endif %}
-                        <div class="inflex-left post-text-short font-nunito-regular-normal">
+                        <div class="inflex-left post-text-short font-nunito-regular-normal" style="font-size: 15px;">
                             {{ i.content|truncatewords:23 }}
                         </div>
                         {% if request.user !=  i.author %}
                         <div class="flex-center">
                             <div class="flex-left" style="width: 50%;">
-                                <a href="/post/{{ i.id }}#comment" class="ext-comment flex-center font-regular-small">
+                                <a href="/post/{{ i.id }}#comment" class="ext-comment flex-center font-nunito-regular-normal" style="font-size: 12.5px;">                                
                                     <img src="{% static 'main/images/icons/chat.png' %}" alt="" class="icon">
                                     <span style="margin-left: 5px; margin-right: 5px;">
                                         {% comment_count i.title %}
@@ -142,7 +142,7 @@
                                 </a>    
                             </div>
                             <div class="flex-right" style="width: 50%;">
-                                <div class="post-button font-regular-small flex-right">
+                                <div class="post-button font-nunito-regular-normal flex-right">
                                     <!-- <a href="/post/{{ i.id }}/add-comment?next={{ request.path }}" class="button">Комментарии {% comment_count i.title %}</a>- -->
                                     <a href="/post/{{ i.id }}" class="button">Читать дальше</a>
                                 </div>
@@ -151,7 +151,7 @@
                         {% else %}
                         <div class="flex-center">
                             <div class="flex-left" style="width: 50%;">
-                                <a href="/post/{{ i.id }}#comment" class="ext-comment flex-center font-regular-small">
+                                <a href="/post/{{ i.id }}#comment" class="ext-comment flex-center font-nunito-regular-normal" style="font-size: 12.5px;">
                                     <img src="{% static 'main/images/icons/chat.png' %}" alt="" class="icon">
                                     <span style="margin-left: 5px; margin-right: 5px; color: #000000;">
                                         {% comment_count i.title %}
@@ -159,7 +159,7 @@
                                 </a>    
                             </div>
                             <div class="flex-right" style="width: 50%;">
-                                <div class="post-button font-regular-small flex-right">
+                                <div class="post-button font-nunito-regular-normal flex-right">
                                     <!-- <a href="/post/{{ i.id }}/update?next={{ request.path }}" class="button">Изменить</a>
                                     <a href="/post/{{ i.id }}/delete" class="button-alert">Удалить</a>
                                     <a href="/post/{{ i.id }}/add-comment?next={{ request.path }}" class="button">Комментарии {% comment_count i.title %}</a>     -->

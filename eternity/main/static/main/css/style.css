@@ -156,6 +156,24 @@ main{
     background-color: #ffffff;
     margin-bottom: 15px;
 }
+.comment-wrapper-lvl-1{
+    width: 750px;
+    margin: 0 auto;
+    display: flex;
+    margin-top: 25px;
+}
+.comment-wrapper-lvl-2{
+    padding-left: 65px;
+    width: 685px;
+    margin: 0 auto;
+    display: flex;
+}
+.comment-wrapper-lvl-3{
+    padding-left: 130px;
+    width: 620px;
+    margin: 0 auto;
+    display: flex;
+}
 .comment-wrapper{
     border-radius: 5px;
     border-top-width: 1px;
@@ -168,8 +186,10 @@ main{
     border-left-style: solid;
     border-color: #E9E9E9;
     background-color: #ffffff;
-    margin-bottom: 0.5px;
-    margin-top: 0.5px;
+    margin-bottom: 2.5px;
+    margin-top: 1px;
+    width: 100%;
+    margin-left: 15px;
 }
 .post-head{
     border-radius: 5px 5px 0px 0px;
@@ -214,12 +234,6 @@ main{
     margin-right: 25px;
     margin-top: 10px;
     margin-bottom: 10px;
-    transition: 0.4s;
-    cursor: pointer;
-}
-.post-img:hover{
-    transition: 0.4s;
-    cursor: pointer;
 }
 /* Для увеличения картинки по клику мыши */
 #detailImg{
@@ -244,6 +258,7 @@ main{
     margin: auto;
     display: block;
     max-width: 88%;
+    padding-bottom: 50px;
 }
 .model-content{
     -webkit-animation-name: zoom;
@@ -363,8 +378,8 @@ main{
 }
 .post-comment{
     width: 90%;
-    margin-left: 5%;
-    margin-right: 5%;
+    margin-left: 25px;
+    margin-right: 25px;
     margin-top: 20px;
     line-height: 1.56;
     padding-left: 10px;
@@ -694,7 +709,7 @@ main{
 /* font block */
 .font-nunito-light-normal{
     font-family: 'Nunito-Light';
-    font-size: 15.5px;
+    font-size: 14px;
     font-weight: 500;
     line-break: auto;
     line-height: 22.5px;
@@ -710,7 +725,7 @@ main{
 }
 .font-nunito-regular-normal{
     font-family: 'Nunito-Regular';
-    font-size: 15.5px;
+    font-size: 14px;
     font-weight: 500;
     line-break: auto;
     line-height: 22.5px;
@@ -726,7 +741,7 @@ main{
 }
 .font-roboto-light-normal{
     font-family: 'Roboto-Light';
-    font-size: 15.5px;
+    font-size: 14px;
     font-weight: 500;
     line-break: auto;
     line-height: 22.5px;
@@ -742,7 +757,7 @@ main{
 }
 .font-roboto-regular-normal{
     font-family: 'Roboto-Regular';
-    font-size: 15.5px;
+    font-size: 14px;
     font-weight: 500;
     line-break: auto;
     line-height: 22.5px;
@@ -758,7 +773,7 @@ main{
 }
 .font-roboto-bold-normal{
     font-family: 'Roboto-Bold';
-    font-size: 15.5px;
+    font-size: 14px;
     font-weight: 500;
     line-break: auto;
     line-height: 22.5px;
