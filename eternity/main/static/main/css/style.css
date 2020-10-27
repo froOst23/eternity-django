@@ -113,7 +113,7 @@ main{
 .post-text-сomment{
     margin-left: 25px;
     margin-right: 25px;
-    margin-bottom: 25px;
+    margin-bottom: 5px;
     white-space: pre-line;
     overflow-wrap: break-word;
     overflow: hidden;
@@ -160,7 +160,7 @@ main{
     width: 750px;
     margin: 0 auto;
     display: flex;
-    margin-top: 25px;
+    padding-top: 25px;
 }
 .comment-wrapper-lvl-2{
     padding-left: 65px;
@@ -200,6 +200,15 @@ main{
     padding-right: 25px;
     padding-bottom: 15px;
 }
+.post-comment-head{
+    border-radius: 5px 5px 0px 0px;
+    background-color: #FCFCFC;
+    border-color: #E9E9E9;
+    padding-top: 5px;
+    padding-left: 25px;
+    padding-right: 25px;
+    padding-bottom: 5px;
+}
 .post-content{
     border-radius: 0px 0px 5px 5px;
     background-color: #ffffff;
@@ -214,6 +223,22 @@ main{
 .post-img-mini{
     width: 48px;
     height: 48px;
+    border-top-width: 1px;
+    border-top-style: solid;
+    border-left-width: 1px;
+    border-left-style: solid;
+    border-right-width: 1px;
+    border-right-style: solid;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-radius: 50px;
+    object-fit: cover;
+    background-color: #ffffff;
+    border-color: #E9E9E9;
+}
+.comment-img-mini{
+    width: 41.5px;
+    height: 41.5px;
     border-top-width: 1px;
     border-top-style: solid;
     border-left-width: 1px;
