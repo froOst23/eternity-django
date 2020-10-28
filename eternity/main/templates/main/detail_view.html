@@ -159,7 +159,6 @@
     </div>
 
     <!-- comment block -->
-
     <div class="post-wrapper">
         <div class="post">
             <div class="post-head post-title font-nunito-regular-large">
@@ -201,7 +200,7 @@
 
                             <!-- lvl-2 -->
                             {% for q in comment %}
-                                {% if q.parent == j.id %}
+                                {% if q.parent == j.id and q.is_reply == True %}
                                 <div class="comment-lvl-2-ext">
                                     <div class="comment-lvl-2 font-nunito-regular-normal">
                                         <span class="post-link" style="margin-left: 0;">
@@ -227,7 +226,7 @@
                                     </div>
                                     {% if q.author == request.user %}
                                     <div class="comment-int font-nunito-regular-normal">
-                                        <a id="replyBtn" href="/post/{{ detail_post.id }}/comment/reply{{ q.id }}?next={{ request.path }}" class="post-link" style="margin-left: 0; margin-right: 5px;">Ответить</a>
+                                        <a id="replyBtn" href="/post/{{ detail_post.id }}/comment/reply{{ q.parent }}?next={{ request.path }}" class="post-link" style="margin-left: 0; margin-right: 5px;">Ответить</a>
                                         <a href="/comment/{{ q.id }}/update?next={{ request.path }}" class="post-link" style="margin-left: 0; margin-right: 5px;">Изменить</a>
                                         <a href="/comment/{{ q.id }}/delete?next={{ request.path }}" class="post-link" style="margin-left: 0; margin-right: 5px;">Удалить</a>
                                     </div>
