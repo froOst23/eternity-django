@@ -24,19 +24,19 @@
                         {% endif %}
                     {% endfor %}
                     <div style="display: grid;">
-                        <a href="/accounts/profile/id{{ detail_post.author.id }}" class="post-link font-roboto-bold-large" style="align-self: flex-start;">{{ detail_post.author }}</a>
-                        <span class="inflex-left post-text-header font-roboto-regular-normal" style="align-self: flex-start; color: #646464; font-size: 12.5px; line-height: 10px;">
-                        {% for j in profile %}
-                            {% if j.user == detail_post.author %}
-                                {% if j.is_online == True %}
-                                    Online
-                                {% else %}
-                                    Offline
+                        <span style="height: 20px;">
+                            <a href="/accounts/profile/id{{ detail_post.author.id }}" class="post-link font-roboto-bold-large" style="align-self: flex-start;">{{ detail_post.author }}</a>
+                            {% for j in profile %}
+                                {% if j.user == detail_post.author %}
+                                    {% if j.is_online == True %}
+                                        <span class="label font-roboto-regular-normal" style="font-size: 12px;">
+                                            Online
+                                        </span>
+                                    {% endif %}
                                 {% endif %}
-                            {% endif %}
-                        {% endfor %}
-                        </span> 
-                        <span class="inflex-left post-text-header font-roboto-regular-normal" style="align-self: flex-start; color: #646464; font-size: 12.5px; line-height: 10px;">
+                            {% endfor %}
+                        </span>
+                        <span class="inflex-left post-text-header font-roboto-regular-normal" style="align-self: flex-start; color: #646464; font-size: 12px; height: 20px;">
                             {{ detail_post.date|date:'d.m.Y в H:i' }}
                         </span> 
                     </div>
