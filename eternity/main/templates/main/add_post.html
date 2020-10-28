@@ -11,39 +11,39 @@
 <div class="post-wrapper">
     <div class="post">
         <div class="post-head post-title" style="margin-bottom: 35px;">
-            <span class="font-bold-large flex-center">
+            <span class="font-nunito-regular-large flex-center" style="font-size: 21.5px;">
                 Добавить новую запись
             </span>
         </div>
     <div class="post-content">
         <form method="POST" class="post-block-form" enctype="multipart/form-data">
             {% csrf_token %}
-            <div class="flex-left label font-bold-small">
+            <div class="flex-left label font-nunito-regular-normal">
                 Название поста:
             </div>
             <div class="inflex-center" style="width: 100%; padding-bottom: 40px;">
                 {{ form.title }}
             </div>
-            <div class="flex-left label font-bold-small">
+            <div class="flex-left label font-nunito-regular-normal">
                 Теги (Используйте символ пробела чтобы разделить теги): 
             </div>
             <div class="inflex-center" style="width: 100%; padding-bottom: 40px;">
                 {{ form.tag }}
             </div>
-            <div class="flex-left label font-bold-small">
+            <div class="flex-left label font-nunito-regular-normal">
                 Содержание статьи:
             </div>
             <div class="inflex-center" style="width: 100%; padding-bottom: 40px;">
                 {{ form.content }}
             </div>
-            <div class="flex-left label font-bold-small">
+            <div class="flex-left label font-nunito-regular-normal">
                 Изображение для статьи (Форматы: .jpg, .jpeg, .png, .gif):
             </div>
             <div class="inflex-center" style="width: 100%; padding-bottom: 40px;">
                 {{ form.image }}
             </div>
-            <div class="post-button font-bold-small flex-center">
-                <button class="button-alert font-bold-small" type="submit" style="height: 35px;">Написать</button>
+            <div class="post-button font-nunito-regular-normal flex-center">
+                <button class="button-alert font-nunito-regular-normal" type="submit" style="height: 35px;">Написать</button>
                 <a href="/" class="button" style="width: 118px; height: 33px;">Отменить</a>
             </div>
         </form>

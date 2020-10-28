@@ -11,30 +11,30 @@
 <main class="post-wrapper-mini">
     <div class="post">
         <div class="post-head post-title" style="margin-bottom: 35px;">
-            <span class="font-bold-large flex-center">
+            <span class="font-nunito-regular-large flex-center" style="font-size: 21.5px;">
                 Авторизация
             </span>
         </div>
         <div class="post-content">
             <form method="POST" class="post-block-form" enctype="multipart/form-data">
                 {% csrf_token %}
-                <div class="flex-left label font-bold-small">
+                <div class="flex-left label font-nunito-regular-normal">
                     Имя пользователя
                 </div>
                 <div class="inflex-center" style="width: 100%; padding-bottom: 40px;">
                     {{ form.username }}
                 </div>
-                <div class="flex-left label font-bold-small">
+                <div class="flex-left label font-nunito-regular-normal">
                     Пароль
                 </div>
                 <div class="inflex-center" style="width: 100%; padding-bottom: 40px;">
                     {{ form.password }}
                 </div>
                 <div class="flex-center font-regular-small">
-                    <a href="/registration" class="post-link">Ещё нет аккаунта? Зарегистрируйтесь</a>
+                    <a href="/registration" class="post-link font-nunito-regular-normal ">Ещё нет аккаунта? Зарегистрируйтесь</a>
                 </div>
                 <div class="post-button flex-center" style="margin-top: 20px;">
-                    <button class="button font-bold-medium" type="submit">Войти</button> 
+                    <button class="button font-nunito-regular-normal" type="submit">Войти</button> 
                 </div>
             </form>
         </div>
