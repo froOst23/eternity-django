@@ -160,116 +160,91 @@
 
     <!-- comment block -->
 
-    {% for j in comment %}
-        {% if j.post == detail_post %}
-            {% if j.is_reply == False %}
-            <div class="comment-wrapper-lvl-1">
-                {% for k in profile %}
-                    {% if k.user == j.author %}
-                        {% if k.photo %}
-                            <img src="/media/{{ k.photo }}" class="comment-img-mini">
-                        {% else %}
-                            <img src="{% static 'main/images/default_avatar.png' %}" class="comment-img-mini">
+    <div class="post-wrapper">
+        <div class="post">
+            <div class="post-head post-title font-nunito-regular-large">
+                Комментарии {% comment_count detail_post.title %}
+            </div>
+
+            <!-- lvl-1 -->
+
+            <div class="post-content">
+                {% for j in comment %}
+                    {% if j.post == detail_post %}
+                        {% if j.is_reply == False %}
+                            <div class="comment-lvl-1-ext">
+                                <div class="comment-int font-nunito-regular-normal">
+                                    <span class="post-link" style="margin-left: 0;">
+                                        {{ j.author }}
+                                    </span>
+                                    <span class="label">
+                                        {{ j.created|date:'d b в H:i'|lower }}
+                                    </span>
+                                </div>
+                                <div class="comment-int font-nunito-regular-normal">
+                                    <span>
+                                        {{ j.content }}
+                                    </span>
+                                </div>
+                                {% if j.author == request.user %}
+                                <div class="comment-int font-nunito-regular-normal">
+                                    <a id="replyBtn" href="/post/{{ detail_post.id }}/comment/reply{{ j.id }}?next={{ request.path }}" class="post-link" style="margin-left: 0; margin-right: 5px;">Ответить</a>
+                                    <a href="/comment/{{ j.id }}/update?next={{ request.path }}" class="post-link" style="margin-left: 0; margin-right: 5px;">Изменить</a>
+                                    <a href="/comment/{{ j.id }}/delete?next={{ request.path }}" class="post-link" style="margin-left: 0; margin-right: 5px;">Удалить</a>
+                                </div>
+                                {% else %}
+                                <div class="comment-int font-nunito-regular-normal">
+                                    <a id="replyBtn" href="/post/{{ detail_post.id }}/comment/reply{{ j.id }}?next={{ request.path }}" class="post-link" style="margin-left: 0;">Ответить</a>
+                                </div>
+                                {% endif %}
+                            </div>
+
+                            <!-- lvl-2 -->
+                            {% for q in comment %}
+                                {% if q.parent == j.id %}
+                                <div class="comment-lvl-2-ext">
+                                    <div class="comment-lvl-2 font-nunito-regular-normal">
+                                        <span class="post-link" style="margin-left: 0;">
+                                            {{ q.author }}
+                                        </span>
+                                        <span class="label">
+                                            {{ q.created|date:'d b в H:i'|lower }}
+                                        </span>
+                                        <span>
+                                            ответил пользователю
+                                            {% for k in profile %}
+                                                {% if k.user == j.author %}
+                                                    <a href="/accounts/profile/id{{ k.id }}" class="post-link" style="margin-left: 0;">{{ j.author }}</a>
+                                                {% endif %}
+                                            {% endfor %}
+                                        </span>
+                                    </div>
+
+                                    <div class="comment-int font-nunito-regular-normal">
+                                        <span>
+                                            {{ q.content }}
+                                        </span>
+                                    </div>
+                                    {% if q.author == request.user %}
+                                    <div class="comment-int font-nunito-regular-normal">
+                                        <a id="replyBtn" href="/post/{{ detail_post.id }}/comment/reply{{ q.id }}?next={{ request.path }}" class="post-link" style="margin-left: 0; margin-right: 5px;">Ответить</a>
+                                        <a href="/comment/{{ q.id }}/update?next={{ request.path }}" class="post-link" style="margin-left: 0; margin-right: 5px;">Изменить</a>
+                                        <a href="/comment/{{ q.id }}/delete?next={{ request.path }}" class="post-link" style="margin-left: 0; margin-right: 5px;">Удалить</a>
+                                    </div>
+                                    {% else %}
+                                    <div class="comment-int font-nunito-regular-normal">
+                                        <a id="replyBtn" href="/post/{{ detail_post.id }}/comment/reply{{ q.id }}?next={{ request.path }}" class="post-link" style="margin-left: 0;">Ответить</a>
+                                    </div>
+                                    {% endif %}
+                                </div>
+                                {% endif %}
+                            {% endfor %}
                         {% endif %}
                     {% endif %}
                 {% endfor %}
-                <div class="comment-wrapper">
-                    <div class="flex-center post-comment-head post-title">
-                        <div class="flex-left" style="width: 50%;">
-                            <div style="display: grid;">
-                                <a href="/accounts/profile/id{{ j.author.id }}" class="post-link font-roboto-bold-large" style="margin-left: 0px; ">{{ j.author }}</a>
-                                <span class="inflex-left post-text-header font-roboto-regular-normal" style="align-self: flex-start; color: #646464; margin-left: 0px; font-size: 12.5px; line-height: 18.5px;">
-                                    {{ j.created|date:'d b в H:i'|lower }}
-                                </span>
-                            </div>
-                        </div>
-                        <div class="flex-right" style="width: 50%;">
-                            {% if j.author == request.user %}
-                            <a href="/comment/{{ j.id }}/update?next={{ request.path }}" class="drop-link font-regular-small" style="display: flex; align-items: center;">
-                                <img src="{% static 'main/images/icons/edit.png' %}" alt="" class="icon">
-                                <span class="font-nunito-regular-normal" style="margin-left: 10px; align-self: auto;">
-                                    Изменить
-                                </span>
-                            </a>
-                            <a href="/comment/{{ j.id }}/delete?next={{ request.path }}" class="drop-link font-regular-small" style="display: flex; align-items: center;">
-                                <img src="{% static 'main/images/icons/garbage.png' %}" alt="" class="icon">
-                                <span class="font-nunito-regular-normal" style="margin-left: 10px; align-self: auto;">
-                                    Удалить
-                                </span>
-                            </a>
-                            {% endif %}
-                        </div>
-                    </div>
-                    <div class="font-nunito-regular-normal inflex-left post-text-сomment" style="font-size: 15px;">
-                        {{ j.content }}
-                    </div>
-                    <div class="post-button font-regular-small flex-right">
-                        <a id="replyBtn" href="/post/{{ detail_post.id }}/comment/reply{{ j.id }}?next={{ request.path }}" class="post-link font-nunito-regular-normal">Ответить</a>
-                    </div>        
-                </div>
+                <div style="margin-bottom: 25px;"></div>
             </div>
-            {% for q in comment %}
-                {% if q.parent == j.id %}
-                <div class="comment-wrapper-lvl-2">
-                    {% for k in profile %}
-                        {% if k.user == q.author %}
-                            {% if k.photo %}
-                                <img src="/media/{{ k.photo }}" class="comment-img-mini">
-                            {% else %}
-                                <img src="{% static 'main/images/default_avatar.png' %}" class="comment-img-mini">
-                            {% endif %}
-                        {% endif %}
-                    {% endfor %}
-                    <div class="comment-wrapper">
-                        <div class="flex-center post-comment-head post-title">
-                            <div class="flex-left" style="width: 50%;">
-                                <div style="display: grid;">
-                                    <a href="/accounts/profile/id{{ q.author.id }}" class="post-link font-roboto-bold-large" style="margin-left: 0px;">
-                                        {{ q.author }}
-                                    </a>
-                                    <span class="font-roboto-regular-normal" style="color: #646464; margin-left: 0px; font-size: 12.5px; line-height: 8.5px;"">
-                                        ответил пользователю
-                                        {% for k in profile %}
-                                            {% if k.user == j.author %}
-                                        <a href="/accounts/profile/id{{ k.id }}" class="post-link font-roboto-bold-large" style="font-size: 12.5px; margin-left: 0px;">{{ j.author }}</a>
-                                            {% endif %}
-                                        {% endfor %}
-                                    </span>
-                                    
-                                    <span class="inflex-left post-text-header font-roboto-regular-normal" style="align-self: flex-start; color: #646464; margin-left: 0px; font-size: 12.5px; line-height: 8.5px;">
-                                        {{ q.created|date:'d b в H:i'|lower }}
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="flex-right" style="width: 50%;">
-                                {% if q.author == request.user %}
-                                <a href="/comment/{{ q.id }}/update?next={{ request.path }}" class="drop-link font-regular-small" style="display: flex; align-items: center;">
-                                    <img src="{% static 'main/images/icons/edit.png' %}" alt="" class="icon">
-                                    <span class="font-nunito-regular-normal" style="margin-left: 10px; align-self: auto;">
-                                        Изменить
-                                    </span>
-                                </a>
-                                <a href="/comment/{{ q.id }}/delete?next={{ request.path }}" class="drop-link font-regular-small" style="display: flex; align-items: center;">
-                                    <img src="{% static 'main/images/icons/garbage.png' %}" alt="" class="icon">
-                                    <span class="font-nunito-regular-normal" style="margin-left: 10px; align-self: auto;">
-                                        Удалить
-                                    </span>
-                                </a>
-                                {% endif %}
-                            </div>
-                        </div>
-                        <div class="font-nunito-regular-normal inflex-left post-text-сomment" style="font-size: 15px;">
-                            {{ q.content }}
-                        </div>
-                        <div class="post-button font-regular-small flex-right">
-                            <a id="replyBtn" href="/post/{{ detail_post.id }}/comment/reply{{ j.id }}?next={{ request.path }}" class="post-link font-nunito-regular-normal">Ответить</a>
-                        </div>        
-                    </div>
-                </div>
-                {% endif %}
-            {% endfor %}
-            {% endif %}
-        {% endif %}
-    {% endfor %}
+        </div>
+    </div>
 
 {% endblock %}

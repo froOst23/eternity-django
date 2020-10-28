@@ -156,6 +156,26 @@ main{
     background-color: #ffffff;
     margin-bottom: 15px;
 }
+.comment-int{
+    margin-bottom: 5px;
+    margin-top: 5px;
+}
+.comment-lvl-1-ext{
+    margin-bottom: 5px;
+    margin-top: 25px;
+    margin-left: 25px;
+    margin-right: 25px;
+}
+.comment-lvl-2-ext{
+    padding-bottom: 5px;
+    padding-top: 5px;
+    margin-right: 25px;
+    margin-left: 25px;
+    padding-left: 25px;
+    border-left-width: 1px;
+    border-left-style: solid;
+    border-color: #E9E9E9;
+}
 .comment-wrapper-lvl-1{
     width: 750px;
     margin: 0 auto;
