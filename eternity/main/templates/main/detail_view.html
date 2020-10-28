@@ -213,7 +213,7 @@
                                             ответил пользователю
                                             {% for k in profile %}
                                                 {% if k.user == j.author %}
-                                                    <a href="/accounts/profile/id{{ k.id }}" class="post-link" style="margin-left: 0;">{{ k.author }}</a>
+                                                    <a href="/accounts/profile/id{{ k.id }}" class="post-link" style="margin-left: 0;">{{ j.author }}</a>
                                                 {% endif %}
                                             {% endfor %}
                                         </span>
