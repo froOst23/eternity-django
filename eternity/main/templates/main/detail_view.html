@@ -187,13 +187,13 @@
                                 </div>
                                 {% if j.author == request.user %}
                                 <div class="comment-int font-nunito-regular-normal">
-                                    <a id="replyBtn" href="/post/{{ detail_post.id }}/comment/reply/{{ j.id }}/{{ j.author }}/{{ j.id }}?next={{ request.path }}" class="post-link" style="margin-left: 0; margin-right: 5px;">Ответить</a>
+                                    <a id="replyBtn" href="/post/{{ detail_post.id }}/comment/reply/{{ j.id }}/{{ j.author }}/{{ j.author.id }}?next={{ request.path }}" class="post-link" style="margin-left: 0; margin-right: 5px;">Ответить</a>
                                     <a href="/comment/{{ j.id }}/update?next={{ request.path }}" class="post-link" style="margin-left: 0; margin-right: 5px;">Изменить</a>
                                     <a href="/comment/{{ j.id }}/delete?next={{ request.path }}" class="post-link" style="margin-left: 0; margin-right: 5px;">Удалить</a>
                                 </div>
                                 {% else %}
                                 <div class="comment-int font-nunito-regular-normal">
-                                    <a id="replyBtn" href="/post/{{ detail_post.id }}/comment/reply/{{ j.id }}/{{ j.author }}/{{ j.id }}?next={{ request.path }}" class="post-link" style="margin-left: 0;">Ответить</a>
+                                    <a id="replyBtn" href="/post/{{ detail_post.id }}/comment/reply/{{ j.id }}/{{ j.author }}/{{ j.author.id }}?next={{ request.path }}" class="post-link" style="margin-left: 0;">Ответить</a>
                                 </div>
                                 {% endif %}
                             </div>
