@@ -187,13 +187,13 @@
                                 </div>
                                 {% if j.author == request.user %}
                                 <div class="comment-int font-nunito-regular-normal">
-                                    <a id="replyBtn" href="/post/{{ detail_post.id }}/comment/reply{{ j.id }}?next={{ request.path }}" class="post-link" style="margin-left: 0; margin-right: 5px;">Ответить</a>
+                                    <a id="replyBtn" href="/post/{{ detail_post.id }}/comment/reply/{{ j.id }}/{{ j.author }}/{{ j.id }}?next={{ request.path }}" class="post-link" style="margin-left: 0; margin-right: 5px;">Ответить</a>
                                     <a href="/comment/{{ j.id }}/update?next={{ request.path }}" class="post-link" style="margin-left: 0; margin-right: 5px;">Изменить</a>
                                     <a href="/comment/{{ j.id }}/delete?next={{ request.path }}" class="post-link" style="margin-left: 0; margin-right: 5px;">Удалить</a>
                                 </div>
                                 {% else %}
                                 <div class="comment-int font-nunito-regular-normal">
-                                    <a id="replyBtn" href="/post/{{ detail_post.id }}/comment/reply{{ j.id }}?next={{ request.path }}" class="post-link" style="margin-left: 0;">Ответить</a>
+                                    <a id="replyBtn" href="/post/{{ detail_post.id }}/comment/reply/{{ j.id }}/{{ j.author }}/{{ j.id }}?next={{ request.path }}" class="post-link" style="margin-left: 0;">Ответить</a>
                                 </div>
                                 {% endif %}
                             </div>
@@ -212,8 +212,8 @@
                                         <span>
                                             ответил пользователю
                                             {% for k in profile %}
-                                                {% if k.user == j.author %}
-                                                    <a href="/accounts/profile/id{{ k.id }}" class="post-link" style="margin-left: 0;">{{ j.author }}</a>
+                                                {% if k.user == q.author %}
+                                                    <a {% for k in profile %} href="/accounts/profile/id{{ q.reply_id }}" {% endfor %} class="post-link" style="margin-left: 0;">{{ q.reply_to }}</a>
                                                 {% endif %}
                                             {% endfor %}
                                         </span>
@@ -226,13 +226,13 @@
                                     </div>
                                     {% if q.author == request.user %}
                                     <div class="comment-int font-nunito-regular-normal">
-                                        <a id="replyBtn" href="/post/{{ detail_post.id }}/comment/reply{{ q.parent }}?next={{ request.path }}" class="post-link" style="margin-left: 0; margin-right: 5px;">Ответить</a>
+                                        <a id="replyBtn" href="/post/{{ detail_post.id }}/comment/reply/{{ q.parent }}/{{ q.author }}/{{ q.author.id }}?next={{ request.path }}" class="post-link" style="margin-left: 0; margin-right: 5px;">Ответить</a>
                                         <a href="/comment/{{ q.id }}/update?next={{ request.path }}" class="post-link" style="margin-left: 0; margin-right: 5px;">Изменить</a>
                                         <a href="/comment/{{ q.id }}/delete?next={{ request.path }}" class="post-link" style="margin-left: 0; margin-right: 5px;">Удалить</a>
                                     </div>
                                     {% else %}
                                     <div class="comment-int font-nunito-regular-normal">
-                                        <a id="replyBtn" href="/post/{{ detail_post.id }}/comment/reply{{ j.id }}?next={{ request.path }}" class="post-link" style="margin-left: 0;">Ответить</a>
+                                        <a id="replyBtn" href="/post/{{ detail_post.id }}/comment/reply/{{ q.parent }}/{{ q.author }}/{{ q.author.id }}?next={{ request.path }}" class="post-link" style="margin-left: 0;">Ответить</a>
                                     </div>
                                     {% endif %}
                                 </div>

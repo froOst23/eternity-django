@@ -199,7 +199,7 @@ def add_comment(request, pk):
 
 
 @login_required
-def reply_comment(request, pk, parent_id):
+def reply_comment(request, pk, parent_id, reply_to, reply_id):
     if request.method == 'POST':
         form = CommentCreateForm(request.POST)
         if form.is_valid():
@@ -210,6 +210,9 @@ def reply_comment(request, pk, parent_id):
             comment.is_reply = True
             # указываем текущий пост
             comment.parent = int(parent_id)
+            # указываем кому ответили
+            comment.reply_to = str(reply_to)
+            comment.reply_id = int(reply_id)
             comment.post = Post.objects.get(id=pk)
             # делаем запись в бд
             comment.save()

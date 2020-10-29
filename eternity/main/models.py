@@ -32,6 +32,8 @@ class Comment(models.Model):
     created = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
     updated = models.DateTimeField(auto_now=True, verbose_name='Дата обновления')
     is_reply = models.BooleanField(default=False, verbose_name='Сделан ответ')
+    reply_to = models.CharField(verbose_name='Кому сделан ответ', max_length=200, null=True, blank=True)
+    reply_id = models.PositiveIntegerField(verbose_name='id Косу сделан ответ', null=True, blank=True)
     parent = models.PositiveIntegerField(verbose_name='Ответ на комментарий', null=True, blank=True)
 
     class Meta():
