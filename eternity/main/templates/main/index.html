@@ -31,14 +31,14 @@
                                     {% for j in profile %}
                                         {% if j.user == i.author %}
                                             {% if j.is_online == True %}
-                                                <span class="label font-roboto-regular-normal" style="font-size: 12px;">
+                                                <span class="label font-nunito-regular-normal" style="font-size: 14px;">
                                                     Online
                                                 </span>
                                             {% endif %}
                                         {% endif %}
                                     {% endfor %}
                                 </span>
-                                <span class="inflex-left post-text-header font-roboto-regular-normal" style="align-self: flex-start; color: #646464; font-size: 12px; height: 20px;">
+                                <span class="inflex-left post-text-header font-nunito-regular-normal" style="align-self: flex-start; color: #646464; font-size: 14px; height: 20px;">
                                     {{ i.date|date:'d.m.Y в H:i' }}
                                 </span> 
                             </div>
@@ -110,13 +110,13 @@
                         </div>
                     </div>
                     <div class="post-content">
-                        <span class="font-nunito-regular-large inflex-left post-text" style="font-size: 21.5px;">
+                        <span class="font-nunito-regular-large inflex-left post-text post-title-text" style="font-size: 21.5px;">
                             {{ i.title }}
                         </span>
                         <div class="post-tag" style="margin-bottom: 10px;">
                             {% for j in i.tag|split %}
                                 {% if i.tag %}
-                                    <div class="post-tag-text font-roboto-bold-normal">
+                                    <div class="post-tag-text font-roboto-regular-normal">
                                         <a href="/tag/{{ j }}" class="tag-link">#{{ j }}</a>
                                     </div>
                                 {% endif %}

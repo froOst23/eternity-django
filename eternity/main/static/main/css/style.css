@@ -283,14 +283,13 @@ main{
 /* Для увеличения картинки по клику мыши */
 #detailImg{
     cursor: pointer;
-    transition: 0.3s;
+    transition: 0.5s;
 }
-#detailImg:hover {opacity: 0.7;}
+/* #detailImg:hover {opacity: 0.7;} */
 .modal{
     display: none;
     position: fixed;
     z-index: 1;
-    padding-top: 50px;
     left: 0;
     top: 0;
     width: 100%;
@@ -302,14 +301,15 @@ main{
 .modal-content{
     margin: auto;
     display: block;
-    max-width: 88%;
-    padding-bottom: 50px;
+    max-height: 90%;
+    margin-bottom: 50px;
+    padding-top: 50px;
 }
 .model-content{
     -webkit-animation-name: zoom;
-    -webkit-animation-duration: 0.6s;
+    -webkit-animation-duration: 0.8s;
     animation-name: zoom;
-    animation-duration: 0.6s;
+    animation-duration: 0.8s;
 }
 @-webkit-keyframes zoom{
     from{-webkit-transform: scale(0);}
@@ -370,11 +370,11 @@ main{
     margin-right: 10px;
 }
 .tag-link{
-    color: #3A8C8C;
+    color: #C8C8C8;
     text-decoration: none;
 }
 .tag-link:hover{
-    color: #095F73;
+    color: #000000;
     text-decoration: none;
 }
 .post-title{
@@ -383,6 +383,9 @@ main{
     border-bottom-width: 1px;
     border-bottom-style: solid;
     border-color: #E9E9E9;
+}
+.post-title-text{
+    color: #095F73;
 }
 .post-title-none-underline{
     width: 96%;
@@ -537,6 +540,7 @@ main{
 }
 .post-form-input{
     width: 100%;
+    font-size: 20px;
     padding-top: 10px;
     padding-left: 5px;
     padding-right: 5px;

@@ -29,14 +29,14 @@
                             {% for j in profile %}
                                 {% if j.user == detail_post.author %}
                                     {% if j.is_online == True %}
-                                        <span class="label font-roboto-regular-normal" style="font-size: 12px;">
+                                        <span class="label font-nunito-regular-normal" style="font-size: 14px;">
                                             Online
                                         </span>
                                     {% endif %}
                                 {% endif %}
                             {% endfor %}
                         </span>
-                        <span class="inflex-left post-text-header font-roboto-regular-normal" style="align-self: flex-start; color: #646464; font-size: 12px; height: 20px;">
+                        <span class="inflex-left post-text-header font-nunito-regular-normal" style="align-self: flex-start; color: #646464; height: 20px;">
                             {{ detail_post.date|date:'d.m.Y в H:i' }}
                         </span> 
                     </div>
@@ -108,13 +108,13 @@
                 </div>
             </div> 
             <div class="post-content">
-                <span class="font-nunito-regular-large inflex-left post-text" style="font-size: 21.5px;">
+                <span class="font-nunito-regular-large inflex-left post-text post-title-text" style="font-size: 21.5px;">
                     {{ detail_post.title }}
                 </span>
                 <div class="post-tag" style="margin-bottom: 10px;">
                     {% for j in detail_post.tag|split %}
                         {% if detail_post.tag %}
-                    <div class="post-tag-text font-roboto-bold-normal">
+                    <div class="post-tag-text font-roboto-regular-normal">
                         <a href="/tag/{{ j }}" class="tag-link">#{{ j }}</a>
                     </div>
                         {% endif %}
@@ -159,6 +159,7 @@
     </div>
 
     <!-- comment block -->
+
     <div class="post-wrapper">
         <div class="post">
             <div class="post-head post-title font-nunito-regular-large">
@@ -176,7 +177,7 @@
                                     <span class="post-link" style="margin-left: 0;">
                                         <a href="/accounts/profile/id{{ j.author.id }}" class="post-link" style="margin-left: 0;">{{ j.author }}</a>
                                     </span>
-                                    <span class="label">
+                                    <span class="label font-nunito-regular-normal">
                                         {{ j.created|date:'d b в H:i'|lower }}
                                     </span>
                                 </div>
@@ -184,6 +185,11 @@
                                     <span>
                                         {{ j.content }}
                                     </span>
+                                    {% if j.is_changed == True %}
+                                    <span class="label">
+                                        (Изменено {{ j.updated|date:'d b в H:i'|lower }})
+                                    </span>
+                                    {% endif %}
                                 </div>
                                 {% if j.author == request.user %}
                                 <div class="comment-int font-nunito-regular-normal">
@@ -199,6 +205,7 @@
                             </div>
 
                             <!-- lvl-2 -->
+                            
                             {% for q in comment %}
                                 {% if q.parent == j.id and q.is_reply == True %}
                                 <div class="comment-lvl-2-ext">
@@ -206,7 +213,7 @@
                                         <span class="post-link" style="margin-left: 0;">
                                             <a href="/accounts/profile/id{{ q.author.id }}" class="post-link" style="margin-left: 0;">{{ q.author }}</a>
                                         </span>
-                                        <span class="label">
+                                        <span class="label font-nunito-regular-normal">
                                             {{ q.created|date:'d b в H:i'|lower }}
                                         </span>
                                         <span>
@@ -223,6 +230,11 @@
                                         <span>
                                             {{ q.content }}
                                         </span>
+                                        {% if q.is_changed == True %}
+                                        <span class="label">
+                                            (Изменено {{ q.updated|date:'d b в H:i'|lower }})
+                                        </span>
+                                        {% endif %}
                                     </div>
                                     {% if q.author == request.user %}
                                     <div class="comment-int font-nunito-regular-normal">
