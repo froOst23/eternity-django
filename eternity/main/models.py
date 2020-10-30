@@ -4,6 +4,7 @@ from django.contrib.auth.forms import User
 from django.contrib.auth.models import AbstractUser
 from django.dispatch import receiver
 from django.db.models.signals import post_save
+from django.conf import settings
 
 class Post(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Автор')
@@ -24,6 +25,16 @@ class Post(models.Model):
     def get_absolute_url(self):
         return f'/post/{self.id}'
 
+
+class PostLike(models.Model):
+    post = models.ForeignKey(Post, on_delete=models.CASCADE, verbose_name='Понравившийся пост')
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name='Кто лайкнул')
+    is_like = models.BooleanField(default=False, verbose_name='Лайк')
+    # user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Кто лайкнул')
+    # user = models.CharField(verbose_name='Кто лайкнул', max_length=100)
+
+    def __str__(self):
+        return f'{self.post}'
 
 class Comment(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE, verbose_name='Комментируемый пост')

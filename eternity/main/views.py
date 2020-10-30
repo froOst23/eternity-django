@@ -1,19 +1,18 @@
-from django.shortcuts import render, redirect
 from .models import Post, Profile, Comment
 from .forms import NewPostForm, LoginPostForm, RegisterPostForm, UpdateUserForm, ProfileUpdateForm, CommentCreateForm
+from django.shortcuts import render, redirect
+from django.db import transaction
+from django.dispatch import receiver  
 from django.views.generic import DetailView, DeleteView, UpdateView, CreateView
+from django.contrib import messages
+from django.contrib.auth import authenticate, login
 from django.contrib.auth.views import LoginView, LogoutView, reverse_lazy
 from django.contrib.auth.forms import User, UserCreationForm
-from django.contrib.auth import authenticate, login
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
-from django.db import transaction
-from django.contrib import messages
-from django.core.files.uploadhandler import FileUploadHandler
-from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.auth.signals import user_logged_in, user_logged_out
-from django.dispatch import receiver  
+from django.http import HttpResponseRedirect
+from django.core.files.uploadhandler import FileUploadHandler
 
 class PostDetailView(DetailView):
     model = Post
@@ -27,7 +26,7 @@ class PostDetailView(DetailView):
         return context
     
 
-class PostUpdateView(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
+class PostUpdateView(LoginRequiredMixin, UpdateView):
     model = Post
     template_name = 'main/update_post.html'
     form_class = NewPostForm
@@ -35,6 +34,7 @@ class PostUpdateView(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
     def get_form_kwargs(self):
         kwargs = super().get_form_kwargs()
         if self.request.user != kwargs['instance'].author:
+            messages.error(self.request, f'Недостаточно прав для изменения')
             return self.handle_no_permission()
         return kwargs
 
@@ -51,12 +51,11 @@ class PostUpdateView(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
         return next_url
 
 
-class PostAddView(SuccessMessageMixin, LoginRequiredMixin, CreateView):
+class PostAddView(LoginRequiredMixin, CreateView):
     model = Post
     template_name = 'main/add_post.html'
     form_class = NewPostForm
     success_url = reverse_lazy('home')
-    success_message = f'Пост успешно добавлен'
 
     def image(request):
         image_file = request.FILES['image_file'].file.read()
@@ -66,10 +65,15 @@ class PostAddView(SuccessMessageMixin, LoginRequiredMixin, CreateView):
         self.object = form.save(commit=False)
         self.object.author = self.request.user
         self.object.save()
+        messages.success(self.request, f'Пост успешно добавлен')
         return super().form_valid(form)
+
+    def form_invalid(self, form):
+        messages.error(self.request, f'Произошла ошибка заполнения формы')
+        return super(PostAddView, self).form_invalid(form)  
     
 
-class PostDeleteView(SuccessMessageMixin, LoginRequiredMixin, DeleteView):
+class PostDeleteView(LoginRequiredMixin, DeleteView):
     model = Post
     template_name = 'main/delete_post.html'
     form_class = NewPostForm
@@ -86,18 +90,21 @@ class PostDeleteView(SuccessMessageMixin, LoginRequiredMixin, DeleteView):
         return HttpResponseRedirect(success_url)
 
 
-class LoginPostView(SuccessMessageMixin, LoginView):
+class LoginPostView(LoginView):
     model = Profile
     template_name = 'main/auth.html'
     form_class = LoginPostForm
     success_url = reverse_lazy('home')
-    # success_message = 'Успешная авторизация'
+
+    def form_invalid(self, form):
+        messages.error(self.request, f'Неверный логин или пароль')
+        return super(LoginPostView, self).form_invalid(form)
 
     def get_success_url(self):
         messages.info(self.request, f'Авторизация выполнена')
         return self.success_url
 
-class LogoutPostView(SuccessMessageMixin, LogoutView):
+class LogoutPostView(LogoutView):
     def get_next_page(self):
         next_page = reverse_lazy('home')
         messages.info(self.request, f'Выход из системы')
@@ -192,7 +199,6 @@ def add_comment(request, pk):
             return redirect(f'/post/{pk}')
         else:
             messages.error(request, 'Произошла ошибка заполнения формы')
-            return redirect(f'/post/{pk}')
     else:
         form = CommentCreateForm(request.POST)
     return render(request, 'main/add_comment.html', {'form': form})
@@ -220,13 +226,12 @@ def reply_comment(request, pk, parent_id, reply_to, reply_id):
             return redirect(f'/post/{pk}')
         else:
             messages.error(request, 'Произошла ошибка заполнения формы')
-            # return redirect(f'/post/{pk}')
     else:
         form = CommentCreateForm(request.POST)
     return render(request, 'main/reply_comment.html', {'form': form})
 
 
-class CommentUpdateView(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
+class CommentUpdateView(LoginRequiredMixin, UpdateView):
     model = Comment
     template_name = 'main/update_comment.html'
     form_class = CommentCreateForm
@@ -234,9 +239,10 @@ class CommentUpdateView(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
     def get_form_kwargs(self):
         kwargs = super().get_form_kwargs()
         if self.request.user != kwargs['instance'].author:
+            messages.error(self.request, f'Недостаточно прав для удаления')
             return self.handle_no_permission()
         return kwargs
-    
+
     # передаем параметр next (возвращение на предыдущую страницу) чтобы использовать в форме
     def get_context_data(self, **kwargs):
         context = super(CommentUpdateView, self).get_context_data(**kwargs)
@@ -255,7 +261,7 @@ class CommentUpdateView(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
         return super().form_valid(form)
     
 
-class DeleteCommentView(SuccessMessageMixin, LoginRequiredMixin, DeleteView):
+class DeleteCommentView(LoginRequiredMixin, DeleteView):
     model = Comment
     template_name = 'main/delete_comment.html'
     form_class = CommentCreateForm
@@ -297,6 +303,12 @@ def tag(request, pk):
     messages.info(request, (f'Поиск по тегу "{pk}" выполнен'))
     return render(request, 'main/index.html', {'post': post, 'profile': profile})
 
+
+def post_likes(request, pk, user):
+    print(f'{request}')
+    print(f'{pk}')
+    print(f'{user}')
+    return render(request, index(request))
 
 @receiver(user_logged_in)
 def got_online(sender, user, request, **kwargs):    

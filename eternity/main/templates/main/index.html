@@ -131,6 +131,7 @@
                         <div class="inflex-left post-text-short font-nunito-regular-normal" style="font-size: 15px;">
                             {{ i.content|truncatewords:23 }}
                         </div>
+
                         {% if request.user !=  i.author %}
                         <div class="flex-center">
                             <div class="flex-left" style="width: 50%;">
@@ -156,7 +157,13 @@
                                     <span style="margin-left: 5px; margin-right: 5px; color: #000000;">
                                         {% comment_count i.title %}
                                     </span>
-                                </a>    
+                                </a>
+                                <a href="/post/{{ i.id }}/like/{{ request.user }}" class="ext-comment flex-center font-nunito-regular-normal" style="font-size: 12.5px;">
+                                    <img src="{% static 'main/images/icons/heart.png' %}" alt="" class="icon">
+                                    <span style="margin-left: 5px;">
+                                        Like
+                                    </span>
+                                </a>
                             </div>
                             <div class="flex-right" style="width: 50%;">
                                 <div class="post-button font-nunito-regular-normal flex-right">
