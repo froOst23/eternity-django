@@ -11,13 +11,13 @@ class NewPostForm(ModelForm):
     # задаем класс формы и атрибут placeholder
     def __init__(self, *args, **kwargs):
         super(NewPostForm, self).__init__(*args, **kwargs)
-        self.fields['title'].widget = TextInput(attrs={'class': 'post-form-input font-nunito-regular-normal', 'placeholder': 'Название поста'})
+        self.fields['title'].widget = TextInput(attrs={'class': 'post-form-input font-nunito-regular-normal', 'placeholder': 'Название поста', 'style': 'font-size: 15.5px'})
         self.fields['title'].label = False
-        self.fields['tag'].widget = TextInput(attrs={'class': 'post-form-input font-nunito-regular-normal', 'placeholder': 'Используемые теги'})
+        self.fields['tag'].widget = TextInput(attrs={'class': 'post-form-input font-nunito-regular-normal', 'placeholder': 'Используемые теги', 'style': 'font-size: 15.5px'})
         self.fields['tag'].label = False
-        self.fields['content'].widget = Textarea(attrs={'class': 'post-form-input-textarea font-nunito-regular-normal', 'placeholder': 'Описание поста'})
+        self.fields['content'].widget = Textarea(attrs={'class': 'post-form-input-textarea font-nunito-regular-normal', 'placeholder': 'Описание поста', 'style': 'font-size: 15.5px'})
         self.fields['content'].label = False
-        self.fields['image'].widget = FileInput(attrs={'class': 'post-form-input font-nunito-regular-normal', 'placeholder': 'Фото поста'})
+        self.fields['image'].widget = FileInput(attrs={'class': 'post-form-input font-nunito-regular-normal', 'placeholder': 'Фото поста', 'style': 'font-size: 15.5px'})
         self.fields['image'].label = False
 
 
@@ -30,9 +30,9 @@ class LoginPostForm(AuthenticationForm, ModelForm):
     # задаем класс формы и атрибут placeholder
     def __init__(self, *args, **kwargs):
         super(LoginPostForm, self).__init__(*args, **kwargs)
-        self.fields['username'].widget = TextInput(attrs={'class': 'post-form-input font-nunito-regular-normal', 'placeholder': 'Логин'})
+        self.fields['username'].widget = TextInput(attrs={'class': 'post-form-input font-nunito-regular-normal', 'placeholder': 'Логин', 'style': 'font-size: 15.5px'})
         self.fields['username'].label = False
-        self.fields['password'].widget = PasswordInput(attrs={'class': 'post-form-input font-nunito-regular-normal', 'placeholder':'Пароль'}) 
+        self.fields['password'].widget = PasswordInput(attrs={'class': 'post-form-input font-nunito-regular-normal', 'placeholder':'Пароль', 'style': 'font-size: 15.5px'}) 
         self.fields['password'].label = False
 
 
@@ -50,9 +50,9 @@ class RegisterPostForm(ModelForm):
     # задаем класс формы и атрибут placeholder
     def __init__(self, *args, **kwargs):
         super(RegisterPostForm, self).__init__(*args, **kwargs)
-        self.fields['username'].widget = TextInput(attrs={'class': 'post-form-input font-nunito-regular-normal', 'placeholder': 'Логин'})
+        self.fields['username'].widget = TextInput(attrs={'class': 'post-form-input font-nunito-regular-normal', 'placeholder': 'Логин', 'style': 'font-size: 15.5px'})
         self.fields['username'].label = False
-        self.fields['password'].widget = PasswordInput(attrs={'class': 'post-form-input font-nunito-regular-normal', 'placeholder':'Пароль'}) 
+        self.fields['password'].widget = PasswordInput(attrs={'class': 'post-form-input font-nunito-regular-normal', 'placeholder':'Пароль', 'style': 'font-size: 15.5px'}) 
         self.fields['password'].label = False
  
     def save(self, commit=True):
@@ -72,11 +72,11 @@ class UpdateUserForm(ModelForm):
     # задаем класс формы и атрибут placeholder
     def __init__(self, *args, **kwargs):
         super(UpdateUserForm, self).__init__(*args, **kwargs)
-        self.fields['first_name'].widget = TextInput(attrs={'class': 'post-form-input font-nunito-regular-normal', 'placeholder': 'Имя'})
+        self.fields['first_name'].widget = TextInput(attrs={'class': 'post-form-input font-nunito-regular-normal', 'placeholder': 'Имя', 'style': 'font-size: 15.5px'})
         self.fields['first_name'].label = False
-        self.fields['last_name'].widget = TextInput(attrs={'class': 'post-form-input font-nunito-regular-normal', 'placeholder':'Фамилия'}) 
+        self.fields['last_name'].widget = TextInput(attrs={'class': 'post-form-input font-nunito-regular-normal', 'placeholder':'Фамилия', 'style': 'font-size: 15.5px'}) 
         self.fields['last_name'].label = False
-        self.fields['email'].widget = TextInput(attrs={'class': 'post-form-input font-nunito-regular-normal', 'placeholder':'email'}) 
+        self.fields['email'].widget = TextInput(attrs={'class': 'post-form-input font-nunito-regular-normal', 'placeholder':'email', 'style': 'font-size: 15.5px'}) 
         self.fields['email'].label = False
 
 
@@ -89,7 +89,7 @@ class ProfileUpdateForm(ModelForm):
     # задаем класс формы и атрибут placeholder
     def __init__(self, *args, **kwargs):
         super(ProfileUpdateForm, self).__init__(*args, **kwargs)
-        self.fields['bio'].widget = Textarea(attrs={'class': 'post-form-input-textarea font-nunito-regular-normal', 'placeholder': 'Обо мне'})
+        self.fields['bio'].widget = Textarea(attrs={'class': 'post-form-input-textarea font-nunito-regular-normal', 'placeholder': 'Обо мне', 'style': 'font-size: 15.5px'})
         self.fields['bio'].label = False
         self.fields['photo'].widget = FileInput(attrs={'class': 'post-form-input font-nunito-regular-normal'})
         self.fields['photo'].label = False
@@ -103,5 +103,5 @@ class CommentCreateForm(ModelForm):
     # задаем класс формы и атрибут placeholder
     def __init__(self, *args, **kwargs):
         super(CommentCreateForm, self).__init__(*args, **kwargs)
-        self.fields['content'].widget = Textarea(attrs={'class': 'post-form-input-textarea font-nunito-regular-normal', 'placeholder': 'Комментарий'})
+        self.fields['content'].widget = Textarea(attrs={'class': 'post-form-input-textarea font-nunito-regular-normal', 'placeholder': 'Комментарий', 'style': 'font-size: 15.5px'})
         self.fields['content'].label = False
