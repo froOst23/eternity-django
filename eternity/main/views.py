@@ -247,6 +247,12 @@ class CommentUpdateView(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
         next_url = self.request.GET.get('next')
         messages.success(self.request, 'Комментарий успешно изменен')
         return next_url
+
+    def form_valid(self, form):
+        self.object = form.save(commit=False)
+        self.object.is_changed = True
+        self.object.save()
+        return super().form_valid(form)
     
 
 class DeleteCommentView(SuccessMessageMixin, LoginRequiredMixin, DeleteView):
