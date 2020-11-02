@@ -2,12 +2,10 @@
 
 {% load static %}
 
-{% block title %}
-    eternity | Регистрация
-{% endblock %}
+{% block title %}eternity | Регистрация{% endblock %}
 
 {% block content %}
-
+<script src="{% static 'main/js/registration.js' %}"></script>
 <main class="post-wrapper-mini">
     <div class="post">
         <div class="post-head post-title" style="margin-bottom: 35px;">
@@ -21,7 +19,7 @@
                 <div class="flex-left label font-nunito-regular-normal">
                     Имя пользователя
                 </div>
-                <div class="inflex-center" style="width: 100%; padding-bottom: 40px;">
+                <div class="inflex-center" style="width: 100%; padding-bottom: 40px;" id="userName">
                     {{ form.username }}
                 </div>
                 <div class="flex-left label font-nunito-regular-normal">
@@ -34,8 +32,12 @@
                     <button class="button font-nunito-regular-normal" type="submit">Создать</button> 
                 </div>
             </form>
+            <div class="post-button flex-center" style="margin-top: 20px;">
+                <button class="button font-nunito-regular-normal" onclick="btn()">Проверить</button> 
+            </div>
         </div>
     </div>
 </main>
+
 
 {% endblock %}

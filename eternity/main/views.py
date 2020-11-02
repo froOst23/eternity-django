@@ -11,7 +11,7 @@ from django.contrib.auth.forms import User, UserCreationForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.signals import user_logged_in, user_logged_out
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from django.core.files.uploadhandler import FileUploadHandler
 
 class PostDetailView(DetailView):
@@ -319,3 +319,10 @@ def got_online(sender, user, request, **kwargs):
 def got_offline(sender, user, request, **kwargs):   
     user.profile.is_online = False
     user.profile.save()
+
+
+def check_user_name(request):
+    if request.method == 'GET':
+        user_name = request.GET["user_name"]
+        print(user_name)
+        return HttpResponse('ok', content_type='text/html')
