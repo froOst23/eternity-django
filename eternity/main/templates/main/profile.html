@@ -9,10 +9,10 @@
 <main class="post-wrapper-medium">
     <div class="post">
         <div class="post-head post-title" style="margin-bottom: 35px;">
-            <span class="font-bold-large flex-center">
+            <span class="font-nunito-regular-large flex-center">
                 {{ object.user }}
             </span>
-            <span class="font-nunito-regular-small flex-center label   ">
+            <span class="font-nunito-regular-normal flex-center label">
                 {% if object.is_online == True %}
                     Сейчас на сайте
                 {% else %}
@@ -22,7 +22,7 @@
             {% if request.user == object.user %}
             <span class="flex-center ">
                 <span class="profile-link-line">
-                    <a href="/accounts/profile/id{{ object.user.id }}/edit?next={{ request.path }}" class="profile-link font-bold-medium">Редактировать</a>
+                    <a href="/accounts/profile/id{{ object.user.id }}/edit?next={{ request.path }}" class="profile-link font-nunito-regular-large">Редактировать</a>
                 </span>
             </span>
             {% endif %}
@@ -36,25 +36,25 @@
             </div>
             <span class="font-bold-large inflex-center" style="padding-bottom: 20px; padding-top: 20px;"></span>    
         <div class="post-content post-block-form">
-            <div class="flex-left font-bold-small label" style="color: gray;">
+            <div class="flex-left font-nunito-regular-normal label">
                 Имя пользователя:
             </div>
             <div class="flex-left font-nunito-regular-large" style="width: 100%; padding-bottom: 30px; font-size: 15.5px;">
                 {{ object.user.first_name }}
             </div>
-            <div class="flex-left font-bold-small label" style="color: gray;">
+            <div class="flex-left font-nunito-regular-normal label">
                 Фамилия пользователя:
             </div>
             <div class="flex-left font-nunito-regular-large" style="width: 100%; padding-bottom: 30px; font-size: 15.5px;">
                 {{ object.user.last_name }}
             </div>
-            <div class="flex-left font-bold-small label" style="color: gray;">
+            <div class="flex-left font-nunito-regular-normal label">
                 E-MAIL:
             </div>
             <div class="flex-left font-nunito-regular-large" style="width: 100%; padding-bottom: 30px; font-size: 15.5px;">
                 {{ object.user.email }}
             </div>
-            <div class="flex-left font-bold-small label" style="color: gray;">
+            <div class="flex-left font-nunito-regular-normal label">
                 Обо мне:
             </div>
             <div class="flex-left font-nunito-regular-large" style="width: 95%; padding-bottom: 30px; font-size: 15.5px;">

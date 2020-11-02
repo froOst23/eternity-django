@@ -29,9 +29,6 @@ class Post(models.Model):
 class PostLike(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE, verbose_name='Понравившийся пост')
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name='Кто лайкнул')
-    # is_like = models.BooleanField(default=False, verbose_name='Лайк')
-    # user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Кто лайкнул')
-    # user = models.CharField(verbose_name='Кто лайкнул', max_length=100)
 
     class Meta():
         verbose_name = 'Лайк поста'
