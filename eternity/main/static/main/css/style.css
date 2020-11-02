@@ -302,8 +302,8 @@ main{
     margin: auto;
     display: block;
     max-height: 90%;
-    margin-bottom: 50px;
-    padding-top: 50px;
+    margin-bottom: 40px;
+    padding-top: 40px;
 }
 .model-content{
     -webkit-animation-name: zoom;
@@ -417,11 +417,11 @@ main{
 .post-text-short{
     margin-left: 25px;
     margin-right: 25px;
-    margin-bottom: 20px;
-    white-space: pre-line;
-    overflow-wrap: break-word;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    word-break: break-all;
     line-height: 1.56;
 }
 .post-comment{
@@ -707,17 +707,19 @@ main{
 }
 .ext-comment{
     margin-left: 25px;
-    margin-right: 25px;
     margin-bottom: 20px;
     cursor: pointer;
+    color: #000000;
     text-decoration: none;
 
 }
 .ext-comment:hover{
     margin-left: 25px;
-    margin-right: 25px;
     margin-bottom: 20px;
     cursor: pointer;
+    color: red;
+    background-color: rgb(180, 50, 50);
+    border-radius: 5px;
     text-decoration: none;
 }
 .inflex-center{
@@ -755,7 +757,9 @@ main{
     padding-left: 25px;
 
 }
+
 /* font block */
+
 .font-nunito-light-normal{
     font-family: 'Nunito-Light';
     font-size: 14px;

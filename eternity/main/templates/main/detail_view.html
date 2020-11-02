@@ -58,15 +58,15 @@
                                 }
                             }
                         </script>
-                        <img src="{% static 'main/images/icons/more.png' %}" class="drop-icon" onclick="showMenu{{detail_post.id}}()">
                         {% if request.user ==  detail_post.author %}
+                        <img src="{% static 'main/images/icons/more.png' %}" class="drop-icon" onclick="showMenu{{detail_post.id}}()">
                         <div class="drop-list font-roboto-regular-normal" id="droplist{{detail_post.id}}" style="font-size: 12.5px; line-height: 10px;">
-                            <a href="/post/{{ detail_post.id }}/comment/add?next={{ request.path }}" class="drop-link">
+                            <!-- <a href="/post/{{ detail_post.id }}/comment/add?next={{ request.path }}" class="drop-link">
                                 <img src="{% static 'main/images/icons/chat.png' %}" alt="" class="icon">
                                 <span style="margin-left: 10px;">
                                     Комментировать {% comment_count detail_post.title %}
                                 </span>
-                            </a>    
+                            </a>     -->
                             <!-- <a href="/post/{{ detail_post.id }}" class="drop-link font-regular-small">
                                 <img src="{% static 'main/images/icons/magnifying-glass.png' %}" alt="" class="icon">
                                 <span style="margin-left: 10px;">
@@ -87,20 +87,20 @@
                             </a>
                         </div>
                         {% else %}
-                        <div class="drop-list" id="droplist{{detail_post.id}}">
+                        <!-- <div class="drop-list" id="droplist{{detail_post.id}}">
                             <a href="/post/{{ detail_post.id }}/comment/add?next={{ request.path }}" class="drop-link font-roboto-regular-normal" style="font-size: 12.5px; line-height: 10px;">
                                 <img src="{% static 'main/images/icons/chat.png' %}" alt="" class="icon">
                                 <span style="margin-left: 10px;">
                                     Комментировать {% comment_count detail_post.title %}
                                 </span>
                             </a>    
-                            <!-- <a href="/post/{{ detail_post.id }}" class="drop-link font-regular-small">
+                            <a href="/post/{{ detail_post.id }}" class="drop-link font-regular-small">
                                 <img src="{% static 'main/images/icons/magnifying-glass.png' %}" alt="" class="icon">
                                 <span style="margin-left: 10px;">
                                     Читать дальше
                                 </span>
-                            </a> -->
-                        </div>    
+                            </a>
+                        </div>     -->
                         {% endif %}
                     </div>
                 </div>

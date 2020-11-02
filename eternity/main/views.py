@@ -1,4 +1,4 @@
-from .models import Post, Profile, Comment
+from .models import Post, Profile, Comment, PostLike
 from .forms import NewPostForm, LoginPostForm, RegisterPostForm, UpdateUserForm, ProfileUpdateForm, CommentCreateForm
 from django.shortcuts import render, redirect
 from django.db import transaction
@@ -304,11 +304,21 @@ def tag(request, pk):
     return render(request, 'main/index.html', {'post': post, 'profile': profile})
 
 
-def post_likes(request, pk, user):
-    print(f'{request}')
-    print(f'{pk}')
-    print(f'{user}')
-    return render(request, index(request))
+@login_required
+def post_likes(request, pk):
+    # Если у поста есть лайк...
+    if PostLike.objects.filter(post=Post.objects.get(id=pk)).exists():
+        # Если текущий пользователь уже лайкнул пост, то удаляем запись о лайке
+        if PostLike.objects.filter(post=Post.objects.get(id=pk), user=request.user).exists():
+            PostLike.objects.filter(post=Post.objects.get(id=pk), user=request.user).delete()
+        # Иначе создаем запись о лайке
+        else:
+            PostLike.objects.create(post=Post.objects.get(id=pk), user=request.user)
+    else:
+        # Если записи о лайке поста не существует - создаем запись с текущим пользователем
+        PostLike.objects.create(post=Post.objects.get(id=pk), user=request.user)
+    return redirect('home')
+
 
 @receiver(user_logged_in)
 def got_online(sender, user, request, **kwargs):    

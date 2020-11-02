@@ -3,6 +3,7 @@
 {% load static %}
 {% load split_filter %}
 {% load comment_count %}
+{% load post_like_count %}
 
 {% block title %}eternity | Лента{% endblock %}
 
@@ -60,10 +61,10 @@
                                         }
                                     }
                                 </script>
-                                <img src="{% static 'main/images/icons/more.png' %}" class="drop-icon" onclick="showMenu{{i.id}}()">
                                 {% if request.user ==  i.author %}
+                                <img src="{% static 'main/images/icons/more.png' %}" class="drop-icon" onclick="showMenu{{i.id}}()">
                                 <div class="drop-list font-roboto-regular-normal" id="droplist{{i.id}}" style="font-size: 12.5px; line-height: 10px;">
-                                    <a href="/post/{{ i.id }}/comment/add?next={{ request.path }}" class="drop-link">
+                                    <!-- <a href="/post/{{ i.id }}/comment/add?next={{ request.path }}" class="drop-link">
                                         <img src="{% static 'main/images/icons/chat.png' %}" alt="" class="icon">
                                         <span style="margin-left: 10px;">
                                             Комментарии {% comment_count i.title %}
@@ -74,7 +75,7 @@
                                         <span style="margin-left: 10px;">
                                             Читать дальше
                                         </span>
-                                    </a>
+                                    </a> -->
                                     <a href="/post/{{ i.id }}/update?next={{ request.path }}" class="drop-link">
                                         <img src="{% static 'main/images/icons/settings.png' %}" alt="" class="icon">
                                         <span style="margin-left: 10px;">
@@ -89,7 +90,7 @@
                                     </a>
                                 </div>
                                 {% else %}
-                                <div class="drop-list font-roboto-regular-normal" id="droplist{{i.id}}" style="font-size: 12.5px; line-height: 10px;">
+                                <!-- <div class="drop-list font-roboto-regular-normal" id="droplist{{i.id}}" style="font-size: 12.5px; line-height: 10px;">
                                     <a href="/post/{{ i.id }}/comment/add?next={{ request.path }}" class="drop-link">
                                         <img src="{% static 'main/images/icons/chat.png' %}" alt="" class="icon">
                                         <span style="margin-left: 10px;">
@@ -102,7 +103,7 @@
                                             Читать дальше
                                         </span>
                                     </a>
-                                </div>
+                                </div> -->
                                 {% endif %}
                             </div>    
                         </div>
@@ -138,7 +139,13 @@
                                     <span style="margin-left: 5px; margin-right: 5px;">
                                         {% comment_count i.title %}
                                     </span>
-                                </a>    
+                                </a>
+                                <a href="/post/{{ i.id }}/like" class="ext-comment flex-center font-nunito-regular-normal" style="font-size: 12.5px;">
+                                    <img src="{% static 'main/images/icons/heart.png' %}" alt="" class="icon">
+                                    <span style="padding-left: 5px; padding-right: 5px;">
+                                        {% post_like_count i.title %}
+                                    </span>
+                                </a>
                             </div>
                             <div class="flex-right" style="width: 50%;">
                                 <div class="post-button font-nunito-regular-normal flex-right">
@@ -152,14 +159,14 @@
                             <div class="flex-left" style="width: 50%;">
                                 <a href="/post/{{ i.id }}#comment" class="ext-comment flex-center font-nunito-regular-normal" style="font-size: 12.5px;">
                                     <img src="{% static 'main/images/icons/chat.png' %}" alt="" class="icon">
-                                    <span style="margin-left: 5px; margin-right: 5px; color: #000000;">
+                                    <span style="padding-left: 5px; padding-right: 5px;">
                                         {% comment_count i.title %}
                                     </span>
                                 </a>
-                                <a href="/post/{{ i.id }}/like/{{ request.user }}" class="ext-comment flex-center font-nunito-regular-normal" style="font-size: 12.5px;">
+                                <a href="/post/{{ i.id }}/like" class="ext-comment flex-center font-nunito-regular-normal" style="font-size: 12.5px;">
                                     <img src="{% static 'main/images/icons/heart.png' %}" alt="" class="icon">
-                                    <span style="margin-left: 5px;">
-                                        Like
+                                    <span style="padding-left: 5px; padding-right: 5px;">
+                                        {% post_like_count i.title %}
                                     </span>
                                 </a>
                             </div>

@@ -17,6 +17,6 @@ urlpatterns = [
     path('post/<int:pk>/comment/reply/<int:parent_id>/<str:reply_to>/<int:reply_id>', views.reply_comment, name='reply_comment'),
     path('comment/<int:pk>/update', views.CommentUpdateView.as_view(), name='update_comment'),
     path('comment/<int:pk>/delete', views.DeleteCommentView.as_view(), name='delete_comment'),
-    path('post/<int:pk>/like/<str:user>', views.post_likes, name='post_like'),
+    path('post/<int:pk>/like', views.post_likes, name='post_like'),
     path('check_user_name', views.check_user_name, name='check_user_name')
 ]
