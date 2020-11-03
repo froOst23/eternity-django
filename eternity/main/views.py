@@ -320,6 +320,11 @@ def post_likes(request, pk):
     return redirect('home')
 
 
+def share(request, pk):
+    share_link = f'/post/{pk}'
+    print(f'{share_link}')
+    return render(request, 'main/share.html', {'share_link':share_link})
+
 @receiver(user_logged_in)
 def got_online(sender, user, request, **kwargs):    
     user.profile.is_online = True

@@ -18,5 +18,6 @@ urlpatterns = [
     path('comment/<int:pk>/update', views.CommentUpdateView.as_view(), name='update_comment'),
     path('comment/<int:pk>/delete', views.DeleteCommentView.as_view(), name='delete_comment'),
     path('post/<int:pk>/like', views.post_likes, name='post_like'),
+    path('post/<int:pk>/share', views.share, name='share'),
     path('check_user_name', views.check_user_name, name='check_user_name')
 ]

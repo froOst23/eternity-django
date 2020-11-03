@@ -1,0 +1,28 @@
+{% extends "main/base.html" %}
+
+{% load static %}
+
+{% block title %}eternity | Поделиться записью{% endblock %}
+
+{% block content %}
+
+<div class="post-wrapper">
+    <div class="post">
+        <div class="post-head post-title" style="margin-bottom: 35px;">
+            <span class="font-nunito-regular-large flex-center" style="font-size: 21.5px;">
+                Поделиться записью
+            </span>
+        </div>
+        <div class="post-content">
+            <span class="font-nunito-regular-large flex-center" style="font-size: 21.5px; margin-bottom: 35px;">
+                <a href="{{ share_link }}" id="copyText" class="post-link font-nunito-regular-large">http://127.0.0.1:8000{{ share_link|lower }}</a> 
+            </span>
+            <div class="post-button font-nunito-regular-normal flex-center">
+                <button onclick="copyFunc()" class="button" style="width: 118px; height: 33px;">Копировать</button>
+                <script src="{% static 'main/js/copy_text.js' %}"></script>
+            </div>
+        </div>
+    </div>    
+</div>
+
+{% endblock %}

@@ -711,16 +711,36 @@ main{
     cursor: pointer;
     color: #000000;
     text-decoration: none;
+    border-color: #ffffff;
+    border-radius: 5px;
+    text-decoration: none;
+    border-top-width: 1px;
+    border-top-style: solid;
+    border-right-width: 1px;
+    border-right-style: solid;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-left-width: 1px;
+    border-left-style: solid;
 
 }
 .ext-comment:hover{
     margin-left: 25px;
     margin-bottom: 20px;
     cursor: pointer;
-    color: red;
-    background-color: rgb(180, 50, 50);
+    color: #000000;
+    background-color: #F4F4F4;
+    border-color: #E9E9E9;
     border-radius: 5px;
     text-decoration: none;
+    border-top-width: 1px;
+    border-top-style: solid;
+    border-right-width: 1px;
+    border-right-style: solid;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-left-width: 1px;
+    border-left-style: solid;
 }
 .inflex-center{
     display: inline-flex;
