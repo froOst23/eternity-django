@@ -1,5 +1,7 @@
 language: python
+
 rvm:
   - 3.8.3
+
 script:
   - python manage.py test
