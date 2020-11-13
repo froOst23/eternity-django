@@ -4,4 +4,5 @@ rvm:
   - 3.8.3
 
 script:
+  - cd eternity/
   - python manage.py test
