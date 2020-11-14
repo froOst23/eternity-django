@@ -4,7 +4,8 @@ rvm:
   - 3.8.3
  
 script:
-  - pip3 install -r requirements.txt
   - cd eternity/
+  - python3 manage.py makemigrations
+  - python3 manage.py migrate
   - python3 manage.py test
   
