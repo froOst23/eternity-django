@@ -48,10 +48,3 @@ class CreateUserTest(TestCase):
         testUserExtended2 = Profile.objects.get(user=testUser2)
         testUserExtended2.bio = 'testUserBio'
         self.assertEquals(testUserExtended2.bio, 'testUserBio')
-
-        # c = Client()
-        # successLogin = c.login(username=testUser1.username, password=testUser1.password)
-        # self.assertEquals(successLogin, True)
-        # response = c.get(f'/post/{testPost.id}')
-        # self.assertEquals(response.status_code, 200)
-        # c.logout()

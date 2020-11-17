@@ -51,7 +51,7 @@ main{
     height: 42px;
     padding-left: 40px;
     padding-right: 40px;
-    background-color: #095F73;
+    background-color: #2A6264;
     box-shadow: 0 2px 4px 0 rgba(0,0,0,0.1);
     opacity: 90%;
 }
@@ -62,7 +62,7 @@ main{
     padding-right: 10px;
     width: 100px;
     text-decoration: none;
-    color: #CCD3D9;
+    color: #8ABCBE;
     cursor: pointer;
 }
 .header-menu-link:hover{
@@ -83,7 +83,7 @@ main{
     padding-right: 10px;
     width: 100px;
     text-decoration: none;
-    color: #CCD3D9;
+    color: #8ABCBE;
     cursor: pointer;
 }
 .header-menu-link-alarm:hover{

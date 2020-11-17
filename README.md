@@ -2,7 +2,7 @@
 
 ![](https://img.shields.io/github/languages/code-size/froOst23/eternity-django)
 ![](https://img.shields.io/github/last-commit/froOst23/eternity-django)
-
+![](https://img.shields.io/travis/froost23/eternity-django)
 
 ![eternity preview](eternity_preview.png)
 
